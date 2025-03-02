@@ -26,7 +26,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.0"    
+    BASE_VERSION              = "4.0.1"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2428,7 +2428,6 @@
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys 
     kseext.sys, drivers\kseext.sys    
-    ntoskrn8.sys, drivers\ntoskrn8.sys    
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
 
 [System32.Files]
