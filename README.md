@@ -134,7 +134,8 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 - Legocord (Discord fork) latest;
 - Visual Studio 2012 and Visual Studio 2013;
 - Visual Studio Code (and forks like Codium) up to the latest version;
-- Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version;
+- Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
+- Chrome installer up to version 109 (version for Windows 10 is not supported yet)
 - Gecko based (Firefox, Zen Browser) up to the latest versions (however, YouTube only works up to Firefox version 130);
 - Seamonkey up to version 2.53.10;
 - Thunderbird up to the latest version;
