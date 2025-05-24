@@ -10,7 +10,7 @@
 [English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
 ***
 
-**This repositry contains binary releases of the One-Core-API project. These are compatible with Windows Server 2003 RTM, SP1 and SP2, Windows XP RTM, SP1, SP2 and SP3 and Windows XP
+**This repository contains binary releases of the One-Core-API project. These are compatible with Windows Server 2003 RTM, SP1 and SP2, Windows XP RTM, SP1, SP2 and SP3 and Windows XP
 x64 SP1/SP2. However, it is highly recommended to use the system with its latest Service Pack update and all available updates.**
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
