@@ -272,7 +272,7 @@ One-Core-API использует технологию установки исп
 
 **Если вы хотите присоединиться к нашему официальному серверу Discord One-Core-API, вы можете присоединиться здесь:**
 
-<b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></n>
+<b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></b></n>
 
 ## Демонстрация / Подтверждение концепции
 
