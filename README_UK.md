@@ -261,7 +261,7 @@ One-Core-API використовує технологію встановлен�
 
 **Якщо ви хочете приєднатися до нашого офіційного сервера Discord One-Core-API, ви можете приєднатися тут:**
 
-<b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></n>
+<b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></b></n>
 
 ## Демонстрація / Підтвердження концепції
 
