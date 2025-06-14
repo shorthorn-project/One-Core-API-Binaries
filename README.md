@@ -73,29 +73,29 @@ The One-Core-API uses the hotfix installation technology used up to Windows NT 5
 <details>
   <summary>Step by step guide with images</summary>
 
-**Download:**
-![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+  **Download:**
+  ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
 
-**Extract:**
-![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+  **Extract:**
+  ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
 
-**Open the extracted content and choose your architecture. If the banner haven't x64, it is x86**
-![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+  **Open the extracted content and choose your architecture. If the banner haven't x64, it is x86**
+  ![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
 
-**Double click on executable:**
-![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+  **Double click on executable:**
+  ![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
 
-**Next:**
-![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+  **Next:**
+  ![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
 
-**Accept and Next:**
-![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+  **Accept and Next:**
+  ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
 
-**Wait for:**
-![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+  **Wait for:**
+  ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
 
-**Finish and enjoy!**
-![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+  **Finish and enjoy!**
+  ![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
 
 </details>
 
@@ -105,30 +105,31 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
 <details>
   <summary>Step by step guide with images</summary>
+  
+  **Go to Control Panel:**
+  ![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
 
-**Go to Control Panel:**
-![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+  **Click on Add Or Remove Programs:**
+  ![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
 
-**Click on Add Or Remove Programs:**
-![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+  **Mark "Show Updates:"**
+  ![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
 
-**Mark "Show Updates:"**
-![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+  **The update will show up. Scroll down until show One-Core-API:**
+  ![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
 
-**The update will show up. Scroll down until show One-Core-API:**
-![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+  **Click on One-Core-API Pack and then, Remove button:**
+  ![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
 
-**Click on One-Core-API Pack and then, Remove button:**
-![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+  **The uninstall Windows will show up. Click in Next:**
+  ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
 
-**The uninstall Windows will show up. Click in Next:**
-![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+  **Wait for:**
+  ![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
 
-**Wait for:**
-![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
-
-**Click in finish and then the Windows will restart:**
-![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+  **Click in finish and then the Windows will restart:**
+  ![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+</details>
 
 </details>
 
@@ -136,104 +137,106 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
 <details>
   <summary>Browsers and email clients</summary>
+  
+  - Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
+  - Chrome installer up to version 109 (version for Windows 10 is not supported yet)
+  - Gecko based (Firefox, Zen Browser) up to the latest versions (however, YouTube only works up to Firefox version 130);
+  - Seamonkey up to version 2.53.10;
+  - Maxthon up to version 7.1.6;
+  - Vivaldi up to the latest version;
+  - Epic Browser 120
+  - Thunderbird up to the latest version
 
-- Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
-- Chrome installer up to version 109 (version for Windows 10 is not supported yet)
-- Gecko based (Firefox, Zen Browser) up to the latest versions (however, YouTube only works up to Firefox version 130);
-- Seamonkey up to version 2.53.10;
-- Maxthon up to version 7.1.6;
-- Vivaldi up to the latest version;
-- Epic Browser 120
-- Thunderbird up to the latest version
 </details>
 
 <details>
   <summary>Messengers and other communication programs</summary>
-
-- Discord 0.309.0;
-- Legocord (Discord fork) latest;
-- Telegram Desktop;
-- Line;
-- Zoom;
-- Filezilla (latest version);
-- TeamViewer 14
-</details>
+  
+  - Discord 0.309.0;
+  - Legocord (Discord fork) latest;
+  - Telegram Desktop;
+  - Line;
+  - Zoom;
+  - Filezilla (latest version);
+  - TeamViewer 14
+</details>  
 
 <details>
   <summary>Office apps</summary>
 
-- LibreOffice 24.0.x (latest version);
-- Adobe Reader DC (up to 2024);
-- Foxit PDF Reader (2023)
+  - LibreOffice 24.0.x (latest version);
+  - Adobe Reader DC (up to 2024);
+  - Foxit PDF Reader (2023)
+
 </details>
 
 <details>
   <summary>IDE's and programming languages</summary>
 
-- JetBrains IDE up to the latest releases (2024);
-- Visual Studio 2012 and Visual Studio 2013;
-- Eclipse IDE up to the latest version;
-- Visual Studio Code (and forks like Codium) up to the latest version;
-- Android Studio up to the latest version;
-- NetBeans up to the latest version;
-- Python 3.6 (3.8/3.9 may also work, only the [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) version)
+  - JetBrains IDE up to the latest releases (2024);
+  - Visual Studio 2012 and Visual Studio 2013;
+  - Eclipse IDE up to the latest version;
+  - Visual Studio Code (and forks like Codium) up to the latest version;
+  - Android Studio up to the latest version;
+  - NetBeans up to the latest version;
+  - Python 3.6 (3.8/3.9 may also work, only the [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) version)
 </details>
 
 <details>
   <summary>Java</summary>
-
-- Java JDK and alternative JDK or OpenJDK up to version 24 (maybe other versions work as well). You can download from: https://bell-sw.com/pages/downloads/#/java-11-lts;
-- JDK 1.8 (Windows XP x64 only for now)
+  
+  - Java JDK and alternative JDK or OpenJDK up to version 24 (maybe other versions work as well). You can download from: https://bell-sw.com/pages/downloads/#/java-11-lts;
+  - JDK 1.8 (Windows XP x64 only for now)
 </details>
 
 <details>
   <summary>Native apps from Windows Vista/7</summary>
-
-- Windows 7 games;
-- Windows 7 Paint;
-- Windows 7 Wordpad;
-- Native applications from Windows Vista
+  
+  - Windows 7 games;
+  - Windows 7 Paint;
+  - Windows 7 Wordpad;
+  - Native applications from Windows Vista
 </details>
 
 <details>
 
   <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
 
-- Need for Speed Most Wanted 2012;
-- Need for Speed The Run;
-- Street Fighter V;
-- Injustice: Gods Among Us;
-- Assassin's Creed Black Flag;
-- Crysis 1, 2, and 3 (directx 10-11 mode);
-- GTA Trilogy Definitive Edition;
-- GTA V;
-- Minecraft 1.21.x
-- Resident Evil 5 dx10 mode;
-- Lost Planet;
-- Far Cry 4;
-- Far Cry Primal;
-- Tropico 5;
-- Metro Last Night;
-- Cuphead;
-- Horizon Turbo
+  - Need for Speed Most Wanted 2012;
+  - Need for Speed The Run;
+  - Street Fighter V;
+  - Injustice: Gods Among Us;
+  - Assassin's Creed Black Flag;
+  - Crysis 1, 2, and 3 (directx 10-11 mode);
+  - GTA Trilogy Definitive Edition;
+  - GTA V;
+  - Minecraft 1.21.x
+  - Resident Evil 5 dx10 mode;
+  - Lost Planet;
+  - Far Cry 4;
+  - Far Cry Primal;
+  - Tropico 5;
+  - Metro Last Night;
+  - Cuphead;
+  - Horizon Turbo
 </details>
 
 <details>
   <summary>Other</summary>
 
-- Adobe Products (Photoshop, Illustrator, Dreamweaver, etc.) up to the 2019 version;
-- .Net Framework up to 4.8;
-- .NET 6.0
-- Geekbench 4.2;
-- Performance Test;
-- Spotify for Windows 7 and for Windows 10;
-- Node 10.24;
-- Winrar 7.0 (latest);
-- Postman
-- Dbeaver
-- Kate 23.08.1
+  - Adobe Products (Photoshop, Illustrator, Dreamweaver, etc.) up to the 2019 version;
+  - .Net Framework up to 4.8;
+  - .NET 6.0
+  - Geekbench 4.2;
+  - Performance Test;
+  - Spotify for Windows 7 and for Windows 10;
+  - Node 10.24;
+  - Winrar 7.0 (latest);
+  - Postman
+  - Dbeaver
+  - Kate 23.08.1
 </details>
-
+  
 ## Known Limitations
 
 - Youtube on Firefox Starting version 131 not work. So, we recommend use version 115 or 128 ESR.
@@ -300,89 +303,81 @@ Some screenshots of Applicaions running on XP/Server 2003:
 <details>
   <summary>Browsers and Thunderbird</summary>
 
-**Chrome 132**
-![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
+  **Chrome 132**
+  ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
 
-**Edge 134 (Dev Preview)**
-![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
+  **Edge 134 (Dev Preview)**
+  ![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
 
-**Opera 116**
-![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
+  **Opera 116**
+  ![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
 
-**Firefox 122**
-![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
+  **Firefox 122**
+  ![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
 
-**Thunderbird 132**
-![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
+  **Thunderbird 132**
+  ![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
 
-**Basilisk**
-![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
+  **Basilisk**
+  ![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
 
-**Vivaldi**
-![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
-
+  **Vivaldi**
+  ![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
 </details>
 
 <details>
   <summary>Games</summary>
+ 
+  **Microsoft Chess 3d**
+  ![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
 
-**Microsoft Chess 3d**
-![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
-
-**Minecraft 1.21**
-![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
-
+  **Minecraft 1.21**
+  ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
 </details>
 
 <details>
   <summary>Messengers and other communication programs</summary>
 
-**Telegram 4.14**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/73e13167-49b8-4282-81cb-969435046dde)
+  **Discord 0.309**
+  ![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
+  ![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
 
-**Discord 0.309**
-![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
-![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
+  **Telegram Desktop**
+  ![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
 
-**Telegram Desktop**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
-
-**Zoom meeting**
-![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
-
+  **Zoom meeting**
+  ![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
 </details>
 
 <details>
   <summary>Native Windows 7 apps</summary>
 
-**Windows 7 Sticky Notes**
-![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
+  **Windows 7 Sticky Notes**
+  ![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
 
-**Windows 7 Paint**
-![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
+  **Windows 7 Paint**
+  ![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
 
-**Windows 7 Wordpad**
-![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
-
+  **Windows 7 Wordpad**
+  ![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
 </details>
 
 <details>
   <summary>Other</summary>
+  
+  **Spotify (For Windows 7)**
+  ![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
 
-**Spotify (For Windows 7)**
-![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+  **Visual Studio Code 1.81**
+  ![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
 
-**Visual Studio Code 1.81**
-![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
+  **Libre Office 24 (latest)**
+  ![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
+  ![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
-**Libre Office 24 (latest)**
-![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
-![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
+  **Java 11**
+  ![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
 
-**Java 11**
-![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
-
-**Avast and Chromium 68**
-![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
-
+  **Avast and Chromium 68**
+  ![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
 </details>
