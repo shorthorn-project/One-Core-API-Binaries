@@ -5,10 +5,12 @@
   <h6>Большое спасибо @pashtetusss777 за баннер</h6>
 </div>
 
-***
+---
+
 **Язык:**
 [English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
-***
+
+---
 
 **Этот репозиторий содержит бинарные релизы проекта One-Core-API. Они совместимы с Windows Server 2003 RTM, SP1 и SP2, Windows XP RTM, SP1, SP2 и SP3 и Windows XP x64 SP1/SP2. Однако, настоятельно рекомендуется использовать систему с последним пакетом обновлений и всеми доступными обновлениями.**
 
@@ -25,12 +27,14 @@
 - [Демонстрация / Подтверждение концепции](#демонстрация--подтверждение-концепции)
 
 ## Основные возможности
+
 - **Увеличение поддержки памяти до 128 ГБ для x86 и 2 ТБ для x64 по умолчанию;**
 - **Позволяет поддержку запуска новых программ, разработанных для современных ОС Windows;**
 - **Позволяет поддержку нового оборудования с новыми драйверами контроллеров;**
 - **Многоязычная поддержка для всех поддерживаемых языков Windows XP и Windows Server 2003;**
 
 ### Перед использованием этого программного обеспечения
+
 > Это программное обеспечение использует модифицированные файлы из соответствующих систем, а также включает файлы, которые все еще находятся на стадии тестирования или экспериментирования, и **разрабатывается одним человеком**. Следовательно, предсказать все возможные сценарии для различных конфигураций компьютеров или виртуальных машин невозможно.
 >
 > <h4>Переход между Windows XP/2003 и Vista ознаменовал значительный скачок в разработке новых API, технологий и модификаций существующих API. Это затрудняет достижение такого же уровня совместимости между системами NT 5.x и NT 6.x.</h4>
@@ -46,114 +50,173 @@
 
 One-Core-API использует технологию установки исправлений (hotfixes), которая использовалась до Windows NT 5.x. Благодаря этому вы заметите, что она очень похожа на установку пакета обновлений. Вам нужно перейти в раздел [Releases](https://github.com/Shorthorn-Project/One-Core-API-Binaries/releases), выбрать версию, которую вы хотите протестировать, и скачать zip-файл. После загрузки распакуйте файл, и вы увидите, что есть две папки, по одной для каждой поддерживаемой платформы: x64 и x86. Внутри каждой папки будет исполняемый файл с названием: One-Core-API-Pack.exe. Дважды щелкните по этому файлу и выполните шаги установки, которые в основном сводятся к: "Далее, выбрать принять лицензию, Далее и Готово". Это так просто.
 
-**Загрузка:**
+<details>
+  <summary>Пошаговое руководство с изображениями</summary>
 
-![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+  **Загрузка:**
 
-**Распаковка:**
-![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+  ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
 
-**Откройте распакованное содержимое и выберите свою архитектуру. Если на баннере нет x64, это x86:**
-![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+  **Распаковка:**
+  ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
 
-**Дважды щелкните по исполняемому файлу:**
-![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+  **Откройте распакованное содержимое и выберите свою архитектуру. Если на баннере нет x64, это x86:**
+  ![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
 
-**Далее:**
-![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+  **Дважды щелкните по исполняемому файлу:**
+  ![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
 
-**Принять и Далее:**
-![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+  **Далее:**
+  ![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
 
-**Подождите:**
-![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+  **Принять и Далее:**
+  ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
 
-**Готово и наслаждайтесь!**
-![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+  **Подождите:**
+  ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
 
+  **Готово и наслаждайтесь!**
+  ![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+
+</details>
 
 ## Как удалить One-Core-API?
 
 Как упоминалось, One-Core-API использует технологию установки исправлений (hotfixes), которая использовалась в Windows NT до версии 5.x. Поэтому, чтобы удалить его, необходимо перейти в Панель управления -> "Установка/Удаление программ" и выбрать опцию "Показать обновления". После выбора этой опции отобразятся другие обновления (если они установлены), включая One-Core-API. Прокрутите страницу вниз, пока не отобразится One-Core-API, и нажмите на него. Появится кнопка "Удалить". Нажмите на кнопку и выполните шаги удаления (в основном, Далее->Готово).
 
-**Перейдите в Панель управления:**
-![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+<details>
+  <summary>Пошаговое руководство с изображениями</summary>
 
-**Нажмите на Установка/Удаление программ:**
-![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+  **Перейдите в Панель управления:**
+  ![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
 
-**Отметьте "Показать обновления":**
-![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+  **Нажмите на Установка/Удаление программ:**
+  ![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
 
-**Обновление появится. Прокрутите вниз, пока не появится One-Core-API:**
-![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+  **Отметьте "Показать обновления":**
+  ![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
 
-**Нажмите на One-Core-API Pack, а затем на кнопку "Удалить":**
-![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+  **Обновление появится. Прокрутите вниз, пока не появится One-Core-API:**
+  ![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
 
-**Появится окно удаления. Нажмите "Далее":**
-![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+  **Нажмите на One-Core-API Pack, а затем на кнопку "Удалить":**
+  ![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
 
-**Подождите:**
-![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+  **Появится окно удаления. Нажмите "Далее":**
+  ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
 
-**Нажмите "Готово", и Windows перезагрузится:**
-![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+  **Подождите:**
+  [image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+
+  **Нажмите "Готово", и Windows перезагрузится:**
+  ![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+
+</details>
 
 ## Совместимость приложений
-- JetBrains IDE до последних выпусков (2024);
-- Android Studio до последней версии;
-- NetBeans до последней версии;
-- Eclipse IDE до последней версии;
-- Продукты Adobe (Photoshop, Illustrator, Dreamweaver и т. д.) до версии 2019;
-- Filezilla (последняя версия);
-- LibreOffice 24.0.x (последняя версия);
-- Discord 0.309.0;
-- Legocord (форк Discord) последний
-- Visual Studio 2012 и Visual Studio 2013;
-- Visual Studio Code (и форки типа Codium) до последней версии;
-- Chromium браузеры (Chrome, Opera, Edge и другие) до последней версии;
-- Gecko based (Firefox, Zen Browser) до последних версий (однако youtube работает только до версии Firefox 130);
+
+<details>
+  <summary>Браузеры и почтовые клиенты</summary>
+
+- Браузеры на основе Chromium (Chrome, Opera, Edge и другие) до последней версии
+- Установщик Chrome до версии 109 (версия для Windows 10 пока не поддерживается)
+- Браузеры на основе Gecko (Firefox, Zen Browser) до последних версий (однако YouTube работает только до версии Firefox 130);
 - Seamonkey до версии 2.53.10;
-- Thunderbird до последней версии;
 - Maxthon до версии 7.1.6;
 - Vivaldi до последней версии;
-- JDK 1.8 (только Windows XP x64 на данный момент);
-- Java JDK и альтернативные JDK или OpenJDK до версии 24 (возможно, работают и другие версии). Вы можете скачать с: https://bell-sw.com/pages/downloads/#/java-11-lts;
-- Epic Browser 120;
-- Python 3.6 (3.8/3.9 также может работать, только [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) версия);
+- Epic Browser 120
+- Thunderbird до последней версии
+</details>
+
+<details>
+  <summary>Мессенджеры и другие программы для общения</summary>
+
+- Discord 0.309.0;
+- Legocord (форк Discord) последняя версия;
+- Telegram Desktop;
+- Line;
+- Zoom;
+- Filezilla (последняя версия);
+- TeamViewer 14
+</details>
+
+<details>
+  <summary>Офисные приложения</summary>
+
+- LibreOffice 24.0.x (последняя версия);
+- Adobe Reader DC (до 2024 года);
+- Foxit PDF Reader (2023 год)
+</details>
+
+<details>
+  <summary>IDE и языки программирования</summary>
+
+- IDE от JetBrains до последних релизов (2024);
+- Visual Studio 2012 и Visual Studio 2013;
+- Eclipse IDE до последней версии;
+- Visual Studio Code (и форки, такие как Codium) до последней версии;
+- Android Studio до последней версии;
+- NetBeans до последней версии;
+- Python 3.6 (3.8/3.9 также могут работать, только [модифицированная](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) версия)
+</details>
+
+<details>
+  <summary>Java</summary>
+
+- Java JDK и альтернативные JDK или OpenJDK до версии 24 (возможно, другие версии также работают). Скачать можно здесь: https://bell-sw.com/pages/downloads/#/java-11-lts;
+- JDK 1.8 (пока только для Windows XP x64)
+</details>
+
+<details>
+  <summary>Встроенные приложения из Windows Vista/7</summary>
+
+- Игры из Windows 7;
+- Paint из Windows 7;
+- Wordpad из Windows 7;
+- Встроенные приложения из Windows Vista
+</details>
+
+<details>
+
+  <summary>Игры с поддержкой OpenGL, DirectX 9EX, 10 и 11</summary>
+
+- Need for Speed Most Wanted 2012;
+- Need for Speed The Run;
+- Street Fighter V;
+- Injustice: Gods Among Us;
+- Assassin's Creed Black Flag;
+- Crysis 1, 2 и 3 (режим DirectX 10-11);
+- GTA Trilogy Definitive Edition;
+- GTA V;
+- Minecraft 1.21.x
+- Resident Evil 5 (режим DX10);
+- Lost Planet;
+- Far Cry 4;
+- Far Cry Primal;
+- Tropico 5;
+- Metro Last Night;
+- Cuphead;
+- Horizon Turbo
+</details>
+
+<details>
+  <summary>Другое</summary>
+
+- Продукты Adobe (Photoshop, Illustrator, Dreamweaver и т.д.) до версии 2019 года;
 - .Net Framework до 4.8;
 - .NET 6.0
 - Geekbench 4.2;
 - Performance Test;
-- Adobe Reader DC (до 2024);
-- Foxit PDF Reader (2023);
-- Игры из Windows 7;
-- Paint из  Windows 7;
-- Wordpad из Windows 7;
-- Нативные приложения из Windows Vista;
 - Spotify для Windows 7 и для Windows 10;
-- Line;
-- Zoom;
 - Node 10.24;
-- Telegram Desktop;
-- Winrar 7.0 (последняя);
-- Postman;
-- Insominia;
-- Dbeaver;
-- TeamViewer 14;
-- Игры Directx 9EX, 10 и 11:
-  - Need for Speed Most Wanted 2012;
-  - Need for Speed The Run;
-  - Street Figther V;
-  - Injustice: Gods among us;
-  - Assassign Creed Black Flag;
-  - Crysis 1,2 и 3 (режим directx 10-11);
-  - GTA Trilogy;
-  - GTA V;
+- Winrar 7.0 (последняя версия);
+- Postman
+- Dbeaver
 - Kate 23.08.1
+</details>
 
 ## Известные ограничения
+
 - Youtube в Firefox, начиная с версии 131, не работает. Поэтому рекомендуется использовать версию 115 или 128 ESR.
 - Некоторые установщики приложений могут не работать, например, electron based приложения (MS teams), Office 2013 или GIMP 3.0 RC2 и т.д., аварийно завершаются и приложение не устанавливается. Некоторые установщики и программы требуют поддержки AVX операционной системой, что не поддерживается вовсе. Поэтому используйте предварительно установленную версию, скопированную из другой операционной системы;
 - Пакеты нельзя интегрировать через nlite в ISO Windows, так как используется инструмент под названием "SFXCAB Substitute", а не стандартная версия от Microsoft;
@@ -165,19 +228,20 @@ One-Core-API использует технологию установки исп
 
 **Прежде чем сообщать о проблеме, я настоятельно рекомендую проверить, существует ли проблема в [One-Core-API-Canary](https://github.com/shorthorn-project/One-Core-API-Binaries-Canary) и внимательно просмотреть существующие [проблемы](https://github.com/Skulltrail192/One-Core-API-Binaries/issues), чтобы проверить, сообщалось ли о вашей проблеме.**
 
-**Если проблема *существует* в Canary и еще не указана в текущих проблемах, пожалуйста, предоставьте подробный отчет о вашей проблеме, включая следующую информацию:**
+**Если проблема _существует_ в Canary и еще не указана в текущих проблемах, пожалуйста, предоставьте подробный отчет о вашей проблеме, включая следующую информацию:**
 
 **1. Конфигурация системы:**
-*   **Тип** (ПК/ВМ)
-*   **Редакция ОС Windows** (например, Windows XP Professional Service Pack 3)
-*   **Обновления после SP:**
-    *   Были ли установлены обновления после Service Pack обновлений? (Да/Нет)
-        *   Если да, укажите, были ли они установлены **до** или **после** установки One-Core-API.
-*   **Установленное программное обеспечение:** Перечислите любое соответствующее программное обеспечение, которое может быть связано с проблемой (например, Adobe Photoshop CC 2018, Firefox 132 и т. д.).
-*   **Технические характеристики**:
-    *   **Если физическое оборудование:** Предоставьте подробности о процессоре, ОЗУ (тип, объем), типе жесткого диска и его емкости (например, диск IDE, 120 ГБ).
-    *   **Если виртуальная машина:** Укажите детали конфигурации виртуальной машины (например, Oracle VirtualBox 6.1.0, 2 ГБ ОЗУ, диск 120 ГБ, режим AHCI).
-*   **Шаги для воспроизведения ошибки**
+
+- **Тип** (ПК/ВМ)
+- **Редакция ОС Windows** (например, Windows XP Professional Service Pack 3)
+- **Обновления после SP:**
+  - Были ли установлены обновления после Service Pack обновлений? (Да/Нет)
+    - Если да, укажите, были ли они установлены **до** или **после** установки One-Core-API.
+- **Установленное программное обеспечение:** Перечислите любое соответствующее программное обеспечение, которое может быть связано с проблемой (например, Adobe Photoshop CC 2018, Firefox 132 и т. д.).
+- **Технические характеристики**:
+  - **Если физическое оборудование:** Предоставьте подробности о процессоре, ОЗУ (тип, объем), типе жесткого диска и его емкости (например, диск IDE, 120 ГБ).
+  - **Если виртуальная машина:** Укажите детали конфигурации виртуальной машины (например, Oracle VirtualBox 6.1.0, 2 ГБ ОЗУ, диск 120 ГБ, режим AHCI).
+- **Шаги для воспроизведения ошибки**
 
 > **ВАЖНО:** Если возможно, пожалуйста, также **добавьте любые соответствующие журналы** к обращению. Это значительно поможет быстрее идентифицировать решение.
 
@@ -186,6 +250,7 @@ One-Core-API использует технологию установки исп
 > **Обратите внимание, что обращение будет закрыто, если проблему нельзя воспроизвести.**
 
 ## Структура репозитория
+
 - Documents: Документация проекта, известные ошибки, использование sfxcab (для создания установщиков) и т.д.
 - Packages\x86 и Packages\x64: Бинарные выпуски, сгруппированные по пакетам. Вы можете загрузить и установить/обновить пакеты непосредственно отсюда (то есть, перейдя к Packages\x86\Base installer\update и запустив update.exe).
 - Todo: Задачи для выполнения
@@ -194,6 +259,7 @@ One-Core-API использует технологию установки исп
 - Output: Выходные бинарные файлы, которые можно сгенерировать с помощью скриптов в папке Release;
 
 ## Дополнительная информация и ссылки
+
 **Расширенные возможности для систем на основе One-Core-API:**
 
 <b><a href="https://github.com/shorthorn-project/One-Core-API-Extras" style="font-size: 18px">https://github.com/shorthorn-project/One-Core-API-Extras</a></b>
@@ -209,15 +275,16 @@ One-Core-API использует технологию установки исп
 <b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></n>
 
 ## Демонстрация / Подтверждение концепции
-Некоторые снимки экрана приложений, работающих на XP/Server 2003:
 
-**Minecraft 1.21**
-![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+Несколько скриншотов приложений, работающих на XP/Server 2003:
+
+<details>
+  <summary>Браузеры и Thunderbird</summary>
 
 **Chrome 132**
 ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
 
-**Edge 134 (Dev Preview)**
+**Edge 134 (предварительная версия для разработчиков)**
 ![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
 
 **Opera 116**
@@ -226,28 +293,33 @@ One-Core-API использует технологию установки исп
 **Firefox 122**
 ![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
 
+**Thunderbird 132**
+![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
+
 **Basilisk**
 ![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
 
 **Vivaldi**
 ![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
 
+</details>
 
-**Spotify (Для Windows 7)**
-![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+<details>
+  <summary>Игры</summary>
 
-**Visual Studio Code 1.81**
-![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
-
-**Microsoft Chess 3d**
+**Microsoft Chess 3D**
 ![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
+
+**Minecraft 1.21**
+![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+
+</details>
+
+<details>
+  <summary>Мессенджеры и другие программы для общения</summary>
 
 **Telegram 4.14**
 ![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/73e13167-49b8-4282-81cb-969435046dde)
-
-**Libre Office 24 (последняя версия)**
-![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
-![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
 **Discord 0.309**
 ![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
@@ -256,8 +328,37 @@ One-Core-API использует технологию установки исп
 **Telegram Desktop**
 ![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
 
-**Zoom meeting**
+**Конференция Zoom**
 ![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+
+</details>
+
+<details>
+  <summary>Встроенные приложения Windows 7</summary>
+
+**Записки Windows 7**
+![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
+
+**Paint Windows 7**
+![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
+
+**Wordpad Windows 7**
+![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+
+</details>
+
+<details>
+  <summary>Другое</summary>
+
+**Spotify (для Windows 7)**
+![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+
+**Visual Studio Code 1.81**
+![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
+
+**LibreOffice 24 (последняя)**
+![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
+![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
 **Java 11**
 ![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
@@ -265,12 +366,4 @@ One-Core-API использует технологию установки исп
 **Avast и Chromium 68**
 ![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
 
-**Заметки с Windows 7**
-![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
-
-**Paint с Windows 7**
-![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
-
-**Wordpad с Windows 7**
-![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
-
+</details>
