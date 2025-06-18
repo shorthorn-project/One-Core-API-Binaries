@@ -20,13 +20,20 @@
     EventLogKeyName           = NtServicePack
     EventLogDllName           = spmsg.dll    
     ServiceFileInUseDetect    = 1
-    AppFileinUseDetect        = 3    
+    AppFileinUseDetect        = 3
+
+[Prerequisite]
+    condition=SingleOp,LatestUpdateCheck1.Section
+    
+[LatestUpdateCheck1.Section]
+	NotPresentOp = CheckReg, HKLM, "SOFTWARE\Microsoft\Windows NT\CurrentVersion\HotFix\OCAB",Installed,0x10001
+    Display_String="%LatestUpdateFail%"
     
 [Strings]
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.1"    
+    BASE_VERSION              = "4.0.2"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -68,11 +75,15 @@
     MIN_MINOR_VERSION         = "1"
     BUILD_NUMBER              = "2600"	
     MAX_BUILD_NUMBER          = "2600"
+    RELEASE_TYPE              = "original"
+    RELEASE_TYPE_WIN32SS      = "original"
+    RELEASE_TYPE_SPECIAL      = "avx"
     ShortCutName              = "NNN4NT5"	
     ShortCutWctName           = "Windows Compatibility Tool"	
     ShortCutDir               = "Accessories\System Tools"
     NNN4NT5Tooltip            = "Set Windows Compatibility layer by Compatibility Variable"
     WctTooltip                = "A Windows Compatibility Tool emulated Windows Version"
+    LatestUpdateFail          = "Please Uninstall One-Core-API first!"	
 	
 [Product.Add.Reg]
     HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Setup", "LogLevel", 0x10001, 0
@@ -93,12 +104,12 @@
     HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%,"DisplayVersion",0x00000000,%BASE_VERSION%
     HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%,"ReleaseType",0,%HOTFIX%
 	
-    ; Simulate WIC installed to prevent new installation, since we use WIC from Windows 8 and need exclude older REG keys
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayName",0x00000000,"%SP_TITLE%"
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayVersion",0x00000000,%WIC_VERSION%
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ParentKeyName",0x00000000,"OperatingSystem"
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ReleaseType",0x00000000,"HotFix"
-    HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%WIC_VERSION%"	
+    ; ; Simulate WIC installed to prevent new installation, since we use WIC from Windows 8 and need exclude older REG keys
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayName",0x00000000,"%SP_TITLE%"
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayVersion",0x00000000,%WIC_VERSION%
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ParentKeyName",0x00000000,"OperatingSystem"
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ReleaseType",0x00000000,"HotFix"
+    ; HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%WIC_VERSION%"	
     
     ; FontCache Service
     HKLM,"SYSTEM\CurrentControlSet\Services\FontCache","Description",0x0,"Optimizes performance of applications by caching commonly used font data. Applications will start this service if it is not already running. It can be disabled, though doing so will degrade application performance."
@@ -494,6 +505,15 @@
     HKLM, Software\Microsoft\Windows\CurrentVersion\Explorer\KindMap, .vbx, 0, "program"
     
     ;Special key to bypass palemon and some others application startup error
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-APPMODEL-IDENTITY-L1-1-0",0x0,"API-MS-WIN-APPMODEL-IDENTITY-L1-1-0.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-APPMODEL-RUNTIME-L1-1-0",0x0,"API-MS-WIN-APPMODEL-RUNTIME-L1-1-0.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-APPMODEL-RUNTIME-L1-1-1",0x0,"API-MS-WIN-APPMODEL-RUNTIME-L1-1-1.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-APPMODEL-RUNTIME-L1-1-2",0x0,"API-MS-WIN-APPMODEL-RUNTIME-L1-1-2.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-BASE-UTIL-L1-1-0",0x0,"API-MS-WIN-BASE-UTIL-L1-1-0.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-APIQUERY-L1-1-0",0x0,"API-MS-WIN-CORE-APIQUERY-L1-1-0.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-APPCOMPAT-L1-1-1",0x0,"API-MS-WIN-CORE-APPCOMPAT-L1-1-1.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-APPINIT-L1-1-0",0x0,"API-MS-WIN-CORE-APPINIT-L1-1-0.DLL"
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-ATOMS-L1-1-0",0x0,"API-MS-WIN-CORE-ATOMS-L1-1-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-MEMORY-L1-1-0",0x0,"API-MS-WIN-CORE-MEMORY-L1-1-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-SYNCH-L1-2-0",0x0,"API-MS-WIN-CORE-SYNCH-L1-2-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CRT-CONVERT-L1-1-0",0x0,"API-MS-WIN-CRT-CONVERT-L1-1-0.DLL"
@@ -805,10 +825,247 @@
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","ActivationType",0x10001,00,00,00,00
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","CLSID",0x0,"{f1f065d1-063a-3d94-bcef-0cfcc580817e}"
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","Threading",0x10001,00,00,00,00
-    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.DataTransfer.DragDrop","DllPath",0x0,"dataexchange.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.Package","DllPath",0x0,"windows.applicationmodel.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Metadata.ApiInformation","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.PropertyValue","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Uri","DllPath",0x0,"Windows.Foundation.Uri.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonObject","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonValue","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Bluetooth.BluetoothAdapter","DllPath",0x0,"windows.devices.bluetooth.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceAccessInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Usb.UsbDevice","DllPath",0x0,"windows.devices.usb.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Geolocation.Geolocator","DllPath",0x0,"geolocation.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Custom.GameControllerFactoryManager","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Gamepad","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConditionForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConstantForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.RampForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RawGameController","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RacingWheel","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.UI.GameBar","DllPath",0x0,"windows.gaming.ui.gamebar.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Capture.GraphicsCaptureSession","DllPath",0x0,"graphicscapture.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Holographic.HolographicSpace","DllPath",0x0,"windows.perception.stub.dll"	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Management.Deployment.PackageManager","DllPath",0x0,"appxdeploymentclient.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.ClosedCaptioning.ClosedCaptionProperties","DllPath",0x0,"windows.media.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechSynthesis.SpeechSynthesizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SystemMediaTransportControls","DllPath",0x0,"windows.media.mediacontrol.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.Connectivity.NetworkInformation","DllPath",0x0,"windows.networking.connectivity.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.HostName","DllPath",0x0,"windows.networking.hostname.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver","DllPath",0x0,"windows.perception.stub.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticator","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.KeyCredentialManager","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.UI.UserConsentVerifier","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Cryptography.CryptographicBuffer","DllPath",0x0,"cryptowinrt.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Isolation.IsolatedWindowsEnvironmentHost","DllPath",0x0,"hvsimanagementapi.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.ApplicationData","DllPath",0x0,"windows.storage.applicationdata.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.DataWriter","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.Buffer","DllPath",0x0,"wintypes.dll"	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.RandomAccessStreamReference","DllPath",0x0,"windows.storage.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.DispatcherQueueController","DllPath",0x0,"coremessaging.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Launcher","DllPath",0x0,"Windows.System.Launcher.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.AnalyticsInfo","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemIdentification","DllPath",0x0,"windows.system.profile.systemid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemManufacturers.SmbiosInformation","DllPath",0x0,"windows.system.profile.systemmanufacturers.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Threading.ThreadPool","DllPath",0x0,"threadpoolwinrt.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.UserProfile.AdvertisingManager","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ColorHelper","DllPath",0x0,"windows.ui.xaml.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.InputPane","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UIViewSettings","DllPath",0x0,"windows.ui.dll"
 	
     ;-------------------------------------------------------------------------
     ; WindowsCodecs.dll
+
+	HKLM,"SOFTWARE\Classes\CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
 
     HKCR,"CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}"
     HKCR,"CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32","ThreadingModel",0x00000000,"Both"
@@ -2180,86 +2437,86 @@
 	HKLM,"SYSTEM\CurrentControlSet\Services\TrustedInstaller\Security","Security",0x1,01,00,14,90,90,00,00,00,a0,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,01,00,00,00,02,c0,18,00,00,00,0c,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,02,00,5c,00,04,00,00,00,00,02,14,00,ff,01,0f,00,01,01,00,00,00,00,00,05,12,00,00,00,00,00,18,00,ff,01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,04,00,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,06,00,00,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00
 
 	;Fonts Reg to update system fonts
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Roman (All res)",0x0,"ROMAN.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Script (All res)",0x0,"SCRIPT.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Modern (All res)",0x0,"MODERN.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)",0x0,"SMALLE.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial (TrueType)",0x0,"ARIAL.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold (TrueType)",0x0,"ARIALBD.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold Italic (TrueType)",0x0,"ARIALBI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Italic (TrueType)",0x0,"ARIALI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New (TrueType)",0x0,"COUR.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold (TrueType)",0x0,"COURBD.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold Italic (TrueType)",0x0,"COURBI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Italic (TrueType)",0x0,"COURI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Console (TrueType)",0x0,"LUCON.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Sans Unicode (TrueType)",0x0,"L_10646.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman (TrueType)",0x0,"TIMES.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold (TrueType)",0x0,"TIMESBD.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold Italic (TrueType)",0x0,"TIMESBI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Italic (TrueType)",0x0,"TIMESI.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WingDings (TrueType)",0x0,"WINGDING.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol (TrueType)",0x0,"SYMBOL.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol 8,10,12,14,18,24 (VGA res)",0x0,"SYMBOLE.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana (TrueType)",0x0,"verdana.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold (TrueType)",0x0,"verdanab.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Italic (TrueType)",0x0,"verdanai.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold Italic (TrueType)",0x0,"verdanaz.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Black (TrueType)",0x0,"ariblk.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS (TrueType)",0x0,"comic.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS Bold (TrueType)",0x0,"comicbd.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Impact (TrueType)",0x0,"impact.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia (TrueType)",0x0,"georgia.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold (TrueType)",0x0,"georgiab.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold Italic (TrueType)",0x0,"georgiaz.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Italic (TrueType)",0x0,"georgiai.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium (TrueType)",0x0,"Framd.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium Italic (TrueType)",0x0,"Framdit.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype (TrueType)",0x0,"pala.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold (TrueType)",0x0,"palab.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold Italic (TrueType)",0x0,"palabi.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Italic (TrueType)",0x0,"palai.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma Bold (TrueType)",0x0,"tahomabd.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS (TrueType)",0x0,"trebuc.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold (TrueType)",0x0,"trebucbd.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold Italic (TrueType)",0x0,"trebucbi.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Italic (TrueType)",0x0,"trebucit.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Webdings (TrueType)",0x0,"webdings.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Estrangelo Edessa (TrueType)",0x0,"estre.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Gautami (TrueType)",0x0,"gautami.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Latha (TrueType)",0x0,"latha.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mangal (TrueType)",0x0,"mangal.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mv Boli (TrueType)",0x0,"mvboli.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Raavi (TrueType)",0x0,"raavi.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Shruti (TrueType)",0x0,"shruti.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tunga (TrueType)",0x0,"tunga.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Sylfaen (TrueType)",0x0,"sylfaen.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)",0x0,"COURE.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)",0x0,"SSERIFE.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)",0x0,"SERIFE.FON"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma (TrueType)",0x0,"TAHOMA.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Microsoft Sans Serif (TrueType)",0x0,"MICROSS.TTF"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Marker (TrueType)",0x0,"SegoeMarker.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print (TrueType)",0x0,"segoepr.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print Bold (TrueType)",0x0,"segoeprb.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Script (TrueType)",0x0,"segoesc.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Script Bold (TrueType)",0x0,"segoescb.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI (TrueType)",0x0,"segoeui.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Bold (TrueType)",0x0,"segoeuib.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Italic (TrueType)",0x0,"segoeuii.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Light (TrueType)",0x0,"segoeuil.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Semilight (TrueType)",0x0,"SEGOEUISL.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Bold Italic (TrueType)",0x0,"segoeuiz.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Emoji (TrueType)",0x0,"seguiemj.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Semibold (TrueType)",0x0,"seguisb.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Symbol (TrueType)",0x0,"seguisym.ttf"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Czec",0x0,"wst_czec.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Engl",0x0,"wst_engl.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Fren",0x0,"wst_fren.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Germ",0x0,"wst_germ.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Ital",0x0,"wst_ital.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Span",0x0,"wst_span.fon"
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_swed.fon"	
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Roman (All res)",0x0,"ROMAN.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Script (All res)",0x0,"SCRIPT.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Modern (All res)",0x0,"MODERN.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)",0x0,"SMALLE.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial (TrueType)",0x0,"ARIAL.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold (TrueType)",0x0,"ARIALBD.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold Italic (TrueType)",0x0,"ARIALBI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Italic (TrueType)",0x0,"ARIALI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New (TrueType)",0x0,"COUR.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold (TrueType)",0x0,"COURBD.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold Italic (TrueType)",0x0,"COURBI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Italic (TrueType)",0x0,"COURI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Console (TrueType)",0x0,"LUCON.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Sans Unicode (TrueType)",0x0,"L_10646.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman (TrueType)",0x0,"TIMES.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold (TrueType)",0x0,"TIMESBD.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold Italic (TrueType)",0x0,"TIMESBI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Italic (TrueType)",0x0,"TIMESI.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WingDings (TrueType)",0x0,"WINGDING.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol (TrueType)",0x0,"SYMBOL.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol 8,10,12,14,18,24 (VGA res)",0x0,"SYMBOLE.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana (TrueType)",0x0,"verdana.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold (TrueType)",0x0,"verdanab.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Italic (TrueType)",0x0,"verdanai.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold Italic (TrueType)",0x0,"verdanaz.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Black (TrueType)",0x0,"ariblk.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS (TrueType)",0x0,"comic.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS Bold (TrueType)",0x0,"comicbd.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Impact (TrueType)",0x0,"impact.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia (TrueType)",0x0,"georgia.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold (TrueType)",0x0,"georgiab.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold Italic (TrueType)",0x0,"georgiaz.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Italic (TrueType)",0x0,"georgiai.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium (TrueType)",0x0,"Framd.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium Italic (TrueType)",0x0,"Framdit.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype (TrueType)",0x0,"pala.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold (TrueType)",0x0,"palab.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold Italic (TrueType)",0x0,"palabi.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Italic (TrueType)",0x0,"palai.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma Bold (TrueType)",0x0,"tahomabd.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS (TrueType)",0x0,"trebuc.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold (TrueType)",0x0,"trebucbd.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold Italic (TrueType)",0x0,"trebucbi.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Italic (TrueType)",0x0,"trebucit.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Webdings (TrueType)",0x0,"webdings.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Estrangelo Edessa (TrueType)",0x0,"estre.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Gautami (TrueType)",0x0,"gautami.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Latha (TrueType)",0x0,"latha.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mangal (TrueType)",0x0,"mangal.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mv Boli (TrueType)",0x0,"mvboli.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Raavi (TrueType)",0x0,"raavi.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Shruti (TrueType)",0x0,"shruti.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tunga (TrueType)",0x0,"tunga.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Sylfaen (TrueType)",0x0,"sylfaen.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)",0x0,"COURE.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)",0x0,"SSERIFE.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)",0x0,"SERIFE.FON"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma (TrueType)",0x0,"TAHOMA.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Microsoft Sans Serif (TrueType)",0x0,"MICROSS.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Marker (TrueType)",0x0,"SegoeMarker.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print (TrueType)",0x0,"segoepr.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print Bold (TrueType)",0x0,"segoeprb.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Script (TrueType)",0x0,"segoesc.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Script Bold (TrueType)",0x0,"segoescb.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI (TrueType)",0x0,"segoeui.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Bold (TrueType)",0x0,"segoeuib.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Italic (TrueType)",0x0,"segoeuii.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Light (TrueType)",0x0,"segoeuil.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Semilight (TrueType)",0x0,"SEGOEUISL.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Bold Italic (TrueType)",0x0,"segoeuiz.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Emoji (TrueType)",0x0,"seguiemj.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Semibold (TrueType)",0x0,"seguisb.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Symbol (TrueType)",0x0,"seguisym.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Czec",0x0,"wst_czec.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Engl",0x0,"wst_engl.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Fren",0x0,"wst_fren.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Germ",0x0,"wst_germ.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Ital",0x0,"wst_ital.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Span",0x0,"wst_span.fon"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_swed.fon"	
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
@@ -2327,7 +2584,12 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     HKCR,"CLSID\{FAE3D380-FEA4-4623-8C75-C6B61110B681}"
     HKCR,"CLSID\{FB012959-F4F6-44D7-9D09-DAA087A9DB57}"
     ;To prevent wrong installed version if using Mui packs and trying use WMP12
-    HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"	
+    HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"
+
+[ProductInstall.ReplaceFilesIfExist]
+    CopyFiles = Core.System32.Files
+    CopyFiles = Drivers.CoreDriverFiles 
+    CopyFiles = System32.Files	
 	
 [ProductInstall.DontDelayUntilReboot]
     ;CopyFiles=Core.System32.Files
@@ -2373,10 +2635,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     CopyFiles= CopyAlways.Mui.0426.Files	
     CopyFiles= CopyAlways.Mui.0427.Files	
     CopyFiles= CopyAlways.Mui.0804.Files
-    CopyFiles= CopyAlways.Mui.0816.Files	
-    CopyFiles= CopyAlways.Servicing.Files	
+    CopyFiles= CopyAlways.Mui.0816.Files
+    CopyFiles= CopyAlways.Globalization.Files	
+    CopyFiles= CopyAlways.Servicing.Files
     CopyFiles= CopyAlways.System32.APISET.Files
-    CopyFiles= CopyAlways.System32.Mui.0409.Files
     CopyFiles= CopyAlways.WinRT.Files
     CopyFiles= CopyAlways.WinSxS.Main.Files
     CopyFiles= CopyAlways.WinSxS.Manifests.Files
@@ -2429,9 +2691,9 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     CopyAlways.Mui.0427.Files=10,"mui\Fallback\0427"
     CopyAlways.Mui.0804.Files=10,"mui\Fallback\0804"
     CopyAlways.Mui.0816.Files=10,"mui\Fallback\0816"
+    CopyAlways.Globalization.Files=10,globalization       ; copy always	
     CopyAlways.Servicing.Files=10,Servicing       ; copy always	
     CopyAlways.System32.APISET.Files=11  ; %windir%\system32 (don't delay until reboot)
-    CopyAlways.System32.Mui.0409.Files=11  ; %windir%\system32 (don't delay until reboot)
 	CopyAlways.WinRT.Files = 11 ; %windir%\system32 (don't delay until reboot)
     CopyAlways.WinSxS.Main.Files = 10 ; %windir%
     CopyAlways.WinSxS.Manifests.Files = 10 ; %windir%
@@ -2458,12 +2720,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     Blade.Windows.Files=10 ; %windir%
     DataCenter.Windows.Files=10 ; %windir%    
     Tablet.Windows.Files=10 ; %windir%
-    MediaCenter.Windows.Files=10 ; %windir%	
-
-[ProductInstall.ReplaceFilesIfExist]
-    CopyFiles = Core.System32.Files
-    CopyFiles = Drivers.CoreDriverFiles 
-    CopyFiles = System32.Files	
+    MediaCenter.Windows.Files=10 ; %windir%
     
 [ProductInstall.GlobalRegistryChanges.Install]
 	DelReg=Product.Del.Reg
@@ -2494,7 +2751,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
 	"%systemroot%\system32\regsvr32.exe /s mmdevapi.dll"	
     
 [ProcessesToRunAfterCopying]
-    "certupdate.exe" /Y /C /Q
+    ;"certupdate.exe" /Y /C /Q
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\System32\certupdate.exe /Y /C /Q""  /ru system"
     "cmd /C netsh interface ipv6 install"
@@ -2506,63 +2763,69 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+	
+[ProcessesToRunBeforeArchive]
+    "%sourcepath%\base\certupdate.exe" /Y /C /Q
 
 [Drivers.CoreDriverFiles]
-    intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys 
-    kseext.sys, drivers\kseext.sys  
+    intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
+    kseext.sys, drivers\kseext.sys
+    ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ntoskrn8.sys	
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
 
 [System32.Files]
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%win32k.sys
-    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halaacpi.dll    
-    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halacpi.dll    
-    halapic.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halapic.dll    
-    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmacpi.dll    
-    halmps.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmps.dll    
-    ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntoskrnl.exe
-    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrpamp.exe
-    ntkrpaup.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlpa.exe
-    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlmp.exe    
+    win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
+    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
+    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll    
+    halapic.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halapic.dll    
+    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll    
+    halmps.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmps.dll    
+    ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrpamp.exe
+    ntkrpaup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlpa.exe
+    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe    
 
 [MustReplace.System32.Files]
+    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
-    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halaacpi.dll    
-    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halacpi.dll    
-    halapic.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halapic.dll    
-    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmacpi.dll    
-    halmps.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmps.dll
+    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
+    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll    
+    halapic.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halapic.dll    
+    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll    
+    halmps.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmps.dll
     kernel32.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
+    msvcrt.dll,base\msvcrt.dll	
     ntdll.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntdll.dll
-    ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntoskrnl.exe
-    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrpamp.exe
-    ntkrpaup.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlpa.exe
-    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlmp.exe	
-    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%winsrv.dll
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%win32k.sys    
+    shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll		
+    ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrpamp.exe
+    ntkrpaup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrnlpa.exe
+    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe	
+    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
+    win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys    
     
 [CopyAlways.DriverCab.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntoskrnl.exe
-    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrpamp.exe
-    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlpa.exe
-    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlmp.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%hal.dll
-    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halaacpi.dll    
-    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halacpi.dll    
-    halapic.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halapic.dll    
-    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmacpi.dll    
-    halmps.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmps.dll    
-    ;halsp.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%halsp.dll   
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrpamp.exe
+    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrnlpa.exe
+    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%hal.dll
+    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
+    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll    
+    halapic.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halapic.dll    
+    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll    
+    halmps.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmps.dll     
 
 [Uniprocessor.Kernel.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntoskrnl.exe
-    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlpa.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halaacpi.dll
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrnlpa.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll
     
 [Multiprocessor.Kernel.Files]
-    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrpamp.exe
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntkrnlmp.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmacpi.dll  
+    ntkrnlpa.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrpamp.exe
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll  
     
 [CopyAlways.WinSxS.Main.files]    
     WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_02b9dd85\comctl32.dll, WinSxS\comctl32\comctl32.dll
@@ -2581,14 +2844,16 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     
 [CoreOS.Common.System32.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
+    clbcatq.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%clbcatq.dll
+    comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%comdlgbase.dll	
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
-    comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%comdlgbase.dll
+    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%cryptcore.dll
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%dssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%esent.dll	
-    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%gdibase.dll
-    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halacpi.dll
-    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halaacpi.dll
-    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%halmacpi.dll
+    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll
+    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll
+    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll
+    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll
     iphlpapi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%iphlpapi.dll	
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%lsasrv.dll
@@ -2601,11 +2866,15 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     secur32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%secur32.dll
     setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%setupapibase.dll	
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%sxs.dll	
-    userbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%userbase.dll
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%win32k.sys
-    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%winsrv.dll
+    userbase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%userbase.dll
+    win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
+    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wintrust.dll
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ws2_base.dll
+    wshtcpip.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wshtcpip.dll
+    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%xpsp2res.dll	
+	;Special for XP
+    advapicore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advapicore.dll	
 
 [CoreOS.SPFiles.System32.Files]
     advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
@@ -2615,7 +2884,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
     rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
-    shlwapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapi.dll	
+    shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll
     userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll	
     winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
@@ -2626,6 +2895,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comctlext.dll,extensions\comctlext.dll	
     cryptex.dll,extensions\cryptex.dll
     dnsapiext.dll,extensions\dnsapiext.dll
+    dxgiext.dll,extensions\dxgiext.dll
     iphlpext.dll,extensions\iphlpext.dll	
     kernelex.dll,extensions\kernelex.dll
     kernelbase.dll,extensions\kernelex.dll
@@ -2635,74 +2905,91 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     powrpext.dll,extensions\powrpext.dll
     rpcrtext.dll,extensions\rpcrtext.dll    
     securex.dll,extensions\securex.dll	
-    shellex.dll,extensions\shellex.dll	
-    shlwext.dll,extensions\shlwext.dll	
-    uiautomationcoreext.dll,extensions\uiautomationcoreext.dll	
+    shellex.dll,extensions\shellex.dll
+    shlwext.dll,extensions\shlwext.dll
+    uiautomationcoreext.dll,extensions\uiautomationcoreext.dll
     userenvext.dll,extensions\userenvext.dll	
     uxthext.dll,extensions\uxthext.dll
-    winhttpext.dll,extensions\winhttpext.dll		
+    winhttpext.dll,extensions\winhttpext.dll
 	
 [Core.System32.Files]
     browseui.dll,core\browseui.dll
-    cfgmgr32.dll,core\cfgmgr32.dll	
-    comdlg32.dll,core\comdlg32.dll	
+    cfgmgr32.dll,core\cfgmgr32.dll
+    comdlg32.dll,core\comdlg32.dll
     gdi32.dll,core\gdi32.dll
     msvcrt.dll,base\msvcrt.dll
     pdh.dll,core\pdh.dll
     psapi.dll,core\psapi.dll
     setupapi.dll,core\setupapi.dll
+    shlwapi.dll,core\shlwapi.dll
     user32.dll,core\user32.dll
     ws2_32.dll,core\ws2_32.dll	
 	
 [Base.System32.Files]
     atl.dll,base\atl.dll	
+    authroots.sst,base\authroots.sst
     bcrypt.dll,base\bcrypt.dll
     bcryptprimitives.dll,base\bcryptprimitives.dll
     certupdate.exe,base\certupdate.exe
     combase.dll,base\combase.dll
     credui.dll,base\credui.dll	
     cryptbase.dll,base\cryptbase.dll
-    cryptnew.dll,base\cryptnew.dll
+    ;cryptnet.dll,base\cryptnet.dll
     dbgeng.dll,base\dbgeng.dll
     dbghelp.dll,base\dbghelp.dll	
     d3dkmt.dll,base\d3dkmt.dll
+    delroots.sst,base\delroots.sst
     devcon.exe,base\devcon.exe 
+    disallowedcert.sst,base\disallowedcert.sst
     dwmapi.dll,base\dwmapi.dll   
     dwrgdi.dll,base\dwrgdi.dll    
     esentbase.dll,base\esentbase.dll    
     fileextd.dll,base\fileextd.dll
     fntcache.dll,base\fntcache.dll
+    framedynos.dll,base\framedynos.dll 
     idndl.dll,base\idndl.dll
     msctfime.ime,base\msctfime.ime	
+    msvcp60.dll,base\msvcp60.dll	
     ;mscoree.dll ;comment becuase if copied, must be set HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft.NETFramework\InstallRoot too, however, we don't know Windows drive letter installation. 
     ncrypt.dll,base\ncrypt.dll	
     netfxperf.dll,base\netfxperf.dll
-    nsi.dll,base\nsi.dll	
     Nlsdl.dll,base\Nlsdl.dll
-    normaliz.dll,base\normaliz.dll	
     NNN4NT5.exe,base\NNN4NT5.exe	
+    normaliz.dll,base\normaliz.dll
+    nsi.dll,base\nsi.dll
     progwrp.dll,base\progwrp.dll
     propsys.dll,base\propsys.dll		
+    roots.sst,base\roots.sst
     setx.exe,base\setx.exe
     shcore.dll,base\shcore.dll	
     ;ShimEng.dll,base\ShimEng.dll	
     sspicli.dll,base\sspicli.dll
     updatehal.exe,base\updatehal.exe
+    updroots.exe,base\updroots.exe
+    updroots.sst,base\updroots.sst 	
     version.dll,base\version.dll
     wct.exe,base\wct.exe
     wevtapibase.dll,base\wevtapibase.dll
     winbrand.dll,base\winbrand.dll
     winhttp.dll,base\winhttp.dll
     winstanew.dll,base\winstanew.dll
+    wbem\WMIC.exe,base\WMIC.exe
 	
 [CopyAlways.WinRT.Files]
+    appxdeploymentclient.dll,winrt\appxdeploymentclient.dll
+    coremessaging.dll,winrt\coremessaging.dll
     cryptowinrt.dll,winrt\cryptowinrt.dll
+    dataexchange.dll,winrt\dataexchange.dll
+    geolocation.dll,winrt\geolocation.dll
+    graphicscapture.dll,winrt\graphicscapture.dll
+    hvsimanagementapi.dll,winrt\hvsimanagementapi.dll
     threadpoolwinrt.dll,winrt\threadpoolwinrt.dll
     twinapi.appcore.dll,winrt\twinapi.appcore.dll
     windows.applicationmodel.dll,winrt\windows.applicationmodel.dll
     windows.devices.bluetooth.dll,winrt\windows.devices.bluetooth.dll
     windows.devices.enumeration.dll,winrt\windows.devices.enumeration.dll
     windows.devices.usb.dll,winrt\windows.devices.usb.dll
+    windows.foundation.uri.dll,winrt\windows.foundation.uri.dll	
     windows.gaming.input.dll,winrt\windows.gaming.input.dll
     windows.gaming.ui.gamebar.dll,winrt\windows.gaming.ui.gamebar.dll
     windows.globalization.dll,winrt\windows.globalization.dll
@@ -2710,14 +2997,20 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     windows.media.dll,winrt\windows.media.dll
     windows.media.mediacontrol.dll,winrt\windows.media.mediacontrol.dll
     windows.media.speech.dll,winrt\windows.media.speech.dll
+    windows.networking.connectivity.dll,winrt\windows.networking.connectivity.dll
     windows.networking.dll,winrt\windows.networking.dll
     windows.networking.hostname.dll,winrt\windows.networking.hostname.dll
     windows.perception.stub.dll,winrt\windows.perception.stub.dll
     windows.security.authentication.onlineid.dll,winrt\windows.security.authentication.onlineid.dll
     windows.security.credentials.ui.userconsentverifier.dll,winrt\windows.security.credentials.ui.userconsentverifier.dll
     windows.storage.applicationdata.dll,winrt\windows.storage.applicationdata.dll
+    windows.storage.dll,winrt\windows.storage.dll
+    windows.system.launcher.dll,winrt\windows.system.launcher.dll
+    windows.system.profile.systemid.dll,winrt\windows.system.profile.systemid.dll
     windows.system.profile.systemmanufacturers.dll,winrt\windows.system.profile.systemmanufacturers.dll
-    windows.ui.ui.userconsentverifier.dll,winrt\windows.ui.dll
+    windows.ui.dll,winrt\windows.ui.dll
+    windows.ui.xaml.dll,winrt\windows.ui.xaml.dll
+    windows.web.dll,winrt\windows.web.dll
     wintypes.dll,winrt\wintypes.dll
 	
 [CopyAlways.D3D.Files]
@@ -2726,7 +3019,9 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     d3d9ex.dll,d3d\d3d9ex.dll
     d3d10.dll,d3d\d3d10.dll
     d3d10_1.dll,d3d\d3d10_1.dll
+    d3d10_1core.dll,d3d\d3d10_1core.dll
     d3d10core.dll,d3d\d3d10core.dll
+    d3d10warp.dll,d3d\d3d10warp.dll	
     d3d11.dll,d3d\d3d11.dll
     d3d12.dll,d3d\d3d12.dll
     d3d12core.dll,d3d\d3d12core.dll
@@ -2735,12 +3030,19 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     dxdiag.exe,d3d\dxdiag.exe
     dxdiagn.dll,d3d\dxdiagn.dll    
     dxgi.dll,d3d\dxgi.dll
+    vcruntime140.dll,d3d\vcruntime140.dll
+    wineft2.dll,d3d\wineft2.dll
     D3DCompiler_39.dll,d3d\D3DCompiler_39.dll    
     D3DCompiler_43.dll,d3d\D3DCompiler_43.dll    
-    D3DCompiler_47.dll,d3d\D3DCompiler_47.dll    
-    wined3d.dll,d3d\wined3d.dll
-    wineft2.dll,d3d\wineft2.dll
-    vcruntime140.dll,d3d\vcruntime140.dll
+    D3DCompiler_47.dll,d3d\D3DCompiler_47.dll
+    wined3d\d2d1.dll,d3d\wined3d\d2d1.dll
+    wined3d\d3d9ex.dll,d3d\wined3d\d3d9ex.dll
+    wined3d\d3d10.dll,d3d\wined3d\d3d10.dll
+    wined3d\d3d10_1.dll,d3d\wined3d\d3d10_1.dll
+    wined3d\d3d10core.dll,d3d\wined3d\d3d10core.dll
+    wined3d\d3d11.dll,d3d\wined3d\d3d11.dll		
+    wined3d\dwrite.dll,d3d\wined3d\dwrite.dll
+    wined3d\dxgi.dll,d3d\wined3d\dxgi.dll
 	
 [CopyAlways.AppPatch.System32.Files]
     SlayerXP.dll,appcompat\SlayerXP.dll   
@@ -2774,6 +3076,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     COLORCNV.dll,additionaldlls\COLORCNV.dll
     connect.dll,additionaldlls\connect.dll
     cryptsp.dll,additionaldlls\cryptsp.dll
+    cryptxml.dll,additionaldlls\cryptxml.dll
     dcomp.dll,additionaldlls\dcomp.dll
     dpx.dll,additionaldlls\dpx.dll
     dsrole.dll,additionaldlls\dsrole.dll
@@ -2790,9 +3093,14 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     FWPUCLNT.dll,additionaldlls\FWPUCLNT.dll    
     gameux.dll,additionaldlls\gameux.dll
     GameUXLegacyGDFs.dll,additionaldlls\GameUXLegacyGDFs.dll
+    gamingtcui.dll,additionaldlls\gamingtcui.dll	
     httpapi.dll,additionaldlls\httpapi.dll
     httpnew.dll,additionaldlls\httpnew.dll
+    icu.dll,additionaldlls\icu.dll
+    icuin.dll,additionaldlls\icuin.dll
+    icuuc.dll,additionaldlls\icuuc.dll
     ktmw32.dll,additionaldlls\ktmw32.dll
+    lodctr.exe,additionaldlls\lodctr.exe	
     logoncli.dll,additionaldlls\logoncli.dll
     lsalookup.dll,additionaldlls\lsalookup.dll
     Magnification.dll,additionaldlls\Magnification.dll
@@ -2838,6 +3146,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     pwrshplugin.dll,additionaldlls\pwrshplugin.dll   
     qwave.dll,additionaldlls\qwave.dll        
     resampledmo.dll,additionaldlls\resampledmo.dll
+    rgb9rast.dll,additionaldlls\rgb9rast.dll
     RstrtMgr.dll,additionaldlls\RstrtMgr.dll
     rtworkq.dll,additionaldlls\rtworkq.dll
     samcli.dll,additionaldlls\samcli.dll
@@ -2860,6 +3169,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     UIAutomationCore.dll,additionaldlls\UIAutomationCore.dll
     UIRibbon.dll,additionaldlls\UIRibbon.dll
     UIRibbonRes.dll,additionaldlls\UIRibbonRes.dll
+    unlodctr.exe,additionaldlls\unlodctr.exe   	
     usp10.dll,additionaldlls\usp10.dll
     wdi.dll,additionaldlls\wdi.dll
     wdscore.dll,additionaldlls\wdscore.dll
@@ -2882,19 +3192,19 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     wlanui.dll,additionaldlls\wlanui.dll
     wlanutil.dll,additionaldlls\wlanutil.dll
     wldp.dll,additionaldlls\wldp.dll
+    WMDRMSDK.DLL,additionaldlls\WMDRMSDK.DLL
     wmphoto.dll,additionaldlls\wmphoto.dll
     wmsgapi.dll,additionaldlls\wmsgapi.dll
-    WMDRMSDK.DLL,additionaldlls\WMDRMSDK.DLL
     wpc.dll,additionaldlls\wpc.dll
     WSDApi.dll,additionaldlls\WSDApi.dll
     wtsapi32.dll,additionaldlls\wtsapi32.dll
     wusa.exe,additionaldlls\wusa.exe
-    xinput1_4.dll,additionaldlls\xinput1_4.dll        
-    XInput9_1_0.dll,additionaldlls\XInput9_1_0.dll        
+    xinput1_4.dll,additionaldlls\xinput1_4.dll
+    XInput9_1_0.dll,additionaldlls\XInput9_1_0.dll
+    xinputuap.dll,additionaldlls\xinput1_4.dll        
     xmllite.dll,additionaldlls\xmllite.dll      
     xmlrw.dll,additionaldlls\xmlrw.dll      
-    ; xpsprint.dll,additionaldlls\xpsprint.dll        
-    ; xpssvcs.dll,additionaldlls\xpssvcs.dll
+    xpsprint.dll,additionaldlls\xpsprint.dll
 	
 [ProductInstall.CopyFilesAlways.Professional]    
     CopyFiles=Professional.Windows.Files
@@ -2995,6 +3305,13 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     TrustedInstaller.exe,servicing\TrustedInstaller.exe
     Version\6.0.6002.18005\x86_installed,servicing\Version\6.0.6002.18005\x86_installed
 	
+[CopyAlways.Globalization.Files]
+    ICU\icudtl.dat,globalization\ICU\icudtl.dat
+    ICU\metaZones.res,globalization\ICU\metaZones.res
+    ICU\timezoneTypes.res,globalization\ICU\timezoneTypes.res
+    ICU\windowsZones.res,globalization\ICU\windowsZones.res
+    ICU\zoneinfo64.res,globalization\ICU\zoneinfo64.res	
+	
 [CopyAlways.Mui.0c0a.Files]
     advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\advapi32.dll.mui
     browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\browseui.dll.mui
@@ -3002,7 +3319,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0C0A\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0C0A\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0C0A\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0C0A\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\iphlpapi.dll.mui
@@ -3017,7 +3334,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0C0A\slayerxp.dll.mui
@@ -3035,7 +3352,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040b\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\040b\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\040b\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040b\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\iphlpapi.dll.mui
@@ -3050,7 +3367,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\040b\slayerxp.dll.mui
@@ -3068,7 +3385,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040c\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\040c\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\040c\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040c\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\iphlpapi.dll.mui
@@ -3083,7 +3400,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\040c\slayerxp.dll.mui
@@ -3101,7 +3418,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040d\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\040d\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\040d\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040d\dwrite.dll.mui	
     ;esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\iphlpapi.dll.mui
@@ -3116,7 +3433,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\040d\slayerxp.dll.mui
@@ -3134,7 +3451,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040e\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\040e\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\040e\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040e\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\iphlpapi.dll.mui
@@ -3149,7 +3466,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\040e\slayerxp.dll.mui
@@ -3168,7 +3485,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\041a\slayerxp.dll.mui
@@ -3182,7 +3499,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041b\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\041b\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\041b\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041b\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\iphlpapi.dll.mui
@@ -3197,7 +3514,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\041b\slayerxp.dll.mui
@@ -3215,7 +3532,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041d\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\041d\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\041d\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041d\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\iphlpapi.dll.mui
@@ -3230,7 +3547,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\041d\slayerxp.dll.mui
@@ -3249,7 +3566,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\041e\slayerxp.dll.mui
@@ -3263,7 +3580,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041f\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\041f\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\041f\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041f\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\iphlpapi.dll.mui
@@ -3278,7 +3595,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\041f\slayerxp.dll.mui
@@ -3296,7 +3613,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0401\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0401\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0401\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0401\dwrite.dll.mui	
     ;esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\iphlpapi.dll.mui
@@ -3311,7 +3628,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0401\slayerxp.dll.mui
@@ -3330,7 +3647,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0402\slayerxp.dll.mui
@@ -3344,7 +3661,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0404\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0404\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0404\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0404\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\iphlpapi.dll.mui
@@ -3359,7 +3676,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0404\slayerxp.dll.mui
@@ -3377,7 +3694,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0405\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0405\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0405\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0405\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\iphlpapi.dll.mui
@@ -3392,7 +3709,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0405\slayerxp.dll.mui
@@ -3410,7 +3727,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0406\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0406\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0406\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0406\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\iphlpapi.dll.mui
@@ -3425,7 +3742,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0406\slayerxp.dll.mui
@@ -3443,7 +3760,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0407\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0407\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0407\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0407\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\iphlpapi.dll.mui
@@ -3458,7 +3775,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0407\slayerxp.dll.mui
@@ -3476,7 +3793,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0408\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0408\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0408\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0408\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\iphlpapi.dll.mui
@@ -3491,7 +3808,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0408\slayerxp.dll.mui
@@ -3507,6 +3824,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
 	dxdiag.exe.mui,mui\0409\dxdiag.exe.mui
 	dxdiagn.dll.mui,mui\0409\dxdiagn.dll.mui
     dwrite.dll.mui,mui\0409\dwrite.dll.mui
+    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\kernel32.dll.mui	
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\setupapi.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\shlwapi.dll.mui	
 	slayerxp.dll.mui,mui\0409\slayerxp.dll.mui
@@ -3519,7 +3837,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0410\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0410\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0410\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0410\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\iphlpapi.dll.mui
@@ -3534,7 +3852,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0410\slayerxp.dll.mui
@@ -3552,7 +3870,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0411\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0411\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0411\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0411\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\iphlpapi.dll.mui
@@ -3567,7 +3885,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0411\slayerxp.dll.mui
@@ -3585,7 +3903,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0412\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0412\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0412\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0412\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\iphlpapi.dll.mui
@@ -3600,7 +3918,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0412\slayerxp.dll.mui
@@ -3618,7 +3936,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0413\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0413\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0413\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0413\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\iphlpapi.dll.mui
@@ -3633,7 +3951,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0413\slayerxp.dll.mui
@@ -3651,7 +3969,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0414\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0414\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0414\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0414\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\iphlpapi.dll.mui
@@ -3666,7 +3984,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0414\slayerxp.dll.mui
@@ -3684,7 +4002,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0415\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0415\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0415\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0415\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\iphlpapi.dll.mui
@@ -3699,7 +4017,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0415\slayerxp.dll.mui
@@ -3717,7 +4035,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0416\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0416\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0416\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0416\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\iphlpapi.dll.mui
@@ -3732,7 +4050,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0416\slayerxp.dll.mui
@@ -3751,7 +4069,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0418\slayerxp.dll.mui
@@ -3765,7 +4083,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0419\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0419\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0419\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0419\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\iphlpapi.dll.mui
@@ -3780,7 +4098,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0419\slayerxp.dll.mui
@@ -3798,7 +4116,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0424\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0424\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0424\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0424\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\iphlpapi.dll.mui
@@ -3813,7 +4131,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0424\slayerxp.dll.mui
@@ -3832,7 +4150,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0425\slayerxp.dll.mui
@@ -3847,7 +4165,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0426\slayerxp.dll.mui
@@ -3862,7 +4180,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0427\slayerxp.dll.mui
@@ -3876,7 +4194,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0804\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0804\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0804\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0804\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\iphlpapi.dll.mui
@@ -3891,7 +4209,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0804\slayerxp.dll.mui
@@ -3909,7 +4227,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\comdlg32.dll.mui
     crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0816\dxdiag.exe.mui	
-	dxdiagn.dll.dll.dll.mui,mui\0816\dxdiagn.dll.mui	
+	dxdiagn.dll.mui,mui\0816\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0816\dwrite.dll.mui	
     esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\esent.dll.mui
     iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\iphlpapi.dll.mui
@@ -3924,7 +4242,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\setupapi.dll.mui
     setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\setupapi.dll.mui
     shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shell32.dll.mui
+    ;shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shell32.dll.mui
     shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shlwapi.dll.mui
     shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shlwapi.dll.mui
 	slayerxp.dll.mui,mui\0816\slayerxp.dll.mui

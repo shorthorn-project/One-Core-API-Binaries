@@ -21,13 +21,20 @@
     EventLogKeyName           = NtServicePack
     EventLogDllName           = spmsg.dll    
     ServiceFileInUseDetect    = 1
-    AppFileinUseDetect        = 3    
+    AppFileinUseDetect        = 3
+
+[Prerequisite]
+    condition=SingleOp,LatestUpdateCheck1.Section
     
+[LatestUpdateCheck1.Section]
+	NotPresentOp = CheckReg, HKLM, "SOFTWARE\Microsoft\Windows NT\CurrentVersion\HotFix\OCAB",Installed,0x10001
+    Display_String="%LatestUpdateFail%"		
+	
 [Strings]
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.1"    
+    BASE_VERSION              = "4.0.2"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -69,12 +76,15 @@
     MIN_MINOR_VERSION         = "2"
     BUILD_NUMBER              = "3790"	
     MAX_BUILD_NUMBER          = "3790"
+    RELEASE_TYPE              = "original"
+    RELEASE_TYPE_WIN32SS      = "original"	
     ShortCutName              = "NNN4NT5"	
     ShortCutWctName           = "Windows Compatibility Tool"	
     ShortCutDir               = "Accessories\System Tools"
     NNN4NT5Tooltip            = "Set Windows Compatibility layer by Compatibility Variable"
     WctTooltip                = "A Windows Compatibility Tool emulated Windows Version"
-    
+    LatestUpdateFail          = "Please Uninstall One-Core-API first!"		
+
 [Product.Add.Reg]
     HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%","Installed",0x10001,1
     HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%","Backup Dir",0,""
@@ -94,11 +104,11 @@
     ;HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%BASE_VERSION%"
 	
 	;Simulate WIC installed to prevent new installation, since we use WIC from Windows 8 and need exclude older REG keys
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayName",0x00000000,"%SP_TITLE%"
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayVersion",0x00000000,%WIC_VERSION%
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ParentKeyName",0x00000000,"OperatingSystem"
-    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ReleaseType",0x00000000,"HotFix"
-    HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%WIC_VERSION%"		
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayName",0x00000000,"%SP_TITLE%"
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayVersion",0x00000000,%WIC_VERSION%
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ParentKeyName",0x00000000,"OperatingSystem"
+    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ReleaseType",0x00000000,"HotFix"
+    ; HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%WIC_VERSION%"		
     
     ; FontCache Service
     HKLM,"SYSTEM\CurrentControlSet\Services\FontCache","Description",0x00000000,"%FNTCACHESVC_DESCRIPTION%"
@@ -1335,6 +1345,9 @@
     HKCR,"CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\explorerframe.dll"
     HKCR,"CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32","ThreadingModel",0x0,"Apartment"
 	
+	;Disabling Hardware Acceleration for solve PowerShell with BlackScreen
+	;HKCU,"SOFTWARE\Microsoft\Avalon.Graphics","DisableHWAcceleration",0x10001,01,00,00,00	
+	
     HKCR,"Wow6432Node\CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}",,0x0,"Task Bar Communication"
     HKCR,"Wow6432Node\CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32",,0x20000,"%%SystemRoot%%\SysWow64\explorerframe.dll"
     HKCR,"Wow6432Node\CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32","ThreadingModel",0x0,"Apartment"	
@@ -1594,15 +1607,124 @@
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","ActivationType",0x10001,00,00,00,00
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","CLSID",0x0,"{f1f065d1-063a-3d94-bcef-0cfcc580817e}"
     HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","Threading",0x10001,00,00,00,00
-    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.DataTransfer.DragDrop","DllPath",0x0,"dataexchange.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.Package","DllPath",0x0,"windows.applicationmodel.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Metadata.ApiInformation","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.PropertyValue","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Uri","DllPath",0x0,"Windows.Foundation.Uri.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonObject","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonValue","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Bluetooth.BluetoothAdapter","DllPath",0x0,"windows.devices.bluetooth.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceAccessInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Usb.UsbDevice","DllPath",0x0,"windows.devices.usb.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Geolocation.Geolocator","DllPath",0x0,"geolocation.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Custom.GameControllerFactoryManager","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Gamepad","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConditionForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConstantForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.RampForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RawGameController","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RacingWheel","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.UI.GameBar","DllPath",0x0,"windows.gaming.ui.gamebar.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Capture.GraphicsCaptureSession","DllPath",0x0,"graphicscapture.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Holographic.HolographicSpace","DllPath",0x0,"windows.perception.stub.dll"	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Management.Deployment.PackageManager","DllPath",0x0,"appxdeploymentclient.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.ClosedCaptioning.ClosedCaptionProperties","DllPath",0x0,"windows.media.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechSynthesis.SpeechSynthesizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SystemMediaTransportControls","DllPath",0x0,"windows.media.mediacontrol.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.Connectivity.NetworkInformation","DllPath",0x0,"windows.networking.connectivity.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.HostName","DllPath",0x0,"windows.networking.hostname.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver","DllPath",0x0,"windows.perception.stub.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticator","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.KeyCredentialManager","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.UI.UserConsentVerifier","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Cryptography.CryptographicBuffer","DllPath",0x0,"cryptowinrt.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Isolation.IsolatedWindowsEnvironmentHost","DllPath",0x0,"hvsimanagementapi.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.ApplicationData","DllPath",0x0,"windows.storage.applicationdata.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.DataWriter","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.Buffer","DllPath",0x0,"wintypes.dll"	
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.RandomAccessStreamReference","DllPath",0x0,"windows.storage.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.DispatcherQueueController","DllPath",0x0,"coremessaging.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Launcher","DllPath",0x0,"Windows.System.Launcher.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.AnalyticsInfo","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemIdentification","DllPath",0x0,"windows.system.profile.systemid.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemManufacturers.SmbiosInformation","DllPath",0x0,"windows.system.profile.systemmanufacturers.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Threading.ThreadPool","DllPath",0x0,"threadpoolwinrt.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.UserProfile.AdvertisingManager","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ColorHelper","DllPath",0x0,"windows.ui.xaml.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.InputPane","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UIViewSettings","DllPath",0x0,"windows.ui.dll"
     ;WinRT keys for Wow64
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime",,0x10
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId",,0x10
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.UserProfile.GlobalizationPreferences","DllPath",0x0,"Windows.globalization.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","DllPath",0x0,"C:\Windows\System32\Windows.UI.dll"
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","ActivationType",0x10001,00,00,00,00
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","CLSID",0x0,"{f1f065d1-063a-3d94-bcef-0cfcc580817e}"
-    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","DllPath",0x0,"C:\Windows\SysWOW64\Windows.UI.dll"
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","Threading",0x10001,00,00,00,00
-    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","TrustLevel",0x10001,00,00,00,00	
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.DataTransfer.DragDrop","DllPath",0x0,"dataexchange.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.ApplicationModel.Package","DllPath",0x0,"windows.applicationmodel.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Metadata.ApiInformation","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.PropertyValue","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Foundation.Uri","DllPath",0x0,"Windows.Foundation.Uri.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonObject","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Data.Json.JsonValue","DllPath",0x0,"windows.web.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Bluetooth.BluetoothAdapter","DllPath",0x0,"windows.devices.bluetooth.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Enumeration.DeviceAccessInformation","DllPath",0x0,"windows.devices.enumeration.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Usb.UsbDevice","DllPath",0x0,"windows.devices.usb.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Devices.Geolocation.Geolocator","DllPath",0x0,"geolocation.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Custom.GameControllerFactoryManager","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.Gamepad","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConditionForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.ConstantForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.ForceFeedback.RampForceEffect","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RawGameController","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.Input.RacingWheel","DllPath",0x0,"windows.gaming.input.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.UI.GameBar","DllPath",0x0,"windows.gaming.ui.gamebar.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Capture.GraphicsCaptureSession","DllPath",0x0,"graphicscapture.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Graphics.Holographic.HolographicSpace","DllPath",0x0,"windows.perception.stub.dll"	
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Management.Deployment.PackageManager","DllPath",0x0,"appxdeploymentclient.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.ClosedCaptioning.ClosedCaptionProperties","DllPath",0x0,"windows.media.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SpeechSynthesis.SpeechSynthesizer","DllPath",0x0,"windows.media.speech.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Media.SystemMediaTransportControls","DllPath",0x0,"windows.media.mediacontrol.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.Connectivity.NetworkInformation","DllPath",0x0,"windows.networking.connectivity.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Networking.HostName","DllPath",0x0,"windows.networking.hostname.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver","DllPath",0x0,"windows.perception.stub.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticator","DllPath",0x0,"windows.security.authentication.onlineid.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.KeyCredentialManager","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Credentials.UI.UserConsentVerifier","DllPath",0x0,"windows.security.credentials.ui.userconsentverifier.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Cryptography.CryptographicBuffer","DllPath",0x0,"cryptowinrt.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Security.Isolation.IsolatedWindowsEnvironmentHost","DllPath",0x0,"hvsimanagementapi.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.ApplicationData","DllPath",0x0,"windows.storage.applicationdata.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.DataWriter","DllPath",0x0,"wintypes.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.Buffer","DllPath",0x0,"wintypes.dll"	
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Storage.Streams.RandomAccessStreamReference","DllPath",0x0,"windows.storage.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.DispatcherQueueController","DllPath",0x0,"coremessaging.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Launcher","DllPath",0x0,"Windows.System.Launcher.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.AnalyticsInfo","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemIdentification","DllPath",0x0,"windows.system.profile.systemid.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Profile.SystemManufacturers.SmbiosInformation","DllPath",0x0,"windows.system.profile.systemmanufacturers.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.Threading.ThreadPool","DllPath",0x0,"threadpoolwinrt.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.System.UserProfile.AdvertisingManager","DllPath",0x0,"twinapi.appcore.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ColorHelper","DllPath",0x0,"windows.ui.xaml.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.InputPane","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UISettings","DllPath",0x0,"windows.ui.dll"
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.UI.ViewManagement.UIViewSettings","DllPath",0x0,"windows.ui.dll"
 
     HKCR,"CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}",,0x00000000,"PSFactoryBuffer"
     HKCR,"Wow6432Node\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}",,0x00000000,"PSFactoryBuffer"
@@ -3560,8 +3682,464 @@
     HKCR,CLSID\%CLSID_WIC%\Schemas\%CLSID_WIC_Namespace%,%MSFT_Prefix%,,%MSFT_Namespace%
     HKCR,Wow6432Node\CLSID\%CLSID_WIC%\Schemas\%CLSID_WIC_Namespace%,%MSFT_Prefix%,,%MSFT_Namespace%
 
-;-------------------------------------------------------------------------
-; WindowsCodec.dll
+	;-------------------------------------------------------------------------
+	; WindowsCodec.dll
+
+	HKCR,"CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKCR,"Wow6432Node\CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKCR,"Wow6432Node\CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Classes\Wow6432Node\CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{00000301-A8F2-4877-BA0A-FD2B6645FB94}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{0010668C-0801-4DA6-A4A4-826522B6D28F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{00108226-EE41-44A2-9E9C-4BE4D5B1D2CD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{01B90D9A-8209-47F7-9C52-E1244BF50CED}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{02805F1E-D5AA-415B-82C5-61C033A988A6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{03012959-F4F6-44D7-9D09-DAA087A9DB57}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{076C2A6C-F78F-4C46-A723-3583E70876EA}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{0CE7A4A6-03E8-4A60-9D15-282EF32EE7DA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{0E25DC18-9F5E-48B1-80B3-D124E81B773B}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{114F5598-0B22-40A0-86A1-C83EA495ADBD}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{122EC645-CD7E-44D8-B186-2C8C20C3B50F}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1249B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{16671E5F-0CE6-4CC4-9768-E89FE5018ADE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1765E14E-1BD4-462E-B6B1-590BF1262AC6}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1767B93A-B021-44EA-920F-863C11F4F768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1A34F5C1-4A5A-46DC-B644-1F4567E7A676}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1A3F11DC-B514-4B17-8C5F-2154513852F1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1AB78400-B5A3-4D91-8ACE-33FCD1499BE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{1D583ABC-8A0E-4657-9982-A380CA58FB4B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{22C21F93-7DDB-411C-9B17-C5B7BD064ABC}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{27949969-876A-41D7-9447-568F6A35A4DC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{2DB5E62B-0D67-495F-8F9D-C2F0188647AC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{317D06E8-5F24-433D-BDF7-79CE68D8ABC2}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{31879719-E751-4DF8-981D-68DFF67704ED}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{32557D3B-69DC-4F95-836E-F5972B2F6159}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{356F2F88-05A6-4728-B9A4-1BFBCE04D838}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{3692CA39-E082-4350-9E1F-3704CB083CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{3697790B-223B-484E-9925-C4869218F17A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{381DDA3C-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{389EA17B-5078-4CDE-B6EF-25C15175C751}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{3FF566F0-6E6B-49D4-96E6-B78886692C62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{41070793-59E4-479A-A1F7-954ADC2EF5FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{43324B33-A78F-480F-9111-9638AACCC832}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{4B59AFCC-B8C3-408A-B670-89E5FAB6FDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{4FF2FE0E-E74A-4B71-98C4-AB7DC16707BA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{50B1904B-F28F-4574-93F4-0BADE82C69E9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{50D42F09-ECD1-4B41-B65D-DA1FDAA75663}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{5805137A-E348-4F7C-B3CC-6DB9965A0599}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{5C5C1935-0235-4434-80BC-251BC1EC39C6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{68E3F2FD-31AE-4441-BB6A-FD7047525F90}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{699745C2-5066-4B82-A8E3-D40478DBEC8C}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{69BE8BB4-D66D-47C8-865A-ED1589433782}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{6B462062-7CBF-400D-9FDB-813DD10F2778}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{6D68D1DE-D432-4B0F-923A-091183A9BDA7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{72B624DF-AE11-4948-A65C-351EB0829419}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{73C037E7-E5D9-4954-876A-6DA81D6E5768}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{7447A267-0015-42C8-A8F1-FB3B94C68361}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{7B19A919-A9D6-49E5-BD45-02C34E4E4CD5}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{7F12E753-FC71-43D7-A51D-92F35977ABB5}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{877A0BB7-A313-4491-87B5-2E6D0594F520}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{8A03E749-672E-446E-BF1F-2C11D233B6FF}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{8ADE5386-8E9B-4F4C-ACF2-F0008706B238}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{8F914656-9D0A-4EB2-9019-0BF96D8A9EE6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{9456A480-E88B-43EA-9E73-0B2D9B71B1CA}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{9CB5172B-D600-46BA-AB77-77BB7E3A00D9}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{9F66347C-60C4-4C4D-AB58-D2358685F607}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{A02797fC-C4AE-418C-AF95-E637C7EAD2A1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{A09CCA86-27BA-4F39-9053-121FA4DC08FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{A6EE35C6-87EC-47DF-9F22-1D5AAD840C82}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{AA7E3C50-864C-4604-BC04-8B0B76E637F6}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{AA94DCC2-B8B0-4898-B835-000AABD74393}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{AABFB2FA-3E1E-4A8f-8977-5556FB94EA23}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{AC75D454-9F37-48f8-B972-4E19BC856011}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{B1EBFC28-C9BD-47A2-8D33-B948769777A7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{B54E85D9-FE23-499F-8B88-6ACEA713752B}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{B5C8B898-0074-459F-B700-860D4651EA14}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{B5EBAFB9-253E-4A72-A744-0762D2685683}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{B92E345D-F52D-41F3-B562-081BC772E3B9}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{BD6EDFCA-2890-482F-B233-8D7339A1CF8D}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{C17CABB2-D4A3-47D7-A557-339B2EFBD4F1}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{C61BFCDF-2E0F-4AAD-A8D7-E06BAFEBCDFE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{C9A14CDA-C339-460B-9078-D4DEBCFABE91}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{CACAF262-9CE9-4834-A23E-1F98F8FC52BE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{CB8C13E4-62B5-4C96-A48B-6BA6ACE39C76}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{D049B20C-5DD0-44FE-B0B3-8F92C8E6D080}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{D4DCD3D7-B4C2-47D9-A6BF-B89BA396A4A3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{D9403860-297F-4A49-BF9B-77898150A442}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{D94EDF02-EFE5-4F0D-85C8-F5A68B3000B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{DDE33513-774E-4BCD-AE79-02F4ADFE62FC}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{E018945B-AA86-4008-9BD4-6777A1E40C11}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{E23CE3EB-5608-4E83-BCEF-27B1987E51D7}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{E573236F-55B1-4EDA-81EA-9F65DB0290D3}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{E7E79A30-4F2C-4FAB-8D00-394F2D6BBEBE}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{ED822C8C-D6BE-4301-A631-0E1416BAD28F}\InProcServer32",,0x0,"windowscodecsext.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{EE366069-1832-420F-B381-0479AD066F19}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{F3C633A2-46C8-498E-8FBB-CC6F721BBCDE}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{F5D3E63B-CB0F-4628-A478-6D8244BE36B1}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{F90B5F36-367B-402A-9DD1-BC0FD59D8F62}\InProcServer32",,0x0,"windowscodecs.dll"
+	HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{FF036D13-5D4B-46DD-B10F-106693D9FE4F}\InProcServer32",,0x0,"windowscodecs.dll"
 
     HKCR,"CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}"
     HKCR,"Wow6432Node\CLSID\{CACAF262-9370-4615-A13B-9F5539DA4C0A}"
@@ -5937,7 +6515,13 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     HKLM,"SOFTWARE\Wow6432Node\Classes\CLSID\{FB012959-F4F6-44D7-9D09-DAA087A9DB57}"
     ;To prevent wrong installed version if using Mui packs and trying use WMP12
     HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"	
-    HKLM,"SOFTWARE\Wow6432Node\Microsoft\MediaPlayer\Setup\Installed Versions"	
+    HKLM,"SOFTWARE\Wow6432Node\Microsoft\MediaPlayer\Setup\Installed Versions"
+	
+[ProductInstall.ReplaceFilesIfExist]
+    CopyFiles = Core.System32.Files
+    CopyFiles = Core.SysWOW64.Files
+    CopyFiles = Drivers.CoreDriverFiles 
+    ;CopyFiles = System32.Files		
 
 [ProductInstall.DontDelayUntilReboot]
     CopyFiles = Core.System32.Files
@@ -5991,6 +6575,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     CopyFiles= CopyAlways.Mui.0427.Files	
     CopyFiles= CopyAlways.Mui.0804.Files
     CopyFiles= CopyAlways.Mui.0816.Files	
+    CopyFiles= CopyAlways.Globalization.Files
     CopyFiles= CopyAlways.Servicing.Files
     CopyFiles= CopyAlways.System32.APISET.Files
     CopyFiles= CopyAlways.SysWOW64.APISET.Files
@@ -6011,51 +6596,6 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     CopyFiles= Fonts.files		
     CopyFiles= Program_files.ink.Files
     CopyFiles= Program_files_x86.ink.Files
-
-[ProductInstall.ReplaceFilesIfExist]
-    CopyFiles = Core.System32.Files
-    CopyFiles = Core.SysWOW64.Files
-    CopyFiles = Drivers.CoreDriverFiles 
-    ;CopyFiles = System32.Files	
-
-[ProductInstall.GlobalRegistryChanges.Install]
-    DelReg=Product.Del.Reg
-    AddReg=Product.Add.Reg
-
-[ProductInstall.GlobalRegistryChanges.ReInstall]
-    DelReg=Product.Del.Reg
-    AddReg=Product.Add.Reg
-
-[ProductInstall.UniprocessorFiles]
-    CopyFiles=Uniprocessor.Kernel.Files
-
-[ProductInstall.MultiprocessorFiles]
-    CopyFiles=Multiprocessor.Kernel.Files
-
-[LinkItems.Create]
-   %ShortCutName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\NNN4NT5.exe""",%SystemRoot%\System32\NNN4NT5.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%NNN4NT5Tooltip%",,	
-   %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
-
-[ProcessesToRun]
-    "regsvr32.exe /s propsys.dll"    
-    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
-	"rundll32.exe apphelp.dll,ShimFlushCache"
-    "regsvr32.exe /s mmdevapi.dll"        
-    "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"	
-    
-[ProcessesToRunAfterCopying]
-    "cmd /C "%systemroot%\Syswow64\certupdate.exe" /Y /C /Q"
-    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
-    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
-    "cmd /C mkdir %SystemRoot%\SystemTemp"
-    "cmd /C mkdir %SystemDrive%\ProgramData"
-    "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
-    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkDiv.dll""
-    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
-    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
-    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
 	
 [DestinationDirs]
     Base.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
@@ -6099,7 +6639,8 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     CopyAlways.Mui.0426.Files=10,"mui\Fallback\0426"
     CopyAlways.Mui.0427.Files=10,"mui\Fallback\0427"
     CopyAlways.Mui.0804.Files=10,"mui\Fallback\0804"
-    CopyAlways.Mui.0816.Files=10,"mui\Fallback\0816"	
+    CopyAlways.Mui.0816.Files=10,"mui\Fallback\0816"
+    CopyAlways.Globalization.Files=10,globalization       ; copy always		
 	CopyAlways.Servicing.Files=10,Servicing       ; copy always	
     CopyAlways.System32.Files=11  ; %windir%\system32 (don't delay until reboot)
     CopyAlways.System32.APISET.Files=11  ; %windir%\system32 (don't delay until reboot)
@@ -6137,10 +6678,53 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     Blade.Windows.files=10 ; %windir%
     DataCenter.Windows.files=10 ; %windir%    
     Tablet.Windows.files=10 ; %windir%
-    MediaCenter.Windows.files=10 ; %windir%	   
+    MediaCenter.Windows.files=10 ; %windir%	  
+
+[ProductInstall.GlobalRegistryChanges.Install]
+    DelReg=Product.Del.Reg
+    AddReg=Product.Add.Reg
+
+[ProductInstall.GlobalRegistryChanges.ReInstall]
+    DelReg=Product.Del.Reg
+    AddReg=Product.Add.Reg
+
+[ProductInstall.UniprocessorFiles]
+    CopyFiles=Uniprocessor.Kernel.Files
+
+[ProductInstall.MultiprocessorFiles]
+    CopyFiles=Multiprocessor.Kernel.Files
+
+[LinkItems.Create]
+   %ShortCutName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\NNN4NT5.exe""",%SystemRoot%\System32\NNN4NT5.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%NNN4NT5Tooltip%",,	
+   %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
+
+[ProcessesToRun]
+    "regsvr32.exe /s propsys.dll"    
+    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
+	"rundll32.exe apphelp.dll,ShimFlushCache"
+    "regsvr32.exe /s mmdevapi.dll"        
+    "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"	
+    
+[ProcessesToRunAfterCopying]
+    ;"cmd /C "%systemroot%\Syswow64\certupdate.exe" /Y /C /Q"
+    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
+    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
+    "cmd /C netsh interface ipv6 install"
+    "cmd /C mkdir %SystemRoot%\SystemTemp"
+    "cmd /C mkdir %SystemDrive%\ProgramData"
+    "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
+    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkDiv.dll""
+    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
+    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
+    "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
+    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+	
+[ProcessesToRunBeforeArchive]
+    "%sourcepath%\base\i386\certupdate.exe" /Y /C /Q		
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
+    ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\amd64\drivers\%RELEASE_FAMILY%ntoskrn8.sys 	
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\amd64\drivers\%RELEASE_FAMILY%tcpip6.sys 	
 
 [MustReplace.System32.Files]
@@ -6148,8 +6732,8 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%crypt32.dll
     kernel32.dll, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%kernel32.dll
     ntdll.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntdll.dll	
-    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%winsrv.dll
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%win32k.sys
+    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
+    win32k.sys, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
     wow64win.dll, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%wow64win.dll	
     
 [MustReplace.SysWOW64.Files]
@@ -6159,11 +6743,13 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
 	
 [CopyAlways.WinSxS.Main.Files]	
 	"WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365\comctl32.dll", WinSxS\comctl32\amd64\comctl32.dll
+    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_B45BA3BE\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_738112C4\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
 	"WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491\winhttp.dll", base\amd64\winhttp.dll
 	"WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585\comctl32.dll", WinSxS\comctl32\i386\wcomctl32.dll
+    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_8251BDDE\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_41772CE4\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
@@ -6188,10 +6774,11 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
 [CoreOS.Common.System32.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%crypt32.dll
+    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%cryptcore.dll
     comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%comdlgbase.dll
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%dssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%esent.dll	
-    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%gdibase.dll
+    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll
     iphlpapi.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%iphlpapi.dll	
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%kernel32.dll
     lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%lsasrv.dll
@@ -6204,19 +6791,20 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     secur32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%secur32.dll
     setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%setupapibase.dll	
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%sxs.dll	
-    userbase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%userbase.dll
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%win32k.sys
-    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%winsrv.dll
+    userbase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%userbase.dll
+    win32k.sys, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
+    winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%wintrust.dll	
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ws2_base.dll
 	
 [CoreOS.Common.SysWow64.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcrypt32.dll
+    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcryptcore.dll
     comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcomdlgbase.dll
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wdssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wesent.dll	
-    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wgdibase.dll
+    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\i386\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wgdibase.dll
     iphlpapi.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wiphlpapi.dll	
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wkernel32.dll
     netapi32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wnetapi32.dll
@@ -6228,7 +6816,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     securbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wsecurbase.dll ;Need be securbase because if use a edited secur32, face with "bad image" error.
     setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wsetupapibase.dll	
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wsxs.dll
-    userbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wuserbase.dll
+    userbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wuserbase.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wwintrust.dll
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll	
 
@@ -6263,6 +6851,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comctlext.dll,extensions\amd64\comctlext.dll	
     cryptex.dll,extensions\amd64\cryptex.dll
     dnsapiext.dll,extensions\amd64\dnsapiext.dll
+    dxgiext.dll,extensions\amd64\dxgiext.dll
     iphlpext.dll,extensions\amd64\iphlpext.dll	
     kernelex.dll,extensions\amd64\kernelex.dll
     kernelbase.dll,extensions\amd64\kernelex.dll
@@ -6284,6 +6873,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     comctlext.dll,extensions\i386\wcomctlext.dll	
     cryptex.dll,extensions\i386\wcryptex.dll
     dnsapiext.dll,extensions\i386\wdnsapiext.dll
+    dxgiext.dll,extensions\i386\wdxgiext.dll
     iphlpext.dll,extensions\i386\wiphlpext.dll	
     kernelex.dll,extensions\i386\wkernelex.dll
     kernelbase.dll,extensions\i386\wkernelex.dll
@@ -6332,7 +6922,6 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     combase.dll,base\amd64\combase.dll
     credui.dll,base\amd64\credui.dll	
     cryptbase.dll,base\amd64\cryptbase.dll
-    cryptnew.dll,base\amd64\cryptnew.dll
     dbgeng.dll,base\amd64\dbgeng.dll
     dbghelp.dll,base\amd64\dbghelp.dll	
     d3dkmt.dll,base\amd64\d3dkmt.dll
@@ -6342,8 +6931,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     esentbase.dll,base\amd64\esentbase.dll    
     fileextd.dll,base\amd64\fileextd.dll
     fntcache.dll,base\amd64\fntcache.dll
+    framedynos.dll,base\amd64\framedynos.dll
     idndl.dll,base\amd64\idndl.dll
-    msctfime.ime,base\amd64\msctfime.ime	
+    msctfime.ime,base\amd64\msctfime.ime
+    msvcp60.dll,base\amd64\msvcp60.dll	
     ncrypt.dll,base\amd64\ncrypt.dll	
     netfxperf.dll,base\amd64\netfxperf.dll
     Nlsdl.dll,base\amd64\Nlsdl.dll
@@ -6362,52 +6953,68 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     winbrand.dll,base\amd64\winbrand.dll
     winhttp.dll,base\amd64\winhttp.dll
     winstanew.dll,base\amd64\winstanew.dll
+    wbem\WMIC.exe,base\amd64\WMIC.exe
 	
 [Base.SysWOW64.Files]
-    atl.dll,base\i386\watl.dll	
+    atl.dll,base\i386\watl.dll
+    authroots.sst,base\i386\authroots.sst	
     bcrypt.dll,base\i386\wbcrypt.dll
     bcryptprimitives.dll,base\i386\wbcryptprimitives.dll
     certupdate.exe,base\i386\wcertupdate.exe
     combase.dll,base\i386\wcombase.dll
     credui.dll,base\i386\wcredui.dll	
     cryptbase.dll,base\i386\wcryptbase.dll
-    cryptnew.dll,base\i386\wcryptnew.dll
     dbgeng.dll,base\i386\wdbgeng.dll
     dbghelp.dll,base\i386\wdbghelp.dll	
     d3dkmt.dll,base\i386\wd3dkmt.dll
-    devcon.exe,base\i386\wdevcon.exe 
+    delroots.sst,base\i386\delroots.sst	
+    devcon.exe,base\i386\wdevcon.exe
+    disallowedcert.sst,base\i386\disallowedcert.sst	
     dwmapi.dll,base\i386\wdwmapi.dll   
     dwrgdi.dll,base\i386\wdwrgdi.dll    
     esentbase.dll,base\i386\wesentbase.dll    
     fileextd.dll,base\i386\wfileextd.dll
     fntcache.dll,base\i386\wfntcache.dll
+    framedynos.dll,base\i386\wframedynos.dll
     idndl.dll,base\i386\widndl.dll
-    msctfime.ime,base\i386\wmsctfime.ime	
+    msctfime.ime,base\i386\wmsctfime.ime
+    msvcp60.dll,base\i386\wmsvcp60.dll		
     ncrypt.dll,base\i386\wncrypt.dll	
     netfxperf.dll,base\i386\wnetfxperf.dll
     nsi.dll,base\i386\wnsi.dll	
     Nlsdl.dll,base\i386\wNlsdl.dll
     normaliz.dll,base\i386\wnormaliz.dll
     progwrp.dll,base\i386\wprogwrp.dll
-    propsys.dll,base\i386\wpropsys.dll		
+    propsys.dll,base\i386\wpropsys.dll
+    roots.sst,base\i386\roots.sst 	
     setx.exe,base\i386\wsetx.exe
     shcore.dll,base\i386\wshcore.dll	
     ;ShimEng.dll,base\i386\wShimEng.dll	
     sspicli.dll,base\i386\wsspicli.dll
+    updroots.exe,base\i386\updroots.exe
+    updroots.sst,base\i386\updroots.sst 	
     version.dll,base\i386\wversion.dll
     wevtapibase.dll,base\i386\wwevtapibase.dll
     winbrand.dll,base\i386\wwinbrand.dll
     winhttp.dll,base\i386\wwinhttp.dll
     winstanew.dll,base\i386\wwinstanew.dll	
+    wbem\WMIC.exe,base\i386\wWMIC.exe	
 
 [CopyAlways.WinRT.Files]
+    appxdeploymentclient.dll,winrt\amd64\appxdeploymentclient.dll
+    coremessaging.dll,winrt\amd64\coremessaging.dll
     cryptowinrt.dll,winrt\amd64\cryptowinrt.dll
+    dataexchange.dll,winrt\amd64\dataexchange.dll
+    geolocation.dll,winrt\amd64\geolocation.dll
+    graphicscapture.dll,winrt\amd64\graphicscapture.dll
+    hvsimanagementapi.dll,winrt\amd64\hvsimanagementapi.dll
     threadpoolwinrt.dll,winrt\amd64\threadpoolwinrt.dll
     twinapi.appcore.dll,winrt\amd64\twinapi.appcore.dll
     windows.applicationmodel.dll,winrt\amd64\windows.applicationmodel.dll
     windows.devices.bluetooth.dll,winrt\amd64\windows.devices.bluetooth.dll
     windows.devices.enumeration.dll,winrt\amd64\windows.devices.enumeration.dll
     windows.devices.usb.dll,winrt\amd64\windows.devices.usb.dll
+    windows.foundation.uri.dll,winrt\amd64\windows.foundation.uri.dll	
     windows.gaming.input.dll,winrt\amd64\windows.gaming.input.dll
     windows.gaming.ui.gamebar.dll,winrt\amd64\windows.gaming.ui.gamebar.dll
     windows.globalization.dll,winrt\amd64\windows.globalization.dll
@@ -6415,24 +7022,37 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     windows.media.dll,winrt\amd64\windows.media.dll
     windows.media.mediacontrol.dll,winrt\amd64\windows.media.mediacontrol.dll
     windows.media.speech.dll,winrt\amd64\windows.media.speech.dll
+    windows.networking.connectivity.dll,winrt\amd64\windows.networking.connectivity.dll
     windows.networking.dll,winrt\amd64\windows.networking.dll
     windows.networking.hostname.dll,winrt\amd64\windows.networking.hostname.dll
     windows.perception.stub.dll,winrt\amd64\windows.perception.stub.dll
     windows.security.authentication.onlineid.dll,winrt\amd64\windows.security.authentication.onlineid.dll
     windows.security.credentials.ui.userconsentverifier.dll,winrt\amd64\windows.security.credentials.ui.userconsentverifier.dll
     windows.storage.applicationdata.dll,winrt\amd64\windows.storage.applicationdata.dll
+    windows.storage.dll,winrt\amd64\windows.storage.dll
+    windows.system.launcher.dll,winrt\amd64\windows.system.launcher.dll
+    windows.system.profile.systemid.dll,winrt\amd64\windows.system.profile.systemid.dll
     windows.system.profile.systemmanufacturers.dll,winrt\amd64\windows.system.profile.systemmanufacturers.dll
     windows.ui.dll,winrt\amd64\windows.ui.dll
+    windows.ui.xaml.dll,winrt\amd64\windows.ui.xaml.dll
+    windows.web.dll,winrt\amd64\windows.web.dll
     wintypes.dll,winrt\amd64\wintypes.dll
 	
 [CopyAlways.WinRT.Wow64.Files]
+    appxdeploymentclient.dll,winrt\i386\appxdeploymentclient.dll
+    coremessaging.dll,winrt\i386\coremessaging.dll
     cryptowinrt.dll,winrt\i386\cryptowinrt.dll
+    dataexchange.dll,winrt\i386\dataexchange.dll
+    geolocation.dll,winrt\i386\geolocation.dll
+    graphicscapture.dll,winrt\i386\graphicscapture.dll
+    hvsimanagementapi.dll,winrt\i386\hvsimanagementapi.dll
     threadpoolwinrt.dll,winrt\i386\threadpoolwinrt.dll
     twinapi.appcore.dll,winrt\i386\twinapi.appcore.dll
     windows.applicationmodel.dll,winrt\i386\windows.applicationmodel.dll
     windows.devices.bluetooth.dll,winrt\i386\windows.devices.bluetooth.dll
     windows.devices.enumeration.dll,winrt\i386\windows.devices.enumeration.dll
     windows.devices.usb.dll,winrt\i386\windows.devices.usb.dll
+    windows.foundation.uri.dll,winrt\i386\windows.foundation.uri.dll	
     windows.gaming.input.dll,winrt\i386\windows.gaming.input.dll
     windows.gaming.ui.gamebar.dll,winrt\i386\windows.gaming.ui.gamebar.dll
     windows.globalization.dll,winrt\i386\windows.globalization.dll
@@ -6440,59 +7060,83 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     windows.media.dll,winrt\i386\windows.media.dll
     windows.media.mediacontrol.dll,winrt\i386\windows.media.mediacontrol.dll
     windows.media.speech.dll,winrt\i386\windows.media.speech.dll
+    windows.networking.connectivity.dll,winrt\i386\windows.networking.connectivity.dll
     windows.networking.dll,winrt\i386\windows.networking.dll
     windows.networking.hostname.dll,winrt\i386\windows.networking.hostname.dll
     windows.perception.stub.dll,winrt\i386\windows.perception.stub.dll
     windows.security.authentication.onlineid.dll,winrt\i386\windows.security.authentication.onlineid.dll
     windows.security.credentials.ui.userconsentverifier.dll,winrt\i386\windows.security.credentials.ui.userconsentverifier.dll
     windows.storage.applicationdata.dll,winrt\i386\windows.storage.applicationdata.dll
+    windows.storage.dll,winrt\i386\windows.storage.dll
+    windows.system.launcher.dll,winrt\i386\windows.system.launcher.dll
+    windows.system.profile.systemid.dll,winrt\i386\windows.system.profile.systemid.dll
     windows.system.profile.systemmanufacturers.dll,winrt\i386\windows.system.profile.systemmanufacturers.dll
     windows.ui.dll,winrt\i386\windows.ui.dll
+    windows.ui.xaml.dll,winrt\i386\windows.ui.xaml.dll
+    windows.web.dll,winrt\i386\windows.web.dll
     wintypes.dll,winrt\i386\wintypes.dll
 
 [CopyAlways.D3D.System32.Files]
-    d2d1.dll,d3d/amd64/d2d1.dll
-    d3d9.dll,d3d/amd64/d3d9.dll
-    d3d9ex.dll,d3d/amd64/d3d9ex.dll
-    d3d10.dll,d3d/amd64/d3d10.dll
-    d3d10_1.dll,d3d/amd64/d3d10_1.dll
-    d3d10core.dll,d3d/amd64/d3d10core.dll
-    d3d11.dll,d3d/amd64/d3d11.dll
-    d3d12.dll,d3d/amd64/d3d12.dll
-    d3d12core.dll,d3d/amd64/d3d12core.dll
-    d3dcompiler_39.dll,d3d/amd64/d3dcompiler_39.dll
-    d3dcompiler_43.dll,d3d/amd64/d3dcompiler_43.dll
-    d3dcompiler_47.dll,d3d/amd64/d3dcompiler_47.dll
-    d3dwine.dll,d3d/amd64/d3dwine.dll
-    dwrite.dll,d3d/amd64/dwrite.dll
-    dxdiag.exe,d3d/amd64/dxdiag.exe
-    dxdiagn.dll,d3d/amd64/dxdiagn.dll    
-    dxgi.dll,d3d/amd64/dxgi.dll
-    wined3d.dll,d3d/amd64/wined3d.dll
-    vcruntime140.dll,d3d/amd64/vcruntime140.dll
-    wineft2.dll,d3d/amd64/wineft2.dll
+    d2d1.dll,d3d\amd64\d2d1.dll
+    d3d9.dll,d3d\amd64\d3d9.dll
+    d3d9ex.dll,d3d\amd64\d3d9ex.dll
+    d3d10.dll,d3d\amd64\d3d10.dll
+    d3d10_1.dll,d3d\amd64\d3d10_1.dll
+    d3d10_1core.dll,d3d\amd64\d3d10_1core.dll
+    d3d10core.dll,d3d\amd64\d3d10core.dll
+    d3d10warp.dll,d3d\amd64\d3d10warp.dll	
+    d3d11.dll,d3d\amd64\d3d11.dll
+    d3d12.dll,d3d\amd64\d3d12.dll
+    d3d12core.dll,d3d\amd64\d3d12core.dll
+    d3dwine.dll,d3d\amd64\d3dwine.dll
+    dwrite.dll,d3d\amd64\dwrite.dll
+    dxdiag.exe,d3d\amd64\dxdiag.exe
+    dxdiagn.dll,d3d\amd64\dxdiagn.dll    
+    dxgi.dll,d3d\amd64\dxgi.dll
+    vcruntime140.dll,d3d\amd64\vcruntime140.dll
+    wineft2.dll,d3d\amd64\wineft2.dll
+    D3DCompiler_39.dll,d3d\amd64\D3DCompiler_39.dll    
+    D3DCompiler_43.dll,d3d\amd64\D3DCompiler_43.dll    
+    D3DCompiler_47.dll,d3d\amd64\D3DCompiler_47.dll
+    wined3d\d2d1.dll,d3d\amd64\wined3d\d2d1.dll
+    wined3d\d3d9ex.dll,d3d\amd64\wined3d\d3d9ex.dll
+    wined3d\d3d10.dll,d3d\amd64\wined3d\d3d10.dll
+    wined3d\d3d10_1.dll,d3d\amd64\wined3d\d3d10_1.dll
+    wined3d\d3d10core.dll,d3d\amd64\wined3d\d3d10core.dll
+    wined3d\d3d11.dll,d3d\amd64\wined3d\d3d11.dll		
+    wined3d\dwrite.dll,d3d\amd64\wined3d\dwrite.dll
+    wined3d\dxgi.dll,d3d\amd64\wined3d\dxgi.dll	
 	
 [CopyAlways.D3D.SysWOW64.Files]
-    d2d1.dll,d3d/i386/wd2d1.dll
-    d3d9.dll,d3d/i386/wd3d9.dll
-    d3d9ex.dll,d3d/i386/wd3d9ex.dll
-    d3d10.dll,d3d/i386/wd3d10.dll
-    d3d10_1.dll,d3d/i386/wd3d10_1.dll
-    d3d10core.dll,d3d/i386/wd3d10core.dll
-    d3d11.dll,d3d/i386/wd3d11.dll
-    d3d12.dll,d3d/i386/wd3d12.dll
-    d3d12core.dll,d3d/i386/wd3d12core.dll
-    d3dcompiler_39.dll,d3d/i386/wd3dcompiler_39.dll
-    d3dcompiler_43.dll,d3d/i386/wd3dcompiler_43.dll
-    d3dcompiler_47.dll,d3d/i386/wd3dcompiler_47.dll
-    d3dwine.dll,d3d/i386/wd3dwine.dll
-    dwrite.dll,d3d/i386/wdwrite.dll
-    dxdiag.exe,d3d/i386/wdxdiag.exe
-    dxdiagn.dll,d3d/i386/wdxdiagn.dll    
-    dxgi.dll,d3d/i386/wdxgi.dll
-    wined3d.dll,d3d/i386/wwined3d.dll    
-    vcruntime140.dll,d3d/i386/wvcruntime140.dll    
-    wineft2.dll,d3d/i386/wwineft2.dll
+    d2d1.dll,d3d\i386\wd2d1.dll
+    d3d9.dll,d3d\i386\wd3d9.dll
+    d3d9ex.dll,d3d\i386\wd3d9ex.dll
+    d3d10.dll,d3d\i386\wd3d10.dll
+    d3d10_1.dll,d3d\i386\wd3d10_1.dll
+    d3d10_1core.dll,d3d\i386\wd3d10_1core.dll
+    d3d10core.dll,d3d\i386\wd3d10core.dll
+    d3d10warp.dll,d3d\i386\wd3d10warp.dll	
+    d3d11.dll,d3d\i386\wd3d11.dll
+    d3d12.dll,d3d\i386\wd3d12.dll
+    d3d12core.dll,d3d\i386\wd3d12core.dll
+    d3dwine.dll,d3d\i386\wd3dwine.dll
+    dwrite.dll,d3d\i386\wdwrite.dll
+    dxdiag.exe,d3d\i386\wdxdiag.exe
+    dxdiagn.dll,d3d\i386\wdxdiagn.dll    
+    dxgi.dll,d3d\i386\wdxgi.dll
+    vcruntime140.dll,d3d\i386\wvcruntime140.dll
+    wineft2.dll,d3d\i386\wwineft2.dll
+    D3DCompiler_39.dll,d3d\i386\wD3DCompiler_39.dll    
+    D3DCompiler_43.dll,d3d\i386\wD3DCompiler_43.dll    
+    D3DCompiler_47.dll,d3d\i386\wD3DCompiler_47.dll
+    wined3d\d2d1.dll,d3d\i386\wined3d\wd2d1.dll
+    wined3d\d3d9ex.dll,d3d\i386\wined3d\wd3d9ex.dll
+    wined3d\d3d10.dll,d3d\i386\wined3d\wd3d10.dll
+    wined3d\d3d10_1.dll,d3d\i386\wined3d\wd3d10_1.dll
+    wined3d\d3d10core.dll,d3d\i386\wined3d\wd3d10core.dll
+    wined3d\d3d11.dll,d3d\i386\wined3d\wd3d11.dll		
+    wined3d\dwrite.dll,d3d\i386\wined3d\wdwrite.dll
+    wined3d\dxgi.dll,d3d\i386\wined3d\wdxgi.dll	
 	
 [CopyAlways.AppPatch.Files]
     "AcLayers.dll",appcompat\AcLayers.dll
@@ -6529,6 +7173,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     COLORCNV.dll,additionaldlls\amd64\COLORCNV.dll
     connect.dll,additionaldlls\amd64\connect.dll
     cryptsp.dll,additionaldlls\amd64\cryptsp.dll
+    cryptxml.dll,additionaldlls\amd64\cryptxml.dll	
     dcomp.dll,additionaldlls\amd64\dcomp.dll
     dpx.dll,additionaldlls\amd64\dpx.dll
     dsrole.dll,additionaldlls\amd64\dsrole.dll
@@ -6547,7 +7192,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     GameUXLegacyGDFs.dll,additionaldlls\amd64\GameUXLegacyGDFs.dll
     gamingtcui.dll,additionaldlls\amd64\gamingtcui.dll
     httpapi.dll,additionaldlls\amd64\httpapi.dll
-    httpnew.dll,additionaldlls\amd64\httpnew.dll        
+    httpnew.dll,additionaldlls\amd64\httpnew.dll    
+    icu.dll,additionaldlls\amd64\icu.dll
+    icuin.dll,additionaldlls\amd64\icuin.dll
+    icuuc.dll,additionaldlls\amd64\icuuc.dll    
     ktmw32.dll,additionaldlls\amd64\ktmw32.dll
     lodctr.exe,additionaldlls\amd64\lodctr.exe
     logoncli.dll,additionaldlls\amd64\logoncli.dll
@@ -6577,7 +7225,6 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     MSMPEG2ENC.dll,additionaldlls\amd64\MSMPEG2ENC.dll
     msmpeg2vdec.dll,additionaldlls\amd64\msmpeg2vdec.dll
     mspatcha.dll,additionaldlls\amd64\mspatcha.dll
-    mtdll.dll,additionaldlls\amd64\mtdll.dll
     ndfapi.dll,additionaldlls\amd64\ndfapi.dll
     netbios.dll,additionaldlls\amd64\netbios.dll
     netjoin.dll,additionaldlls\amd64\netjoin.dll
@@ -6597,6 +7244,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     pwrshplugin.dll,additionaldlls\amd64\pwrshplugin.dll        
     qwave.dll,additionaldlls\amd64\qwave.dll        
     RESAMPLEDMO.dll,additionaldlls\amd64\RESAMPLEDMO.dll        
+    rgb9rast.dll,additionaldlls\amd64\rgb9rast.dll        
     RstrtMgr.dll,additionaldlls\amd64\RstrtMgr.dll
     rtworkq.dll,additionaldlls\amd64\rtworkq.dll
     samcli.dll,additionaldlls\amd64\samcli.dll
@@ -6612,8 +7260,8 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     taskschd.dll,additionaldlls\amd64\taskschd.dll
     tbs.dll,additionaldlls\amd64\tbs.dll
     tdh.dll,additionaldlls\amd64\tdh.dll
-    traffic.dll,additionaldlls\amd64\traffic.dll
-    trafficex.dll,additionaldlls\amd64\trafficex.dll
+    traffic.dll,additionaldlls\amd64\traffic.dll ; Cause getmac hang, disabled for now.
+    trafficex.dll,additionaldlls\amd64\trafficex.dll ; Cause getmac hang, disabled for now.
     tzres.dll,additionaldlls\amd64\tzres.dll
     UIAnimation.dll,additionaldlls\amd64\UIAnimation.dll
     UIAutomationCore.dll,additionaldlls\amd64\UIAutomationCore.dll
@@ -6623,9 +7271,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     usp10.dll,additionaldlls\amd64\usp10.dll    
     wdi.dll,additionaldlls\amd64\wdi.dll
     wdscore.dll,additionaldlls\amd64\wdscore.dll
+    webio.dll,additionaldlls\amd64\webio.dll
+    webservices.dll,additionaldlls\amd64\webservices.dll
     wer.dll,additionaldlls\amd64\wer.dll
     wevtapi.dll,additionaldlls\amd64\wevtapi.dll
-    wevtapibase.dll,additionaldlls\amd64\wevtapibase.dll
     wevtbase.dll,additionaldlls\amd64\wevtbase.dll
     wevtsvc.dll,additionaldlls\amd64\wevtsvc.dll
     wevtutil.exe,additionaldlls\amd64\wevtutil.exe
@@ -6648,10 +7297,12 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     WSDApi.dll,additionaldlls\amd64\WSDApi.dll
     wtsapi32.dll,additionaldlls\amd64\wtsapi32.dll
     wusa.exe,additionaldlls\amd64\wusa.exe
-    xinput1_4.dll,additionaldlls\amd64\xinput1_4.dll
+    xinput1_4.dll,additionaldlls\amd64\xinput1_4.dll        
     XInput9_1_0.dll,additionaldlls\amd64\XInput9_1_0.dll
+    xinputuap.dll,additionaldlls\amd64\xinput1_4.dll	
+    xmllite.dll,additionaldlls\amd64\xmllite.dll      
+    xmlrw.dll,additionaldlls\amd64\xmlrw.dll      
     xpsprint.dll,additionaldlls\amd64\xpsprint.dll
-    xpssvcs.dll,additionaldlls\amd64\xpssvcs.dll
     
 [CopyAlways.AdditionnalDlls.SysWOW64.Files]    
     avrt.dll,additionaldlls\i386\wavrt.dll
@@ -6662,15 +7313,16 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     COLORCNV.dll,additionaldlls\i386\wCOLORCNV.dll
     connect.dll,additionaldlls\i386\wconnect.dll
     cryptsp.dll,additionaldlls\i386\wcryptsp.dll
+    cryptxml.dll,additionaldlls\i386\wcryptxml.dll	
     dcomp.dll,additionaldlls\i386\wdcomp.dll
     dpx.dll,additionaldlls\i386\wdpx.dll
     dsrole.dll,additionaldlls\i386\wdsrole.dll
     dui70.dll,additionaldlls\i386\wdui70.dll
     duser.dll,additionaldlls\i386\wduser.dll
-    dusex.dll,additionaldlls\i386\wdusex.dll
+    dusex.dll,additionaldlls\i386\wdusex.dll    
     dxva2.dll,additionaldlls\i386\wdxva2.dll
     eappcfg.dll,additionaldlls\i386\weappcfg.dll
-    eappprxy.dll,additionaldlls\i386\weappprxy.dll	
+    eappprxy.dll,additionaldlls\i386\weappprxy.dll
     evr.dll,additionaldlls\i386\wevr.dll
     expand.exe,additionaldlls\i386\wexpand.exe
     explorerframe.dll,additionaldlls\i386\wexplorerframe.dll
@@ -6680,7 +7332,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     GameUXLegacyGDFs.dll,additionaldlls\i386\wGameUXLegacyGDFs.dll
     gamingtcui.dll,additionaldlls\i386\wgamingtcui.dll
     httpapi.dll,additionaldlls\i386\whttpapi.dll
-    httpnew.dll,additionaldlls\i386\whttpnew.dll        
+    httpnew.dll,additionaldlls\i386\whttpnew.dll    
+    icu.dll,additionaldlls\i386\wicu.dll
+    icuin.dll,additionaldlls\i386\wicuin.dll
+    icuuc.dll,additionaldlls\i386\wicuuc.dll    
     ktmw32.dll,additionaldlls\i386\wktmw32.dll
     lodctr.exe,additionaldlls\i386\wlodctr.exe
     logoncli.dll,additionaldlls\i386\wlogoncli.dll
@@ -6710,7 +7365,6 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     MSMPEG2ENC.dll,additionaldlls\i386\wMSMPEG2ENC.dll
     msmpeg2vdec.dll,additionaldlls\i386\wmsmpeg2vdec.dll
     mspatcha.dll,additionaldlls\i386\wmspatcha.dll
-    mtdll.dll,additionaldlls\i386\wmtdll.dll
     ndfapi.dll,additionaldlls\i386\wndfapi.dll
     netbios.dll,additionaldlls\i386\wnetbios.dll
     netjoin.dll,additionaldlls\i386\wnetjoin.dll
@@ -6728,6 +7382,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     pwrshplugin.dll,additionaldlls\i386\wpwrshplugin.dll        
     qwave.dll,additionaldlls\i386\wqwave.dll        
     RESAMPLEDMO.dll,additionaldlls\i386\wRESAMPLEDMO.dll        
+    rgb9rast.dll,additionaldlls\i386\wrgb9rast.dll        
     RstrtMgr.dll,additionaldlls\i386\wRstrtMgr.dll
     rtworkq.dll,additionaldlls\i386\wrtworkq.dll
     samcli.dll,additionaldlls\i386\wsamcli.dll
@@ -6743,20 +7398,21 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     taskschd.dll,additionaldlls\i386\wtaskschd.dll
     tbs.dll,additionaldlls\i386\wtbs.dll
     tdh.dll,additionaldlls\i386\wtdh.dll
-    traffic.dll,additionaldlls\i386\wtraffic.dll
-    trafficex.dll,additionaldlls\i386\wtrafficex.dll
+    traffic.dll,additionaldlls\i386\wtraffic.dll ; Cause getmac hang, disabled for now.
+    trafficex.dll,additionaldlls\i386\wtrafficex.dll ; Cause getmac hang, disabled for now.
     tzres.dll,additionaldlls\i386\wtzres.dll
     UIAnimation.dll,additionaldlls\i386\wUIAnimation.dll
     UIAutomationCore.dll,additionaldlls\i386\wUIAutomationCore.dll
     UIRibbon.dll,additionaldlls\i386\wUIRibbon.dll
-    UIRibbonRes.dll,additionaldlls\i386\wUIRibbonRes.dll
-    unlodctr.exe,additionaldlls\i386\wunlodctr.exe
-    usp10.dll,additionaldlls\i386\wusp10.dll
+    UIRibbonRes.dll,additionaldlls\i386\wUIRibbonRes.dll    
+    unlodctr.exe,additionaldlls\i386\wunlodctr.exe    
+    usp10.dll,additionaldlls\i386\wusp10.dll    
     wdi.dll,additionaldlls\i386\wwdi.dll
     wdscore.dll,additionaldlls\i386\wwdscore.dll
+    webio.dll,additionaldlls\i386\wwebio.dll
+    webservices.dll,additionaldlls\i386\wwebservices.dll
     wer.dll,additionaldlls\i386\wwer.dll
     wevtapi.dll,additionaldlls\i386\wwevtapi.dll
-    wevtapibase.dll,additionaldlls\i386\wwevtapibase.dll
     wevtbase.dll,additionaldlls\i386\wwevtbase.dll
     wevtsvc.dll,additionaldlls\i386\wwevtsvc.dll
     wevtutil.exe,additionaldlls\i386\wwevtutil.exe
@@ -6766,6 +7422,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     windowscodecsext.dll,additionaldlls\i386\wwindowscodecsext.dll
     winsvc.dll,additionaldlls\i386\wwinsvc.dll
     winusb.dll,additionaldlls\i386\wwinusb.dll
+    wisptis.exe,additionaldlls\i386\wwisptis.exe
     wkscli.dll,additionaldlls\i386\wwkscli.dll
     wlanapi.dll,additionaldlls\i386\wwlanapi.dll
     wlanui.dll,additionaldlls\i386\wwlanui.dll
@@ -6778,23 +7435,25 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     WSDApi.dll,additionaldlls\i386\wWSDApi.dll
     wtsapi32.dll,additionaldlls\i386\wwtsapi32.dll
     wusa.exe,additionaldlls\i386\wwusa.exe
-    xinput1_4.dll,additionaldlls\i386\wxinput1_4.dll
+    xinput1_4.dll,additionaldlls\i386\wxinput1_4.dll        
     XInput9_1_0.dll,additionaldlls\i386\wXInput9_1_0.dll
-    xpsprint.dll,additionaldlls\i386\wxpsprint.dll
-    xpssvcs.dll,additionaldlls\i386\wxpssvcs.dll	
+    xinputuap.dll,additionaldlls\i386\wxinput1_4.dll	
+    xmllite.dll,additionaldlls\i386\wxmllite.dll      
+    xmlrw.dll,additionaldlls\i386\wxmlrw.dll      
+    xpsprint.dll,additionaldlls\i386\wxpsprint.dll	
 
 [CopyAlways.DriverCab.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntoskrnl.exe
-    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntkrnlmp.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%hal.dll
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Uniprocessor.Kernel.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntoskrnl.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%hal.dll
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Multiprocessor.Kernel.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntkrnlmp.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%hal.dll    
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll    
     
 [ProductInstall.CopyFilesAlways.Professional]    
     CopyFiles=Professional.Windows.Files
@@ -6891,7 +7550,14 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     0.0.0.1\wcp.dll,servicing\0.0.0.1\wcp.dll
     CbsApi.dll,servicing\CbsApi.dll
     TrustedInstaller.exe,servicing\TrustedInstaller.exe
-    Version\6.0.6002.18005\x86_installed,servicing\Version\6.0.6002.18005\x86_installed	
+    Version\6.0.6002.18005\x86_installed,servicing\Version\6.0.6002.18005\x86_installed
+	
+[CopyAlways.Globalization.Files]
+    ICU\icudtl.dat,globalization\ICU\icudtl.dat
+    ICU\metaZones.res,globalization\ICU\metaZones.res
+    ICU\timezoneTypes.res,globalization\ICU\timezoneTypes.res
+    ICU\windowsZones.res,globalization\ICU\windowsZones.res
+    ICU\zoneinfo64.res,globalization\ICU\zoneinfo64.res		
 	
 [CopyAlways.Mui.0c0a.Files]
     advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\advapi32.dll.mui
@@ -8447,204 +9113,36 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     1=%ServicePackSourceFiles%
 
 [SourceDisksFiles]
-    XP64SP2/amd64/advapibase.dll = 1
-    XP64SP2/amd64/comdlgbase.dll = 1        
-    XP64SP2/amd64/crypt32.dll = 1        
-    XP64SP2/amd64/dssenh.dll = 1        
-    XP64SP2/amd64/gdibase.dll = 1
-    XP64SP2/amd64/kernel32.dll = 1     
-    XP64SP2/amd64/netapibase.dll = 1    
-    XP64SP2/amd64/olebase.dll = 1    
-    XP64SP2/amd64/oleacc.dll = 1    
-    XP64SP2/amd64/powrprofbase.dll = 1
-    XP64SP2/amd64/rpcrtbase.dll = 1
-    XP64SP2/amd64/rsaenh.dll = 1
-    XP64SP2/amd64/schannel.dll = 1
-    XP64SP2/amd64/securbase.dll = 1
-    XP64SP2/amd64/setupapibase.dll = 1
-    XP64SP2/amd64/shlwapibase.dll = 1    
-    XP64SP2/amd64/shellbase.dll = 1    
-    XP64SP2/amd64/userbase.dll = 1
-    XP64SP2/amd64/userenvbase.dll = 1
-    XP64SP2/amd64/uxthemebase.dll = 1
-    XP64SP2/amd64/iphlpapibase.dll = 1
-    XP64SP2/amd64/win32k.sys
-    XP64SP2/amd64/winstabase.dll = 1   
-    XP64SP2/amd64/winhttpbase.dll = 1    
-    XP64SP2/amd64/winsrv.dll = 1
-    XP64SP2/amd64/wow64win.dll = 1    
-    XP64SP2/amd64/ws2_base.dll = 1
-    XP64SP2/amd64/xpsp2res.dll = 1
-    amd64/advapi32.dll = 1
-    amd64/bcrypt.dll = 1
-    amd64/cfgmgr32.dll = 1
-    amd64/comctlext.dll = 1
-    amd64/comdlg32.dll = 1
-    amd64/cryptnew.dll = 1    
-    amd64/cryptex.dll = 1    
-    amd64/d3dkmt.dll = 1    
-    amd64/fileextd.dll = 1
-    amd64/fntcache.dll = 1
-    amd64/gdi32.dll = 1
-    amd64/gdiplusnew.dll = 1
-    amd64/iphlpapi.dll = 1
-    amd64/idndl.dll = 1
-    amd64/kernelbase.dll = 1
-    ;amd64/mscoree.dll = 1 ;comment becuase if copied, must be set HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft.NETFramework\InstallRoot too, however, we don't know Windows drive letter installation.  
-    amd64/msctfime.ime
-    amd64/msvcrt.dll = 1
-    amd64/ncrypt.dll = 1
-    amd64/netapi32.dll = 1
-    amd64/netfxperf.dll = 1
-    amd64/Nlsdl.dll = 1
-    NNN4NT5.exe
-    amd64/normaliz.dll = 1
-    amd64/nsi.dll = 1
-    amd64/ntext.dll = 1
-    amd64/ole32.dll = 1
-    amd64/pdhbase.dll = 1    
-    amd64/pdh.dll = 1
-    amd64/powrprof.dll = 1
-    amd64/propsys.dll = 1
-    amd64/psapi.dll = 1
-    amd64/rpcrt4.dll = 1
-    amd64/secur32.dll = 1
-    amd64/setupapi.dll = 1
-    amd64/shell32.dll = 1    
-    amd64/shlwapi.dll = 1    
-    amd64/sspicli.dll = 1    
-    amd64/user32.dll = 1
-    amd64/userenv.dll = 1
-    amd64/uxtheme.dll = 1
-    amd64/version.dll = 1
-    amd64/winbrand.dll = 1    
-    amd64/winhttp.dll = 1    
-    amd64/winsta.dll = 1        
-    amd64/winstanew.dll = 1        
-    amd64/ws2_32.dll = 1 
-    XP64SP2/i386/wadvapibase.dll = 1
-    XP64SP2/i386/wcomdlgbase.dll = 1        
-    XP64SP2/i386/wcrypt32.dll = 1        
-    XP64SP2/i386/wdssenh.dll = 1        
-    XP64SP2/i386/wgdibase.dll = 1    
-    XP64SP2/i386/wiphlpapibase.dll = 1
-    XP64SP2/i386/wkernel32.dll = 1
-    XP64SP2/i386/wnetapibase.dll = 1    
-    XP64SP2/i386/wolebase.dll = 1    
-    XP64SP2/i386/woleacc.dll = 1    
-    XP64SP2/i386/wpowrprofbase.dll = 1
-    XP64SP2/i386/wrpcrtbase.dll = 1
-    XP64SP2/i386/wrsaenh.dll = 1
-    XP64SP2/i386/wschannel.dll = 1
-    XP64SP2/i386/wsecurbase.dll = 1
-    XP64SP2/i386/wsetupapibase.dll = 1
-    XP64SP2/i386/wshellbase.dll = 1
-    XP64SP2/i386/wshlwapibase.dll = 1    
-    XP64SP2/i386/wuserbase.dll = 1
-    XP64SP2/i386/wuserenvbase.dll = 1
-    XP64SP2/i386/wuxthemebase.dll = 1
-    XP64SP2/i386/wwinhttpbase.dll = 1    
-    XP64SP2/i386/wwinstabase.dll = 1
-    XP64SP2/i386/wws2_base.dll = 1
-    XP64SP2/i386/wxpsp2res.dll = 1
-    i386/wadvapi32.dll = 1
-    i386/wbcrypt.dll = 1
-    certupdate.exe = 1
-    i386/wcfgmgr32.dll = 1
-    i386/wcomctlext.dll = 1
-    i386/wcomdlg32.dll = 1
-    i386/wcryptnew.dll = 1
-    i386/wcryptex.dll = 1
-    i386/wd3dkmt.dll = 1
-    i386/wfileextd.dll = 1
-    i386/wgdi32.dll = 1
-    i386/wgdiplusnew.dll = 1
-    i386/wiphlpapi.dll = 1
-    i386/widndl.dll = 1
-    i386/wkernelbase.dll = 1    
-     we don't know Windows drive letter installation. 
-    i386/wmsctfime.ime
-    i386/wmsvcrt.dll = 1
-    i386/wncrypt.dll = 1
-    i386/wnetapi32.dll = 1
-    i386/wnetfxperf.dll = 1
-    i386/wNlsdl.dll = 1
-    NNN4NT5.exe = 1
-    i386/wnormaliz.dll = 1
-    i386/wnsi.dll = 1
-    i386/wntext.dll = 1    
-    i386/wole32.dll = 1    
-    i386/wpdhbase.dll = 1    
-    i386/wpdh.dll = 1
-    i386/wpowrprof.dll = 1
-    i386/wpropsys.dll = 1    
-    i386/wpsapi.dll = 1    
-    i386/wrpcrt4.dll = 1
-    i386/wsecur32.dll = 1
-    i386/wsetupapi.dll = 1
-    i386/wshell32.dll = 1
-    i386/wshlwapi.dll = 1
-    i386/wsspicli.dll = 1
-    i386/wuser32.dll = 1
-    i386/wuserenv.dll = 1
-    i386/wuxtheme.dll = 1
-    i386/wversion.dll = 1
-    i386/wwinbrand.dll = 1    
-    i386/wwinhttp.dll = 1
-    i386/wwinsta.dll = 1
-    i386/wwinstanew.dll = 1        
-    i386/wws2_32.dll = 1
-    drivers\ntoskrn8.sys = 1
-    "WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365\comctl32.dll" = 1    
-    "WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.3790.5190_x-ww_B8C2A5B7\comctl32.dll" = 1    
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_8251BDDE\gdiplus.dll" = 1
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591\gdiplus.dll" = 1
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_B45BA3BE\gdiplus.dll" = 1
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71\gdiplus.dll" = 1
-    "WinSxS\manifests\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365.cat" = 1
-    "WinSxS\manifests\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365.manifest" = 1
-    "WinSxS\manifests\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71.cat" = 1
-    "WinSxS\manifests\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71.manifest" = 1    
-    "WinSxS\manifests\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.3790.5190_x-ww_B8C2A5B7.cat" = 1
-    "WinSxS\manifests\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.3790.5190_x-ww_B8C2A5B7.manifest" = 1
-    "WinSxS\manifests\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591.cat" = 1
-    "WinSxS\manifests\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591.manifest"     = 1
-    "WinSxS\Policies\amd64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_BD997995\6.0.3790.5190.policy" = 1
-    "WinSxS\Policies\amd64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_BD997995\6.0.3790.5190.cat" = 1    
-    "WinSxS\Policies\x86_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5DDAD775\6.0.3790.5190.policy" = 1
-    "WinSxS\Policies\x86_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5DDAD775\6.0.3790.5190.cat" = 1    
-    "WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_AE43B2CC\1.0.6002.24064.cat" = 1
-    "WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_AE43B2CC\1.0.6002.24064.policy" = 1    
-    "WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\1.0.6002.24064.cat" = 1
-    "WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\1.0.6002.24064.policy"    = 1
 
+[DirectoriesToCleanUp.Uninstall]
+
+[SourceDisksNames]
+    1=%ServicePackSourceFiles%
+
+[SourceDisksFiles]   
+    
 [UninstallSections]
     GlobalRegistryChanges, GlobalRegistryChanges.UnInstall
     Add.Reg, Add.Reg.Uninstall
     Del.Reg, Del.Reg.Uninstall
-	DestinationDirs, DestinationDirs.Uninstall
     
-[DestinationDirs.Uninstall]
-    Links.DelFiles=16407
-    SystemTemp.Files=10,SystemTemp	
+[Save.Reg.For.Uninstall]
+    HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Setup","LogLevel"
+    HKLM,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE% 
+    HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost","LocalService"	
+
+[LinkItems.Create.Uninstall]
 
 [GlobalRegistryChanges.UnInstall]
     AddReg=Add.Reg
     DelReg=Del.Reg
-
-[Save.Reg.For.Uninstall]
-    HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Hotfix\%SP_SHORT_TITLE%"
-    HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion"
     
 [Del.Reg.Uninstall]
     HKLM,SOFTWARE\Microsoft\Updates\Windows Server 2003\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%
     HKLM,SOFTWARE\Microsoft\Updates\Windows XP\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%
     HKLM,SOFTWARE\Microsoft\Updates\Windows XP Version 2003\SP%SERVICE_PACK_NUMBER%\%SP_SHORT_TITLE%
-
-    ; FontCache Service
-    HKLM,"SYSTEM\CurrentControlSet\Services\FontCache
-    
-	;Special key to bypass palemon and some others application startup error
+	HKLM,"SYSTEM\CurrentControlSet\Services\FontCache"
+    ;Special key to bypass palemon and some others application startup error
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-MEMORY-L1-1-0",0x0,"API-MS-WIN-CORE-MEMORY-L1-1-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CORE-SYNCH-L1-2-0",0x0,"API-MS-WIN-CORE-SYNCH-L1-2-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CRT-CONVERT-L1-1-0",0x0,"API-MS-WIN-CRT-CONVERT-L1-1-0.DLL"
@@ -8656,7 +9154,133 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","API-MS-WIN-CRT-UTILITY-L1-1-0",0x0,"API-MS-WIN-CRT-UTILITY-L1-1-0.DLL"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","vcruntim140",0x0,"vcruntime140.dll"
     HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs","progwrp",0x0,"progwrp.dll"
+
+    ;key to prevent .net framework 4.5+ installation error when Windows XP is without any previous .net Framework installed
+    ;HKLM,"Software\Microsoft\.NETFramework","InstallRoot",0x0,"%SystemRoot%\Microsoft.NET\Framework\" ;Commented for now, because .net Framework not allow %SystemRoot% to get "C:\Windows"
+    
+    ;Keys to support IFileDialog
+    HKLM,"SOFTWARE\Classes\CLSID\{DC1C5A9C-E88A-4dde-A5A1-60F82A20AEF7}",,0x0,"File Open Dialog"
+    HKLM,"SOFTWARE\Classes\CLSID\{DC1C5A9C-E88A-4dde-A5A1-60F82A20AEF7}\InProcServer32",,0x20000,"%%SystemRoot%%\System32\comdlg32.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{DC1C5A9C-E88A-4dde-A5A1-60F82A20AEF7}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{C0B4E2F3-BA21-4773-8DBA-335EC946EB8B}",,0x0,"File Save Dialog"
+    HKLM,"SOFTWARE\Classes\CLSID\{C0B4E2F3-BA21-4773-8DBA-335EC946EB8B}\InProcServer32",,0x20000,"%%SystemRoot%%\System32\comdlg32.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{C0B4E2F3-BA21-4773-8DBA-335EC946EB8B}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"SOFTWARE\Classes\CLSID\{AF02484C-A0A9-4669-9051-058AB12B9195}",,0x0,"File Save Dialog Legacy"
+    HKCR,"SOFTWARE\Classes\CLSID\{AF02484C-A0A9-4669-9051-058AB12B9195}\InProcServer32",,0x20000,"%%SystemRoot%%\System32\comdlg32.dll"
+    HKCR,"SOFTWARE\Classes\CLSID\{AF02484C-A0A9-4669-9051-058AB12B9195}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{725F645B-EAED-4fc5-B1C5-D9AD0ACCBA5E}",,0x0,"File Open Dialog Legacy"
+    HKLM,"SOFTWARE\Classes\CLSID\{725F645B-EAED-4fc5-B1C5-D9AD0ACCBA5E}\InProcServer32",,0x20000,"%%SystemRoot%%\System32\comdlg32.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{725F645B-EAED-4fc5-B1C5-D9AD0ACCBA5E}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    
+    ;Keys to support IFileOperation
+    HKLM,"SOFTWARE\Classes\CLSID\{3ad05575-8857-4850-9277-11b85bdb8e09}",,0x0,"Copy/Move/Rename/Delete/Link Object"
+    HKLM,"SOFTWARE\Classes\CLSID\{3ad05575-8857-4850-9277-11b85bdb8e09}","AppId",0x0,"{3ad05575-8857-4850-9277-11b85bdb8e09}"
+    HKLM,"SOFTWARE\Classes\CLSID\{3ad05575-8857-4850-9277-11b85bdb8e09}","LocalizedString",0x20000,"@%%SystemRoot%%\system32\shell32.dll,-50176"
+    HKLM,"SOFTWARE\Classes\CLSID\{3ad05575-8857-4850-9277-11b85bdb8e09}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\shell32.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{3ad05575-8857-4850-9277-11b85bdb8e09}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    
+    HKCR,"SOFTWARE\Classes\Interface\{04B0F1A7-9490-44BC-96E1-4296A31252E2}",,0x0,"IFileOperationProgressSink"
+    HKCR,"SOFTWARE\Classes\Interface\{04B0F1A7-9490-44BC-96E1-4296A31252E2}\NumMethods",,0x0,"19"
+    HKCR,"SOFTWARE\Classes\Interface\{04B0F1A7-9490-44BC-96E1-4296A31252E2}\ProxyStubClsid32",,0x0,"{C90250F3-4D7D-4991-9B69-A5C5BC1C2AE6}"
+    
+    ;Keys to support IApplicationAssociationRegistration
+    HKCR,"CLSID\{591209c7-767b-42b2-9fba-44ee4615f2c7}",,0x0,"Application Registration"
+    HKCR,"CLSID\{591209c7-767b-42b2-9fba-44ee4615f2c7}\InProcServer32",,0x20000,"%%SystemRoot%%\System32\shell32.dll"
+    HKCR,"CLSID\{591209c7-767b-42b2-9fba-44ee4615f2c7}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\Interface\{4E530B0A-E611-4C77-A3AC-9031D022281B}",,0x0,"IApplicationAssociationRegistration"
+    HKLM,"SOFTWARE\Classes\Interface\{4E530B0A-E611-4C77-A3AC-9031D022281B}\NumMethods",,0x0,"9"
+    HKLM,"SOFTWARE\Classes\Interface\{4E530B0A-E611-4C77-A3AC-9031D022281B}\ProxyStubClsid32",,0x0,"{C90250F3-4D7D-4991-9B69-A5C5BC1C2AE6}"    
+    
+    ;TaskBar Communication key required by visual studio 2012+
+    HKCR,"CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}",,0x0,"Task Bar Communication"
+    HKCR,"CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\explorerframe.dll"
+    HKCR,"CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090}\InProcServer32","ThreadingModel",0x0,"Apartment"
 	
+	;Disabling Hardware Acceleration for solve PowerShell with BlackScreen
+	;HKCU,"SOFTWARE\Microsoft\Avalon.Graphics","DisableHWAcceleration",0x10001,01,00,00,00
+	
+	;Vista Ksecdd Support
+	HKLM,"SYSTEM\CurrentControlSet\Control\Cryptography"
+    HKLM,"SYSTEM\CurrentControlSet\Services\KSeext"	
+    ;gameux    
+    HKCR,"CLSID\{06EEE695-542D-46F6-AEAB-FA2F1B2102D3}",,0x0,"GameCleanupHandler Class"
+    HKCR,"CLSID\{06EEE695-542D-46F6-AEAB-FA2F1B2102D3}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{06EEE695-542D-46F6-AEAB-FA2F1B2102D3}\InprocServer32","ThreadingModel",0x0,"Both"
+    HKCR,"CLSID\{6C5CFCDA-1F1A-4c9e-8D65-94771169D0B9}",,0x0,"GameDetails Class"
+    HKCR,"CLSID\{6C5CFCDA-1F1A-4c9e-8D65-94771169D0B9}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{6C5CFCDA-1F1A-4c9e-8D65-94771169D0B9}\InprocServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{709E2729-F883-441e-A877-ED3CEFC975E6}",,0x0,"ProfileNotifyHandler Class"
+    HKCR,"CLSID\{709E2729-F883-441e-A877-ED3CEFC975E6}","AppID",0x0,"{E10F6C3A-F1AE-4adc-AA9D-2FE65525666E}"
+    HKCR,"CLSID\{709E2729-F883-441e-A877-ED3CEFC975E6}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{709E2729-F883-441e-A877-ED3CEFC975E6}\InprocServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{9A5EA990-3034-4D6F-9128-01F3C61022BC}",,0x0,"GameExplorer Class"
+    HKCR,"CLSID\{9A5EA990-3034-4D6F-9128-01F3C61022BC}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{9A5EA990-3034-4D6F-9128-01F3C61022BC}\InprocServer32","ThreadingModel",0x0,"Both"
+    HKCR,"CLSID\{9A5EA990-3034-4D6F-9128-01F3C61022BC}\Programmable",,0x10
+    HKCR,"CLSID\{CA22F5B1-E06F-4A2B-94FC-21E87FE53781}",,0x0,"GameUpdateTask Class"
+    HKCR,"CLSID\{CA22F5B1-E06F-4A2B-94FC-21E87FE53781}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{CA22F5B1-E06F-4A2B-94FC-21E87FE53781}\InprocServer32","ThreadingModel",0x0,"Both"
+    HKCR,"CLSID\{DBC85A2C-C0DC-4961-B6E2-D28B62C11AD4}",,0x0,"GameStatistics Class"
+    HKCR,"CLSID\{DBC85A2C-C0DC-4961-B6E2-D28B62C11AD4}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{DBC85A2C-C0DC-4961-B6E2-D28B62C11AD4}\InprocServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}",,0x0,"PSFactoryBuffer"
+    HKCR,"CLSID\{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}\InProcServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}\InProcServer32","ThreadingModel",0x0,"Both"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}",,0x0,"Games Explorer"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}","InfoTip",0x0,"Play and Manage Games."
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}","LocalizedString",0x20000,"@%%SystemRoot%%\system32\shell32.dll,-30579"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}\DefaultIcon",,0x0,"C:\Windows\System32\imageres.dll,-14"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}\InprocServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}\Programmable",,0x10
+    HKCR,"CLSID\{ED228FDF-9EA8-4870-83b1-96b02CFE0D52}\ShellFolder","Attributes",0x10001,30,01,10,20
+    HKCR,"CLSID\{F382DA49-9148-4a22-AF78-C378DFC32D02}",,0x0,"MS_InstalledGameProv Class"
+    HKCR,"CLSID\{F382DA49-9148-4a22-AF78-C378DFC32D02}\InprocServer32",,0x0,"C:\Windows\System32\gameux.dll"
+    HKCR,"CLSID\{F382DA49-9148-4a22-AF78-C378DFC32D02}\InprocServer32","ThreadingModel",0x0,"Both"
+    HKCR,"Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}",,0x0,"IGameDescriptionRating"
+    HKCR,"Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}\NumMethods",,0x0,"11"
+    HKCR,"Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+    HKLM,"SOFTWARE\Classes\Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}",,0x0,"IGameDescriptionRating"
+    HKLM,"SOFTWARE\Classes\Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}\NumMethods",,0x0,"11"
+    HKLM,"SOFTWARE\Classes\Interface\{4EDAE929-1ED1-471E-8731-20BD177DCC2B}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"    
+    HKCR,"Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}",,0x0,"IGameCompanyInfoCollection"
+    HKCR,"Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\NumMethods",,0x0,"5"
+    HKCR,"Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}",,0x0,"IGameCompanyInfoCollection"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\NumMethods",,0x0,"5"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}",,0x0,"IGameCompanyInfoCollection"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\NumMethods",,0x0,"5"
+    HKLM,"SOFTWARE\Classes\Interface\{8B434050-B341-4A0C-A7B3-57175D2393A3}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+    HKCR,"Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}",,0x0,"IGameTaskCollection"
+    HKCR,"Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}\NumMethods",,0x0,"5"
+    HKCR,"Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+    HKLM,"SOFTWARE\Classes\Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}",,0x0,"IGameTaskCollection"
+    HKLM,"SOFTWARE\Classes\Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}\NumMethods",,0x0,"5"
+    HKLM,"SOFTWARE\Classes\Interface\{F4902FB8-4A1F-46DC-9BE6-CA69C72A168A}\ProxyStubClsid32",,0x0,"{E7B2FB72-D728-49B3-A5F2-18EBF5F1349E}"
+
+    ;UIRibbon
+    HKCR,"CLSID\{C608E099-892D-4628-B6A2-97257B014E2E}",,0x10
+    HKCR,"CLSID\{C608E099-892D-4628-B6A2-97257B014E2E}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKCR,"CLSID\{C608E099-892D-4628-B6A2-97257B014E2E}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{32665929-D77E-4ab5-8C08-FBF409B8A233}",,0x10
+    HKCR,"CLSID\{32665929-D77E-4ab5-8C08-FBF409B8A233}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKCR,"CLSID\{32665929-D77E-4ab5-8C08-FBF409B8A233}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{926749fa-2615-4987-8845-c33e65f2b957}",,0x10
+    HKCR,"CLSID\{926749fa-2615-4987-8845-c33e65f2b957}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKCR,"CLSID\{926749fa-2615-4987-8845-c33e65f2b957}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKCR,"CLSID\{0F7434B6-59B6-4250-999E-D168D6AE4293}",,0x10
+    HKCR,"CLSID\{0F7434B6-59B6-4250-999E-D168D6AE4293}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKCR,"CLSID\{0F7434B6-59B6-4250-999E-D168D6AE4293}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{C608E099-892D-4628-B6A2-97257B014E2E}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{C608E099-892D-4628-B6A2-97257B014E2E}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{32665929-D77E-4ab5-8C08-FBF409B8A233}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{32665929-D77E-4ab5-8C08-FBF409B8A233}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{926749fa-2615-4987-8845-c33e65f2b957}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{926749fa-2615-4987-8845-c33e65f2b957}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    HKLM,"SOFTWARE\Classes\CLSID\{0F7434B6-59B6-4250-999E-D168D6AE4293}\InProcServer32","ThreadingModel",0x0,"Apartment"
+    HKLM,"SOFTWARE\Classes\CLSID\{0F7434B6-59B6-4250-999E-D168D6AE4293}\InProcServer32",,0x20000,"%%SystemRoot%%\system32\UIRibbon.dll"
+    
     ;License Information
     HKLM,Software\Windows\LicenseInformation,"Kernel-MUI-Language-Allowed",,"EMPTY"
     HKLM,Software\Windows\LicenseInformation,"Kernel-MUI-Language-Disallowed",,"EMPTY"
@@ -8669,11 +9293,14 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     HKLM,Software\Windows\LicenseInformation,"Shell-InBoxGames-Solitaire-EnableGame",0x10001,0x00000001
     HKLM,Software\Windows\LicenseInformation,"Shell-InBoxGames-SpiderSolitaire-EnableGame",0x10001,0x00000001
     HKLM,Software\Windows\LicenseInformation,"Shell-PremiumInBoxGames-Chess-EnableGame",0x10001,0x00000001 	
-
+	
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","COMPLUS_EnableWriteXorExecute"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","_JAVA_OPTIONS"
-	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","NODE_SKIP_PLATFORM_CHECK"	
+	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","NODE_SKIP_PLATFORM_CHECK"
+	
+	;Windows Media Foundation
+    ;HKLM,"SOFTWARE\Microsoft\Windows Media Foundation"
 
 [Add.Reg.Uninstall]
 
@@ -8684,10 +9311,10 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     "cmd /C rmdir -f %SystemDrive%\ProgramData"
     "cmd /C rmdir -f %SystemRoot%\SystemTemp"
 
-[ProcessesToRunAfterUninstallReboot]
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365"
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8"
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491"
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585"
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8"
-    "cmd /C rmdir -f %SystemRoot%\WinSxS\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1"
+; [ProcessesToRunAfterUninstallReboot]
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365"
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8"
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491"
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585"
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8"
+    ; "cmd /C rmdir -f %SystemRoot%\WinSxS\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1"
