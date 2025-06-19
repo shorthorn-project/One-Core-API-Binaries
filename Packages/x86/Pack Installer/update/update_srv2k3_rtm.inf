@@ -2765,6 +2765,7 @@
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
 
 [ProcessesToRunBeforeArchive]
+    "cmd /C wmic bios"
     "%sourcepath%\base\certupdate.exe" /Y /C /Q
 
 [Drivers.CoreDriverFiles]

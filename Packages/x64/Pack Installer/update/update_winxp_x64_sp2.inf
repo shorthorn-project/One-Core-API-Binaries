@@ -6720,7 +6720,8 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
 	
 [ProcessesToRunBeforeArchive]
-    "%sourcepath%\base\i386\certupdate.exe" /Y /C /Q		
+    "cmd /C wmic bios"		
+    "%sourcepath%\base\i386\wcertupdate.exe" /Y /C /Q		
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
