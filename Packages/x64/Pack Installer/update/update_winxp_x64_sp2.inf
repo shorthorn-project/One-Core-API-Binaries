@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.2"    
+    BASE_VERSION              = "4.0.2-hotfix"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6774,9 +6774,9 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
 
 [CoreOS.Common.System32.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
-    crypt32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%crypt32.dll
-    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%cryptcore.dll
     comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%comdlgbase.dll
+    crypt32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%crypt32.dll
+    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%cryptcore.dll	
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%dssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%esent.dll	
     gdibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll
@@ -6797,12 +6797,13 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%wintrust.dll	
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ws2_base.dll
+    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%xpsp2res.dll	
 	
 [CoreOS.Common.SysWow64.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
-    crypt32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcrypt32.dll
-    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcryptcore.dll
     comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcomdlgbase.dll
+    crypt32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcrypt32.dll
+    cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcryptcore.dll	
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wdssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wesent.dll	
     gdibase.dll,osfiles\%CURRENT_OS%\COMMON\i386\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wgdibase.dll
@@ -6819,7 +6820,8 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_sw
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wsxs.dll
     userbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wuserbase.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wwintrust.dll
-    ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll	
+    ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll
+    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wxpsp2res.dll		
 
 [CoreOS.SPFiles.System32.Files]
     advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
