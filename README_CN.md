@@ -126,7 +126,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - 傲游浏览器 7.1.6 以下版本；
   - Vivaldi 最新版本；
   - Epic 浏览器 120
-  - 雷鸟电子邮件客户端（Thunderbird）最新版本
+  - 雷鸟（Thunderbird）最新版本
 
 </details>
 
@@ -134,7 +134,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>信使和其他通讯程序</summary>
 
   - Discord 0.309.0;
-  - Legocord (Discord fork) 最新版本;
+  - Legocord (Discord 分支) 最新版本;
   - Telegram Desktop;
   - Line;
   - Zoom;
@@ -279,7 +279,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 以下是安装本软件后可以在开启兼容性模式的前提下于 XP / Server 2003 运行的部分应用程序截图。
 
 <details>
-  <summary>浏览器和 Thunderbird</summary>
+  <summary>浏览器和雷鸟</summary>
 
   **Chrome 132**
   ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
@@ -293,7 +293,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   **Firefox 122**
   ![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
 
-  **Thunderbird 132**
+  **雷鸟 132**
   ![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
 
   **Basilisk**
