@@ -13,7 +13,7 @@
   <summary>关于中文自述（README_CN.md）</summary>
 
 - **最初的旧版中文自述由 [Coconutat](https://github.com/Coconutat) 贡献。**
-- **[結束バンドbocchi](https://github.com/jonm58) 维护和补充了旧版中文自述，现在不定期维护新版中文自述**
+- **[結束バンドbocchi](https://github.com/jonm58) 维护了旧版中文自述，现在不定期维护新版中文自述**
 - **新版中文自述由 [Mike Wang](https://github.com/Diamochang) 贡献。由于翻译底稿系深度求索 [DeepSeek R1 671B](https://github.com/deepseek-ai/DeepSeek-R1) 生成，尽管经过人工校对和修改，但难免有遗漏或错误。如有建议，可以在创建相关 Issue 或 PR 时在描述中 @ 他。**
 </details>
 
