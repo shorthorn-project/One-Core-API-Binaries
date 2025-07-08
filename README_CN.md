@@ -34,23 +34,28 @@
 - [效果展示和概念验证](#效果展示和概念验证)
 
 ## 核心功能
-- **默认情况下，将 x86 和 x64 的内存的最高支持分别提高至 128 GB 和 2 TB**
 - **支持通过设置兼容性模式运行为现代 Windows 系统设计的新程序**
 - **支持新硬件和新硬盘控制器的现代驱动**
 - **全面支持 Windows XP 和 Windows Server 2003 的所有语言版本**
 
 ### 使用前须知
-- 本软件使用了来自各系统的修改文件，包含尚处于测试或实验阶段的内容，且**由作者一个人开发维护**。由于不同计算机配置或虚拟环境的复杂性，无法预测所有可能场景。
 
-- **从 Windows XP / Server 2003 到 Vista 的过渡带来了大量新 API、技术革新和现有 API 的调整，这使得在 NT 5.x 与 NT 6.x 系统间实现完全兼容极具挑战。**
-
-- 希望你保持冷静与谨慎，践行开源精神。在判定软件存在缺陷或“质量低劣”之前，**请通过 [GitHub Issues](https://github.com/Shorthorn-project/One-Core-API-Binaries/issues) 或 [Discord 服务器](https://discord.gg/eRcGuFtn6p)** 反馈问题。
-
-- 请注意，我无法保证解决所有问题，但会认真分析并尽力修复。你的帮助至关重要，抱怨与负面评价无益于项目改进。
+> 该软件使用了各系统的修改文件，还包括仍处于测试或实验阶段的文件，<b>由一人开发</b>。因此，预测各种计算机配置或虚拟机中可能出现的所有情况是不可行的。
+>
+> <h4>Windows XP/2003 和 Vista 之间的过渡标志着新 API、技术开发和现有 API 修改方面的重大飞跃。这使得在 NT 5.x 和 NT 6.x 系统之间实现同等程度的兼容性具有挑战性。</h4>
+>
+> 我恳请您保持冷静和谨慎。
+> 在得出软件有缺陷或 "质量差 "的结论之前，<b>请通过 Github Issues 或 [Discord 服务器](https://discord.gg/eRcGuFtn6p)</b>报告您遇到的任何问题。
+>
+> 请注意，我不能保证所有问题都能得到解决。但是，我会分析这些问题，并尽一切努力予以纠正。
+>
+> 您的帮助是宝贵的，投诉或负面反馈无助于产品的改进。
+>
+> 为了防止 BSOD，x86 软件包现在分为三种类型：x86（标准）、x86 AVX（使用来自 Mox Ax 的 AVX 补丁）和 x86 PAE。最稳定的是 x86 标准。AVX 补丁为应用程序提供 AVX 支持，防止新安装程序崩溃（仅适用于 XP x86 SP3）。PAE 版本提供 128GB RAM 支持，但会导致多次 BSOD。请谨慎使用，风险自负；
 
 ## 如何安装 One-Core-API？
 
-One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安装过程与服务包更新类似。请前往[发行版](https://github.com/shorthorn-project/One-Core-API-Binaries/releases)页面选择版本并下载压缩包（`.zip`）。解压后可见按平台分类的 `x64` 和 `x86` 文件夹，内含 `One-Core-API-Pack.exe` 安装程序。双击运行并按向导指引操作即可（下一步 -> 接受协议 -> 完成）。
+One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安装过程与服务包更新类似。请前往 [发行版](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) 页面选择版本并下载压缩包（`.zip`）。下载完成后，解压文件，你会看到有四个压缩文件，分别是 x86、x86（含 AVX 补丁）、x86（含 PAE 支持）和 x64。每个文件夹中都有一个可执行文件，名为 One-Core-API-Pack.exe。双击运行并按向导指引操作即可（下一步 -> 接受协议 -> 完成）。
 
 <details>
   <summary>图解</summary>
