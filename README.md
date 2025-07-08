@@ -203,6 +203,9 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
   <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
 
+  ##Warning! 
+  Now, OCA use Directx Native software render by default. For run a dx10+ game, you must need copy the files inside <Your installation letter>\Windows\System32\wined3d into the game installation. Otherwiser, the game will fail to start or get a black screen!
+
   - Need for Speed Most Wanted 2012;
   - Need for Speed The Run;
   - Street Fighter V;
