@@ -48,7 +48,6 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 
 ## Main Features
 
-- **Increase memory support for 128 GB for x86 and 2 TB for x64 by default;**
 - **Allow support for run newer programs designed for modern Windows OS;**
 - **Allow support for new hardware with new drivers controllers;**
 - **Multi-language support for all Windows XP and Windows Server 2003 supported languages;**
@@ -65,10 +64,12 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 > Please note that I cannot guarantee that all issues will be resolved. However, I will analyze them and make every effort to correct them.
 >
 > Your help is valuable, and complaints or negative feedback do not contribute to the improvement of the product.
+>
+> Due to prevent BSOD, the packages x86 now separted in three types: x86 (standard), x86 AVX (with AVX patch from Mox Ax) and x86 PAE. THe most stable is x86 standard. AVX patckaeg provide avx support for applications, preventing crash in new installers (only avaliable for XP x86 SP3). And PAE version provide 128gb RAM support, however, can cause several BSOD. Be careful and the use is by your risk;
 
 ## How to install One-Core-API?
 
-The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are two folders, one for each supported platform: x64 and x86. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
+The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are four zip files, for x86, x86 with AVX patch, x86 with PAE support and x64. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
 
 <details>
   <summary>Step by step guide with images</summary>
