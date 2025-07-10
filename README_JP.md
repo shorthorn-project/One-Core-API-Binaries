@@ -54,7 +54,7 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 > BSOD（ブルースクリーンエラー）防止のため、x86パッケージはx86（標準）、x86 AVX（Mox AxのAVXパッチ適用済み）、x86 PAEの3種類に分割されました。最も安定しているのはx86標準です。AVX パッチは、アプリケーションに AVX サポートを提供し、新しいインストーラーでのクラッシュを防止します (XP x86 SP3 でのみ使用可能)。PAEバージョンは128GBのRAMをサポートしますが、BSODが発生する場合があります。ご使用の際はご注意ください。自己責任でお願いいたします。
 
 ## One-Core-API をインストールするにはどうすればいいですか?
-The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are four zip files, for x86, x86 with AVX patch, x86 with PAE support and x64. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
+One-Core-API は、Windows NT 5.x まで使用されていたホットフィックスのインストール技術を採用しています。そのため、サービスパックのインストールと非常によく似ていることがわかります。[Release](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) セクションにアクセスし、テストしたいバージョンを選択して、圧縮ファイル (.zip) をダウンロードしてください。ダウンロード後、ファイルを解凍すると、x86, x86 with AVX patch, x86 with PAE support and x64 の 4 つの zip ファイルがあります。各フォルダ内には、One-Core-API-Pack.exe という名前の実行ファイルがあります。このファイルをダブルクリックし、インストール手順に従ってください。基本的には、「次へ」を選択し、「ライセンスに同意する」を選択して「次へ」をクリックし、「完了」をクリックします。とても簡単です。
 
 <details>
   <summary>Step by step guide with images</summary>
