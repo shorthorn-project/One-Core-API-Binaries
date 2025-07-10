@@ -11,7 +11,7 @@
 ***
 
 
-**日本語版README（README_JP.md）の最終更新日 2025年2月5日<br>2025年2月1日時点のREADME.mdを基に翻訳**
+**日本語版README（README_JP.md）の最終更新日 2025年2月5日<br>2025年7月10日時点のREADME.mdを基に翻訳**
 
 
  **この日本語訳は機械翻訳をベースに誤訳などをできる限り修正したものです 間違いが含まれる可能性があります。<br>また、元のREADMEの更新に追従できてない場合がありますので、更新日を確認してから読むのを推奨します。**<br><br><br><br>
@@ -24,6 +24,8 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 
 - [主な特徴](#主な特徴)
   - [このソフトウェアを使用する前に](#このソフトウェアを使用する前に)
+- [How to install One-Core-API?](#how-to-install-one-core-api)
+- [How to uninstall One-Core-API?](#how-to-uninstall-one-core-api)
 - [アプリケーションの互換性](#アプリケーションの互換性)
 - [既知の制限](#既知の制限)
 - [問題を提出する前に…](#問題を提出する前に)
@@ -50,6 +52,73 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 >
 > あなたの協力は貴重なものであり、苦情や否定的なフィードバックは製品の改善に寄与しません。
 > Due to prevent BSOD, the packages x86 now separted in three types: x86 (standard), x86 AVX (with AVX patch from Mox Ax) and x86 PAE. THe most stable is x86 standard. AVX patckaeg provide avx support for applications, preventing crash in new installers (only avaliable for XP x86 SP3). And PAE version provide 128gb RAM support, however, can cause several BSOD. Be careful and the use is by your risk;
+
+## How to install One-Core-API?
+
+The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are four zip files, for x86, x86 with AVX patch, x86 with PAE support and x64. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
+
+<details>
+  <summary>Step by step guide with images</summary>
+
+  **Download:**
+  ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+
+  **Extract:**
+  ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+
+  **Open the extracted content and choose your architecture. If the banner haven't x64, it is x86**
+  ![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+
+  **Double click on executable:**
+  ![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+
+  **Next:**
+  ![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+
+  **Accept and Next:**
+  ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+
+  **Wait for:**
+  ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+
+  **Finish and enjoy!**
+  ![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+
+</details>
+
+## How to uninstall One-Core-API?
+
+As mentioned, One-Core-API uses the Hotfix installation technology of the Windows NT family up to version 5.x. Therefore, to uninstall it, you must go to the Control Panel -> Add/Remove Programs and select the "Show updates" option. After selecting this option, several updates will be displayed (if installed), including One-Core-API. Scroll down the window until One-Core-API is displayed, and click on it. An "Remove" button will appear. Click on the button and follow the uninstallation steps (basically, Next->Finish)
+
+<details>
+  <summary>Step by step guide with images</summary>
+  
+  **Go to Control Panel:**
+  ![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+
+  **Click on Add Or Remove Programs:**
+  ![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+
+  **Mark "Show Updates:"**
+  ![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+
+  **The update will show up. Scroll down until show One-Core-API:**
+  ![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+
+  **Click on One-Core-API Pack and then, Remove button:**
+  ![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+
+  **The uninstall Windows will show up. Click in Next:**
+  ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+
+  **Wait for:**
+  ![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+
+  **Click in finish and then the Windows will restart:**
+  ![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+</details>
+
+</details>
 
 ## アプリケーションの互換性
 
