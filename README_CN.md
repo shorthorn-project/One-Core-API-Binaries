@@ -17,7 +17,9 @@
 - **新版中文自述由 [Mike Wang](https://github.com/Diamochang) 贡献。由于翻译底稿系深度求索 [DeepSeek R1 671B](https://github.com/deepseek-ai/DeepSeek-R1) 生成，尽管经过人工校对和修改，但难免有遗漏或错误。如有建议，可以在创建相关 Issue 或 PR 时在描述中 @ 他。**
 </details>
 
-**本仓库包含 One-Core-API 项目的二进制发行版，兼容 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3 及 Windows XP x64 SP1/SP2。强烈建议使用最新 SP（服务包）和所有可用更新的系统。**
+**本仓库包含 One-Core-API 项目的二进制发行版，兼容 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3 及 Windows XP x64 SP1/SP2。强烈建议使用最新 SP（服务包）和所有可用更新的系统。** **警告！**
+  现在，OCA 默认使用 Directx Native 软件渲染。要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装。否则，游戏将无法启动或黑屏！
+
 
 <!-- **官方 Discord 服务器**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
@@ -189,6 +191,10 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 
   <summary>OpenGL、Directx 9EX、10、11 的游戏</summary>
 
+  **警告！** 
+
+    现在，OCA 默认使用 Directx Native 软件渲染。要运行 dx10+ 游戏，您必须复制以下文件 <Your installation letter> \Windows\System32\wined3d 进入游戏安装目录。否则，游戏将无法启动或黑屏！
+
   - 极品飞车：最高通缉 2012
   - 极品飞车：亡命狂飙
   - 街头霸王 V
@@ -211,7 +217,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 <details>
   <summary>其他</summary>
 
-  - Adobe Products (Photoshop, Illustrator, Dreamweaver, etc.) up to the 2019 version;
+  - Adobe 产品（Photoshop、Illustrator、Dreamweaver 等），最高到 2019 版本;
   - .NET Framework 至 4.8 版;
   - .NET 6.0
   - Geekbench 4.2;
