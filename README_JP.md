@@ -21,7 +21,6 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 <br>
 現在、OCAはデフォルトでDirectX Nativeソフトウェアレンダリングを使用します。DirectX 10以上のゲームを実行するには、<Windowsをインストールしたドライブレター>\Windows\System32\wined3d内のファイルをゲームのインストールフォルダにコピーする必要があります。コピーしないと、ゲームが起動しないか、画面が真っ黒になります。
 
-<!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
 - [主な特徴](#主な特徴)
   - [このソフトウェアを使用する前に](#このソフトウェアを使用する前に)
@@ -34,34 +33,15 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 - [ショーケース / 概念実証](#ショーケース--概念実証)
 
 
-<!-- **Main information and guid to report of issue and mainly, BSOD (Blue Screen of the Death)**
-   
-- PC configuration: Is VM or Real? What is the processor, ram installed. Is AHCI, IDE, NVME or SCSI?
-- Windows Configuration: What is the edition? Is a custom ISO/build? What installed the updates? What is the service pack? What are the installed programs?
-- What is the iso used? Always provide the link;
-- Steps to reproduce the BSOD. Ex: i installed OCA base, with XP Integral Edition with all options installed/seleted. Or: i installed Avast, or some other Antivirus, then i installed OCA base;
-- Please, enable the complete dump of memory and upload to some drive.
-- Take a picture of the BSOD. If restart automatically, press F8 on windows start, and select "Disable automatic restart" -->
-
-<!-- **Folders in this repository:** -->
-
-<!-- **The One-Core-API Binaries project consists of the following packages:**
-Warning: Always if OCA package require restart, do it. If you install all packages and restart only on the last, Windows will be corrupted.  
-- **Pack Installer**: Main package of One-Core-API and is required by One-Core-API extras; -->
-
-<!-- **Installation order of packages:**
-- **Common order**: just run One-Core-api-Pack.exe for your current platform: x86 or x64; -->
-
 ## 主な特徴
-- **デフォルトで x86 のメモリ サポートを 128 GB、x64 のメモリ サポートを 2 TB に増やします。**
-- **最新の Windows OS 用に設計された新しいプログラムの実行をサポートします。**
-- **新しいドライバー コントローラーを備えた新しいハードウェアをサポートします。**
-- **Windows XP および Windows Server 2003 でサポートされているすべての言語に対する多言語サポート。**
+- **最新のWindows OS向けに設計された新しいプログラムの実行をサポートします。**
+- **新しいドライバーとコントローラーを搭載した新しいハードウェアをサポートします。**
+- **Windows XPおよびWindows Server 2003でサポートされているすべての言語に対応した多言語サポートを提供します。**
 
 ### このソフトウェアを使用する前に
 > このソフトウェアは、各システムから変更されたファイルを利用しており、テスト段階または実験段階のファイルも含まれており、<b>1 人の人物によって開発されています</b>。そのため、さまざまなコンピュータ構成や仮想マシンで起こり得るすべてのシナリオを予測することは不可能です。
 >
-> <h4>Windows XP/2003 から Vista への移行は、新しい API、テクノロジ、および既存の API の変更の開発において大きな飛躍を示しました。このため、NT 5.x と NT 6.x システム間で同じレベルの互換性を実現することは困難です。</h4>
+> <h4>Windows XP/2003 から Vista への移行は、新しい API、テクノロジ、および既存の API の修正の開発において大きな飛躍を示しました。このため、NT 5.x と NT 6.x システム間で同じレベルの互換性を実現することは困難です。</h4>
 >
 > 落ち着いて慎重に行動してください。
 > ソフトウェアに欠陥がある、または「品質が悪い」と結論付ける前に、<b>Github Issues または [Discord サーバー](https://discord.gg/eRcGuFtn6p) を通じて、遭遇した問題を報告してください</b>。
@@ -69,62 +49,115 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 > すべての問題が解決されることを保証することはできませんのでご了承ください。ただし、私はそれらを分析して修正するために全力を尽くします。
 >
 > あなたの協力は貴重なものであり、苦情や否定的なフィードバックは製品の改善に寄与しません。
+> Due to prevent BSOD, the packages x86 now separted in three types: x86 (standard), x86 AVX (with AVX patch from Mox Ax) and x86 PAE. THe most stable is x86 standard. AVX patckaeg provide avx support for applications, preventing crash in new installers (only avaliable for XP x86 SP3). And PAE version provide 128gb RAM support, however, can cause several BSOD. Be careful and the use is by your risk;
 
 ## アプリケーションの互換性
-- JetBrains IDE 最新リリース (2024) まで;
-- Android Studio 最新バージョンまで;
-- NetBeans 最新バージョンまで;
-- Eclipse IDE 最新バージョンまで
-- Adob​​e 製品 (Photoshop、Illustrator、Dreamweaver など) 2019 バージョンまで;
-- Filezilla (最新バージョン);
-- LibreOffice 24.0.x (最新バージョン);
-- Discord 0.309.0;
-- Legocord (Discord フォーク) 最新版;
-- Visual Studio 2012 および Visual Studio 2013;
-- Visual Studio Code (および Codium などのフォーク) 最新バージョンまで;
-- Chromium ブラウザー (Chrome、Opera、Edge など) 最新バージョンまで;
-- Gecko ベース (Firefox、Zen Browser) 最新バージョンまで (ただし、YouTube は Firefox バージョン 130 までしか動作しません);
-- Seamonkey バージョン 2.53.10 まで;
-- Thunderbird 最新バージョンまで;
-- Maxthon バージョン 7.1.6 まで;
-- Vivaldi 最新バージョンまで;
-- JDK 1.8 (現時点では Windows XP x64 のみ);
-- Java JDK および代替 JDK または OpenJDK バージョン 24 まで (他のバージョンも動作する可能性があります)。次の場所からダウンロードできます: https://bell-sw.com/pages/downloads/#/java-11-lts;
-- Epic Browser 120;
-- Python 3.6 (3.8/3.9 も動作する可能性がありますが、[mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) バージョンのみ);
-- .Net Framework バージョン 4.8 まで;
-- .NET 6.0;
-- Geekbench 4.2;
-- Performance Test;
-- Adob​​e Reader DC (2024 年まで);
-- Foxit PDF Reader (2023);
-- Windows 7 ゲーム;
-- Windows 7 ペイント;
-- Windows 7 ワードパッド;
-- Windows Vista のネイティブ アプリケーション;
-- Windows 7 および Windows 10 用の Spotify;
-- Line;
-- Zoom;
-- Node 10.24;
-- Telegram Desktop;
-- Winrar 7.0 (最新);
-- Postman;
-- Insomnia;
-- Dbeaver;
-- TeamViewer 14;
-- Directx 9EX、10、および 11 ゲーム:
-- Need for Speed Most Wanted 2012;
-- Need for Speed The Run;
-- Street Fighter V;
-- Injustice: Gods Among Us;
-- Assassin's Creed Black Flag;
-- Crysis 1、2、および 3 (directx 10-11 モード);
-- GTA Trilogy;
-- GTA V;
-- Minecraft 1.21.x;
-- バイオハザード 5 dx10 モード;
-- Lost Planet;
-- kate 23.08.1;
+
+<details>
+  <summary>Browsers and email clients</summary>
+  
+  - Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
+  - Chrome installer up to version 109 (version for Windows 10 is not supported yet)
+  - Gecko based (Firefox, Zen Browser) up to the latest versions (however, YouTube only works up to Firefox version 130);
+  - Seamonkey up to version 2.53.10;
+  - Maxthon up to version 7.1.6;
+  - Vivaldi up to the latest version;
+  - Epic Browser 120
+  - Thunderbird up to the latest version
+
+</details>
+
+<details>
+  <summary>Messengers and other communication programs</summary>
+  
+  - Discord 0.309.0;
+  - Legocord (Discord fork) latest;
+  - Telegram Desktop;
+  - Line;
+  - Zoom;
+  - Filezilla (latest version);
+  - TeamViewer 14
+</details>  
+
+<details>
+  <summary>Office apps</summary>
+
+  - LibreOffice 24.0.x (latest version);
+  - Adobe Reader DC (up to 2024);
+  - Foxit PDF Reader (2023)
+
+</details>
+
+<details>
+  <summary>IDE's and programming languages</summary>
+
+  - JetBrains IDE up to the latest releases (2024);
+  - Visual Studio 2012 and Visual Studio 2013;
+  - Eclipse IDE up to the latest version;
+  - Visual Studio Code (and forks like Codium) up to the latest version;
+  - Android Studio up to the latest version;
+  - NetBeans up to the latest version;
+  - Python 3.6 (3.8/3.9 may also work, only the [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) version)
+</details>
+
+<details>
+  <summary>Java</summary>
+  
+  - Java JDK and alternative JDK or OpenJDK up to version 24 (maybe other versions work as well). You can download from: https://bell-sw.com/pages/downloads/#/java-11-lts;
+  - JDK 1.8 (Windows XP x64 only for now)
+</details>
+
+<details>
+  <summary>Native apps from Windows Vista/7</summary>
+  
+  - Windows 7 games;
+  - Windows 7 Paint;
+  - Windows 7 Wordpad;
+  - Native applications from Windows Vista
+</details>
+
+<details>
+
+  <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
+
+  **Warning!** 
+  
+  Now, OCA use Directx Native software render by default. For run a dx10+ game, you must need copy the files inside <Your installation letter>\Windows\System32\wined3d into the game installation. Otherwiser, the game will fail to start or get a black screen!
+
+  - Need for Speed Most Wanted 2012;
+  - Need for Speed The Run;
+  - Street Fighter V;
+  - Injustice: Gods Among Us;
+  - Assassin's Creed Black Flag;
+  - Crysis 1, 2, and 3 (directx 10-11 mode);
+  - GTA Trilogy Definitive Edition;
+  - GTA V;
+  - Minecraft 1.21.x
+  - Resident Evil 5 dx10 mode;
+  - Lost Planet;
+  - Far Cry 4;
+  - Far Cry Primal;
+  - Tropico 5;
+  - Metro Last Night;
+  - Cuphead;
+  - Horizon Turbo
+</details>
+
+<details>
+  <summary>Other</summary>
+
+  - Adobe Products (Photoshop, Illustrator, Dreamweaver, etc.) up to the 2019 version;
+  - .Net Framework up to 4.8;
+  - .NET 6.0
+  - Geekbench 4.2;
+  - Performance Test;
+  - Spotify for Windows 7 and for Windows 10;
+  - Node 10.24;
+  - Winrar 7.0 (latest);
+  - Postman
+  - Dbeaver
+  - Kate 23.08.1
+</details>
   
 ## 既知の制限
 - Firefox のバージョン 131 以降では Youtube は動作しません。そのため、バージョン 115 または 128 ESR の使用をお勧めします。
