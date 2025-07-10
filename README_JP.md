@@ -16,7 +16,10 @@
 
  **この日本語訳は機械翻訳をベースに誤訳などをできる限り修正したものです 間違いが含まれる可能性があります。<br>また、元のREADMEの更新に追従できてない場合がありますので、更新日を確認してから読むのを推奨します。**<br><br><br><br>
 **このリポジトリには、One-Core-API プロジェクトのバイナリ リリースが含まれています。これらは、Windows Server 2003 RTM、SP1、SP2、Windows XP RTM、SP1、SP2、SP3、および Windows XP
-x64 SP1/SP2 と互換性があります。ただし、最新のサービス パック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。**
+x64 SP1/SP2 と互換性があります。ただし、最新のサービスパック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。** <br> 
+**注意！**
+<br>
+現在、OCAはデフォルトでDirectX Nativeソフトウェアレンダリングを使用します。DirectX 10以上のゲームを実行するには、<Windowsをインストールしたドライブレター>\Windows\System32\wined3d内のファイルをゲームのインストールフォルダにコピーする必要があります。コピーしないと、ゲームが起動しないか、画面が真っ黒になります。
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
@@ -181,68 +184,84 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 ## ショーケース / 概念実証
 XP/Server 2003 で実行されているアプリケーションのスクリーンショット:
 
-**Minecraft 1.21**
-![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+<details>
+  <summary>Browsers and Thunderbird</summary>
 
-**Chrome 132**
-![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
+  **Chrome 132**
+  ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
 
-**Edge 134 (Dev Preview)**
-![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
+  **Edge 134 (Dev Preview)**
+  ![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
 
-**Opera 116**
-![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
+  **Opera 116**
+  ![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
 
-**Firefox 122**
-![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
+  **Firefox 122**
+  ![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
 
-**Thunderbird 132**
-![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
+  **Thunderbird 132**
+  ![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
 
-**Basilisk**
-![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
+  **Basilisk**
+  ![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
 
-**Vivaldi**
-![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
+  **Vivaldi**
+  ![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
+</details>
 
+<details>
+  <summary>Games</summary>
+ 
+  **Microsoft Chess 3d**
+  ![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
 
-**Spotify (For Windows 7)**
-![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+  **Minecraft 1.21**
+  ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+</details>
 
-**Visual Studio Code 1.81**
-![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
+<details>
+  <summary>Messengers and other communication programs</summary>
 
-**Microsoft チェス 3d**
-![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
+  **Discord 0.309**
+  ![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
+  ![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
 
-**Telegram 4.14**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/73e13167-49b8-4282-81cb-969435046dde)
+  **Telegram Desktop**
+  ![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
 
-**Libre Office 24 (最新)**
-![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
-![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
+  **Zoom meeting**
+  ![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+</details>
 
-**Discord 0.309**
-![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
-![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
+<details>
+  <summary>Native Windows 7 apps</summary>
 
-**Telegram Desktop**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
+  **Windows 7 Sticky Notes**
+  ![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
 
-**Zoom meeting**
-![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+  **Windows 7 Paint**
+  ![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
 
-**Java 11**
-![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
+  **Windows 7 Wordpad**
+  ![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+</details>
 
-**Avast と Chromium 68**
-![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
+<details>
+  <summary>Other</summary>
+  
+  **Spotify (For Windows 7)**
+  ![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
 
-**Windows 7 付箋**
-![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
+  **Visual Studio Code 1.81**
+  ![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
 
-**Windows 7 ペイント**
-![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
+  **Libre Office 24 (latest)**
+  ![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
+  ![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
-**Windows 7 ワードパッド**
-![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+  **Java 11**
+  ![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
+
+  **Avast and Chromium 68**
+  ![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
+</details>
