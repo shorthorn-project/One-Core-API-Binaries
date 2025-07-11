@@ -14,8 +14,8 @@
 <details>
   <summary>关于繁體中文自述 / About the Traditional Chinese readme（README_CHT.md）</summary>
   
-- **The Tradational Chinese version of README.md is done by [Zhuguli232](https://github.com/Zhuguli232), some translations may not be accurate.
-- **繁體中文版自述由[Zhuguli232](https://github.com/Zhuguli232)（難忘的朱古力232）完成，有些地方翻譯可能不準確。
+- The Tradational Chinese version of README.md is done by [Zhuguli232](https://github.com/Zhuguli232), some translations may not be accurate.
+- 繁體中文版自述由[Zhuguli232](https://github.com/Zhuguli232)（難忘的朱古力232）完成，有些地方翻譯可能不準確。
 </details>
 
 **此儲存庫包含 One-Core-API 專案的二進位版本。與 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3以及Windows XP x64 SP1/SP2 相容。但是，強烈建議使用安裝了最新Service Pack 更新和所有可用更新的系統。**  
@@ -285,7 +285,7 @@ One-Core-API 採用了 Windows NT 5.x 之前的修補程式安裝技術。因此
 
 > 如果可行的話，建議附加問題的錄影錄影。
 >
-> **請注意，如果問題無法重現，問題將關閉。 **
+> **請注意，如果問題無法重現，問題將關閉。**
 
 ## 倉庫結構
 
