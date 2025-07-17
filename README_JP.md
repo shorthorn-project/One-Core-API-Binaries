@@ -7,7 +7,7 @@
 
 ***
 **言語：**
-[English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
+[English](README.md) | [简体中文](README_CN.md) | [繁體中文](README_CHT.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
 ***
 
 
@@ -60,10 +60,10 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 <details>
   <summary>Step by step guide with images</summary>
 
-  **Download:**
+  **ダウンロード:**
   ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
 
-  **Extract:**
+  **展開:**
   ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
 
   **Open the extracted content and choose your architecture. If the banner haven't x64, it is x86**
