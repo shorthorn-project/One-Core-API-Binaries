@@ -148,23 +148,23 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 </details>  
 
 <details>
-  <summary>Office apps</summary>
+  <summary>Office アプリ</summary>
 
-  - LibreOffice 24.0.x (latest version);
-  - Adobe Reader DC (up to 2024);
+  - LibreOffice 24.0.x (最新バージョン);
+  - Adobe Reader DC (2024まで);
   - Foxit PDF Reader (2023)
 
 </details>
 
 <details>
-  <summary>IDE's and programming languages</summary>
+  <summary>IDEとプログラミング言語</summary>
 
-  - JetBrains IDE up to the latest releases (2024);
-  - Visual Studio 2012 and Visual Studio 2013;
-  - Eclipse IDE up to the latest version;
-  - Visual Studio Code (and forks like Codium) up to the latest version;
-  - Android Studio up to the latest version;
-  - NetBeans up to the latest version;
+  - JetBrains IDE の最新リリース (2024 年)
+  - Visual Studio 2012 と Visual Studio 2013;
+  - Eclipse IDE 最新バージョンまで;
+  -  Visual Studio Code (および Codium などのフォーク) の最新バージョン;
+  - Android Studio 最新バージョンまで;
+  - NetBeans 最新バージョンまで;
   - Python 3.6 (3.8/3.9 may also work, only the [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) version)
 </details>
 
