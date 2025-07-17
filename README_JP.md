@@ -58,7 +58,7 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービスパ�
 One-Core-API は、Windows NT 5.x まで使用されていたホットフィックスのインストール技術を採用しています。そのため、サービスパックのインストールと非常によく似ていることがわかります。[Release](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) セクションにアクセスし、テストしたいバージョンを選択して、圧縮ファイル (.zip) をダウンロードしてください。ダウンロード後、ファイルを解凍すると、x86, x86 with AVX patch, x86 with PAE support and x64 の 4 つの zip ファイルがあります。各フォルダ内には、One-Core-API-Pack.exe という名前の実行ファイルがあります。このファイルをダブルクリックし、インストール手順に従ってください。基本的には、「次へ」を選択し、「ライセンスに同意する」を選択して「次へ」をクリックし、「完了」をクリックします。とても簡単です。
 
 <details>
-  <summary>Step by step guide with images</summary>
+  <summary>画像付きステップバイステップガイド</summary>
 
   **ダウンロード:**
   ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
@@ -66,30 +66,29 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
   **展開:**
   ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
 
-  **Open the extracted content and choose your architecture. If the banner haven't x64, it is x86**
+  **展開したコンテンツを開き、アーキテクチャを選択してください。ロゴにx64が表示されていない場合は、x86です**
   ![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
 
-  **Double click on executable:**
+  **実行ファイルをダブルクリックします:**
   ![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
 
-  **Next:**
+  **次へ:**
   ![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
 
-  **Accept and Next:**
+  **同意して次へ:**
   ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
 
-  **Wait for:**
+  **待機:**
   ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
 
-  **Finish and enjoy!**
+  **完了　楽しんでください！**
   ![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
 
 </details>
 
-## How to uninstall One-Core-API?
+## One-Core-API をアンインストールするにはどうすればいいですか?
 
-As mentioned, One-Core-API uses the Hotfix installation technology of the Windows NT family up to version 5.x. Therefore, to uninstall it, you must go to the Control Panel -> Add/Remove Programs and select the "Show updates" option. After selecting this option, several updates will be displayed (if installed), including One-Core-API. Scroll down the window until One-Core-API is displayed, and click on it. An "Remove" button will appear. Click on the button and follow the uninstallation steps (basically, Next->Finish)
-
+前述の通り、One-Core-API は Windows NT ファミリーのバージョン 5.x までの Hotfix インストールテクノロジを使用しています。そのため、アンインストールするには、「コントロール パネル」→「プログラムの追加と削除」に移動し、「更新プログラムの表示」オプションを選択する必要があります。このオプションを選択すると、One-Core-API を含むいくつかの更新プログラムが表示されます（インストールされている場合）。One-Core-API が表示されるまでウィンドウを下にスクロールし、それをクリックします。「削除」ボタンが表示されます。ボタンをクリックし、アンインストール手順（基本的には「次へ」→「完了」）に従います。
 <details>
   <summary>Step by step guide with images</summary>
   
