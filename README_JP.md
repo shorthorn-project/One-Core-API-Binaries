@@ -159,34 +159,33 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 <details>
   <summary>IDEとプログラミング言語</summary>
 
-  - JetBrains IDE の最新リリース (2024 年)
+  - JetBrains IDE の最新リリース (2024)
   - Visual Studio 2012 と Visual Studio 2013;
   - Eclipse IDE 最新バージョンまで;
   -  Visual Studio Code (および Codium などのフォーク) の最新バージョン;
   - Android Studio 最新バージョンまで;
   - NetBeans 最新バージョンまで;
-  - Python 3.6 (3.8/3.9 may also work, only the [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) version)
-</details>
+  - Python 3.6 (3.8/3.9 でも動作する可能性がありますが、[mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) バージョンのみ)</details>
 
 <details>
   <summary>Java</summary>
   
-  - Java JDK and alternative JDK or OpenJDK up to version 24 (maybe other versions work as well). You can download from: https://bell-sw.com/pages/downloads/#/java-11-lts;
-  - JDK 1.8 (Windows XP x64 only for now)
+  - Java JDKおよび代替JDK、またはバージョン24までのOpenJDK（他のバージョンでも動作する可能性があります）。ダウンロードはこちら：https://bell-sw.com/pages/downloads/#/java-11-lts;
+  - JDK 1.8 (Windows XP x64 のみ)
 </details>
 
 <details>
-  <summary>Native apps from Windows Vista/7</summary>
+  <summary>Windows Vista/7 のネイティブ アプリ</summary>
   
-  - Windows 7 games;
-  - Windows 7 Paint;
-  - Windows 7 Wordpad;
-  - Native applications from Windows Vista
+  - Windows 7 ゲーム;
+  - Windows 7 ペイント;
+  - Windows 7 ワードパッド;
+  - Windows Vista のネイティブ アプリケーション
 </details>
 
 <details>
 
-  <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
+  <summary>OpenGL, Directx 9EX, 10, & 11 ゲーム</summary>
 
 ### 警告
   
@@ -215,16 +214,16 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 </details>
 
 <details>
-  <summary>Other</summary>
+  <summary>その他</summary>
 
-  - Adobe Products (Photoshop, Illustrator, Dreamweaver, etc.) up to the 2019 version;
-  - .Net Framework up to 4.8;
+  - 2019 バージョンまでの Adobe 製品 (Photoshop、Illustrator、Dreamweaver など);
+  - .Net Framework 4.8まで;
   - .NET 6.0
   - Geekbench 4.2;
   - Performance Test;
-  - Spotify for Windows 7 and for Windows 10;
+  - Spotify for Windows 7 及び for Windows 10;
   - Node 10.24;
-  - Winrar 7.0 (latest);
+  - Winrar 7.0 (最新版);
   - Postman
   - Dbeaver
   - Kate 23.08.1
@@ -289,7 +288,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 XP/Server 2003 で実行されているアプリケーションのスクリーンショット:
 
 <details>
-  <summary>Browsers and Thunderbird</summary>
+  <summary>ブラウザーとThunderbird</summary>
 
   **Chrome 132**
   ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
@@ -314,7 +313,7 @@ XP/Server 2003 で実行されているアプリケーションのスクリー�
 </details>
 
 <details>
-  <summary>Games</summary>
+  <summary>ゲーム</summary>
  
   **Microsoft Chess 3d**
   ![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
@@ -324,7 +323,7 @@ XP/Server 2003 で実行されているアプリケーションのスクリー�
 </details>
 
 <details>
-  <summary>Messengers and other communication programs</summary>
+  <summary>メッセンジャーやその他のコミュニケーションプログラム</summary>
 
   **Discord 0.309**
   ![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
@@ -338,20 +337,20 @@ XP/Server 2003 で実行されているアプリケーションのスクリー�
 </details>
 
 <details>
-  <summary>Native Windows 7 apps</summary>
+  <summary>ネイティブ Windows 7 アプリ</summary>
 
-  **Windows 7 Sticky Notes**
+  **Windows 7 付箋**
   ![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
 
-  **Windows 7 Paint**
+  **Windows 7 ペイント**
   ![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
 
-  **Windows 7 Wordpad**
+  **Windows 7 ワードパッド**
   ![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
 </details>
 
 <details>
-  <summary>Other</summary>
+  <summary>その他</summary>
   
   **Spotify (For Windows 7)**
   ![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
@@ -359,13 +358,13 @@ XP/Server 2003 で実行されているアプリケーションのスクリー�
   **Visual Studio Code 1.81**
   ![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
 
-  **Libre Office 24 (latest)**
+  **Libre Office 24 (最新版)**
   ![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
   ![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
   **Java 11**
   ![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
 
-  **Avast and Chromium 68**
+  **Avast と Chromium 68**
   ![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
 </details>
