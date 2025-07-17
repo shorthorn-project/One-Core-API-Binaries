@@ -8,13 +8,18 @@
 ---
 
 **Language:**
-[English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
+[English](README.md) | [简体中文](README_CN.md) | [繁體中文](README_CHT.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
 
 ---
 
 **This repository contains binary releases of the One-Core-API project. These are compatible with Windows Server 2003 RTM, SP1 and SP2, Windows XP RTM, SP1, SP2 and SP3 and Windows XP
-x64 SP1/SP2. However, it is highly recommended to use the system with its latest Service Pack update and all available updates.**  **Warning!** 
-  Now, OCA use Directx Native software render by default. For run a dx10+ game, you must need copy the files inside <Your installation letter>\Windows\System32\wined3d into the game installation. Otherwiser, the game will fail to start or get a black screen!
+x64 SP1/SP2. However, it is highly recommended to use the system with its latest Service Pack update and all available updates.**  
+
+> [!WARNING]  
+> Now, OCA use Directx Native software render by default.
+>
+> For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
+> Otherwise, the game will fail to start or get a black screen!
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
@@ -204,9 +209,11 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
   <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
 
-  **Warning!** 
-  
-  Now, OCA use Directx Native software render by default. For run a dx10+ game, you must need copy the files inside <Your installation letter>\Windows\System32\wined3d into the game installation. Otherwiser, the game will fail to start or get a black screen!
+  ### WARNING!
+  > Now, OCA use Directx Native software render by default.
+  >
+  > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
+  > Otherwise, the game will fail to start or get a black screen!
 
   - Need for Speed Most Wanted 2012;
   - Need for Speed The Run;
