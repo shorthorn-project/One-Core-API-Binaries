@@ -16,11 +16,12 @@
 
  **この日本語訳は機械翻訳をベースに誤訳などをできる限り修正したものです 間違いが含まれる可能性があります。<br>また、元のREADMEの更新に追従できてない場合がありますので、更新日を確認してから読むのを推奨します。**<br><br><br><br>
 **このリポジトリには、One-Core-API プロジェクトのバイナリ リリースが含まれています。これらは、Windows Server 2003 RTM、SP1、SP2、Windows XP RTM、SP1、SP2、SP3、および Windows XP
-x64 SP1/SP2 と互換性があります。ただし、最新のサービスパック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。** <br> 
-**注意！**
-<br>
-現在、OCAはデフォルトでDirectX Nativeソフトウェアレンダリングを使用します。DirectX 10以上のゲームを実行するには、<Windowsをインストールしたドライブレター>\Windows\System32\wined3d内のファイルをゲームのインストールフォルダにコピーする必要があります。コピーしないと、ゲームが起動しないか、画面が真っ黒になります。
-
+x64 SP1/SP2 と互換性があります。ただし、最新のサービスパック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。** 
+> [!WARNING]
+> 現在、OCA はデフォルトで  Directx Native software レンダリングを使用します。
+>
+> DX10 以上のゲームを実行するには、`<あなたの環境のインストールレター>\Windows\System32\wined3d` 内のファイルをゲームのインストールディレクトリにコピーする必要があります。
+> そうしないと、ゲームが起動しないか、黒い画面が表示されます。
 
 - [主な特徴](#主な特徴)
   - [このソフトウェアを使用する前に](#このソフトウェアを使用する前に)
@@ -188,9 +189,12 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
   <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
 
-  **Warning!** 
+### 警告
   
-  Now, OCA use Directx Native software render by default. For run a dx10+ game, you must need copy the files inside <Your installation letter>\Windows\System32\wined3d into the game installation. Otherwiser, the game will fail to start or get a black screen!
+> 現在、OCA はデフォルトで  Directx Native software レンダリングを使用します。
+>
+> DX10 以上のゲームを実行するには、`<あなたの環境のインストールレター>\Windows\System32\wined3d` 内のファイルをゲームのインストールディレクトリにコピーする必要があります。
+> そうしないと、ゲームが起動しないか、黒い画面が表示されます。
 
   - Need for Speed Most Wanted 2012;
   - Need for Speed The Run;
