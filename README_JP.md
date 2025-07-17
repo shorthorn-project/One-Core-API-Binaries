@@ -78,7 +78,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
   **同意して次へ:**
   ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
 
-  **待機:**
+  **終わるまで待機:**
   ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
 
   **完了　楽しんでください！**
@@ -88,32 +88,32 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 
 ## One-Core-API をアンインストールするにはどうすればいいですか?
 
-前述の通り、One-Core-API は Windows NT ファミリーのバージョン 5.x までの Hotfix インストールテクノロジを使用しています。そのため、アンインストールするには、「コントロール パネル」→「プログラムの追加と削除」に移動し、「更新プログラムの表示」オプションを選択する必要があります。このオプションを選択すると、One-Core-API を含むいくつかの更新プログラムが表示されます（インストールされている場合）。One-Core-API が表示されるまでウィンドウを下にスクロールし、それをクリックします。「削除」ボタンが表示されます。ボタンをクリックし、アンインストール手順（基本的には「次へ」→「完了」）に従います。
+前述の通り、One-Core-API は Windows NT ファミリーのバージョン 5.x までの Hotfix インストールテクノロジを使用しています。そのため、アンインストールするには、「コントロール パネル」→「プログラムの追加と削除」に移動し、「更新プログラムの表示」オプションを選択する必要があります。このオプションを選択すると、One-Core-API を含むいくつかの更新プログラムが表示されます（インストールされている場合）。One-Core-API が表示されるまでウィンドウを下にスクロールし、それをクリックすると「削除」ボタンが表示されます。ボタンをクリックし、アンインストール手順（基本的には「次へ」→「完了」）に従います。
 <details>
-  <summary>Step by step guide with images</summary>
+  <summary>画像付きステップバイステップガイド</summary>
   
-  **Go to Control Panel:**
+  **コントロールパネルを開く:**
   ![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
 
-  **Click on Add Or Remove Programs:**
+  **プログラムの追加と削除をクリックする:**
   ![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
 
-  **Mark "Show Updates:"**
+  **"更新プログラムの表示"にチェックを入れる:"**
   ![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
 
-  **The update will show up. Scroll down until show One-Core-API:**
+  **アップデートが表示されます。One-Core-APIが表示されるまで下にスクロールしてください。:**
   ![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
 
-  **Click on One-Core-API Pack and then, Remove button:**
+  **One-Core-API Pack をクリックし、削除ボタンをクリックします:**
   ![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
 
-  **The uninstall Windows will show up. Click in Next:**
+ **アンインストール用のウィンドウが表示されます。「次へ」をクリックしてください。**
   ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
 
-  **Wait for:**
+  **終わるまで待機:**
   ![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
 
-  **Click in finish and then the Windows will restart:**
+  **「完了」をクリックすると、Windowsが再起動します。**
   ![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
 </details>
 
@@ -122,7 +122,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 ## アプリケーションの互換性
 
 <details>
-  <summary>Browsers and email clients</summary>
+  <summary>ブラウザーとeメールクライアント</summary>
   
   - Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
   - Chrome installer up to version 109 (version for Windows 10 is not supported yet)
