@@ -124,26 +124,26 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
 <details>
   <summary>ブラウザーとeメールクライアント</summary>
   
-  - Chromium browsers (Chrome, Opera, Edge, and others) up to the latest version
-  - Chrome installer up to version 109 (version for Windows 10 is not supported yet)
-  - Gecko based (Firefox, Zen Browser) up to the latest versions (however, YouTube only works up to Firefox version 130);
-  - Seamonkey up to version 2.53.10;
-  - Maxthon up to version 7.1.6;
-  - Vivaldi up to the latest version;
+  - Chromium ブラウザ (Chrome, Opera, Edge, and others) 最新バージョンまで
+  - バージョン109までのChromeインストーラー（Windows 10用は未対応）
+  - Gecko ベース（Firefox、Zen Browser）の最新バージョンまで（ただし、YouTube は Firefox バージョン 130 までしか動作しません）;
+  - Seamonkey バージョン 2.53.10 まで;
+  - Maxthon バージョン 7.1.6 まで
+  - Vivaldi 最新バージョンまで;
   - Epic Browser 120
-  - Thunderbird up to the latest version
+  - Thunderbird 最新バージョンまで
 
 </details>
 
 <details>
-  <summary>Messengers and other communication programs</summary>
+  <summary>メッセンジャーやその他のコミュニケーションプログラム</summary>
   
   - Discord 0.309.0;
-  - Legocord (Discord fork) latest;
+  - Legocord (Discord のフォーク) 最新版;
   - Telegram Desktop;
   - Line;
   - Zoom;
-  - Filezilla (latest version);
+  - Filezilla (最新バージョン);
   - TeamViewer 14
 </details>  
 
