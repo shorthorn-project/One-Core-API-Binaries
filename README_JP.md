@@ -78,7 +78,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
   **同意して次へ:**
   ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
 
-  **終わるまで待機:**
+  **終わるまで待つ:**
   ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
 
   **完了　楽しんでください！**
@@ -110,7 +110,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
  **アンインストール用のウィンドウが表示されます。「次へ」をクリックしてください。**
   ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
 
-  **終わるまで待機:**
+  **終わるまで待つ:**
   ![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
 
   **「完了」をクリックすると、Windowsが再起動します。**
