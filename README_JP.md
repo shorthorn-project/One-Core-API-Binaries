@@ -11,17 +11,22 @@
 ***
 
 
-**日本語版README（README_JP.md）の最終更新日 2025年2月5日<br>2025年2月1日時点のREADME.mdを基に翻訳**
+**日本語版README（README_JP.md）の最終更新日 2025年7月18日<br>2025年7月12日時点のREADME.mdを基に翻訳**
 
 
  **この日本語訳は機械翻訳をベースに誤訳などをできる限り修正したものです 間違いが含まれる可能性があります。<br>また、元のREADMEの更新に追従できてない場合がありますので、更新日を確認してから読むのを推奨します。**<br><br><br><br>
 **このリポジトリには、One-Core-API プロジェクトのバイナリ リリースが含まれています。これらは、Windows Server 2003 RTM、SP1、SP2、Windows XP RTM、SP1、SP2、SP3、および Windows XP
-x64 SP1/SP2 と互換性があります。ただし、最新のサービス パック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。**
-
-<!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
+x64 SP1/SP2 と互換性があります。ただし、最新のサービスパック更新と利用可能なすべての更新を適用したシステムを使用することを強くお勧めします。** 
+> [!WARNING]
+> 現在、OCA はデフォルトで  Directx Native software レンダリングを使用します。
+>
+> DX10 以上のゲームを実行するには、`<あなたの環境のインストールレター>\Windows\System32\wined3d` 内のファイルをゲームのインストールディレクトリにコピーする必要があります。
+> そうしないと、ゲームが起動しないか、黒い画面が表示されます。
 
 - [主な特徴](#主な特徴)
   - [このソフトウェアを使用する前に](#このソフトウェアを使用する前に)
+- [One-Core-API をインストールするにはどうすればいいですか?](#one-core-api-をインストールするにはどうすればいいですか)
+- [One-Core-API をアンインストールするにはどうすればいいですか?](#one-core-api-をアンインストールするにはどうすればいいですか)
 - [アプリケーションの互換性](#アプリケーションの互換性)
 - [既知の制限](#既知の制限)
 - [問題を提出する前に…](#問題を提出する前に)
@@ -31,34 +36,15 @@ x64 SP1/SP2 と互換性があります。ただし、最新のサービス パ�
 - [ショーケース / 概念実証](#ショーケース--概念実証)
 
 
-<!-- **Main information and guid to report of issue and mainly, BSOD (Blue Screen of the Death)**
-   
-- PC configuration: Is VM or Real? What is the processor, ram installed. Is AHCI, IDE, NVME or SCSI?
-- Windows Configuration: What is the edition? Is a custom ISO/build? What installed the updates? What is the service pack? What are the installed programs?
-- What is the iso used? Always provide the link;
-- Steps to reproduce the BSOD. Ex: i installed OCA base, with XP Integral Edition with all options installed/seleted. Or: i installed Avast, or some other Antivirus, then i installed OCA base;
-- Please, enable the complete dump of memory and upload to some drive.
-- Take a picture of the BSOD. If restart automatically, press F8 on windows start, and select "Disable automatic restart" -->
-
-<!-- **Folders in this repository:** -->
-
-<!-- **The One-Core-API Binaries project consists of the following packages:**
-Warning: Always if OCA package require restart, do it. If you install all packages and restart only on the last, Windows will be corrupted.  
-- **Pack Installer**: Main package of One-Core-API and is required by One-Core-API extras; -->
-
-<!-- **Installation order of packages:**
-- **Common order**: just run One-Core-api-Pack.exe for your current platform: x86 or x64; -->
-
 ## 主な特徴
-- **デフォルトで x86 のメモリ サポートを 128 GB、x64 のメモリ サポートを 2 TB に増やします。**
-- **最新の Windows OS 用に設計された新しいプログラムの実行をサポートします。**
-- **新しいドライバー コントローラーを備えた新しいハードウェアをサポートします。**
-- **Windows XP および Windows Server 2003 でサポートされているすべての言語に対する多言語サポート。**
+- **最新のWindows OS向けに設計された新しいプログラムの実行をサポートします。**
+- **新しいドライバーとコントローラーを搭載した新しいハードウェアをサポートします。**
+- **Windows XPおよびWindows Server 2003でサポートされているすべての言語に対応した多言語サポートを提供します。**
 
 ### このソフトウェアを使用する前に
 > このソフトウェアは、各システムから変更されたファイルを利用しており、テスト段階または実験段階のファイルも含まれており、<b>1 人の人物によって開発されています</b>。そのため、さまざまなコンピュータ構成や仮想マシンで起こり得るすべてのシナリオを予測することは不可能です。
 >
-> <h4>Windows XP/2003 から Vista への移行は、新しい API、テクノロジ、および既存の API の変更の開発において大きな飛躍を示しました。このため、NT 5.x と NT 6.x システム間で同じレベルの互換性を実現することは困難です。</h4>
+> <h4>Windows XP/2003 から Vista への移行は、新しい API、テクノロジ、および既存の API の修正の開発において大きな飛躍を示しました。このため、NT 5.x と NT 6.x システム間で同じレベルの互換性を実現することは困難です。</h4>
 >
 > 落ち着いて慎重に行動してください。
 > ソフトウェアに欠陥がある、または「品質が悪い」と結論付ける前に、<b>Github Issues または [Discord サーバー](https://discord.gg/eRcGuFtn6p) を通じて、遭遇した問題を報告してください</b>。
@@ -66,62 +52,182 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 > すべての問題が解決されることを保証することはできませんのでご了承ください。ただし、私はそれらを分析して修正するために全力を尽くします。
 >
 > あなたの協力は貴重なものであり、苦情や否定的なフィードバックは製品の改善に寄与しません。
+> BSOD（ブルースクリーンエラー）防止のため、x86パッケージはx86（標準）、x86 AVX（Mox AxのAVXパッチ適用済み）、x86 PAEの3種類に分割されました。最も安定しているのはx86標準です。AVX パッチは、アプリケーションに AVX サポートを提供し、新しいインストーラーでのクラッシュを防止します (XP x86 SP3 でのみ使用可能)。PAEバージョンは128GBのRAMをサポートしますが、BSODが発生する場合があります。ご使用の際はご注意ください。自己責任でお願いいたします。
+
+## One-Core-API をインストールするにはどうすればいいですか?
+One-Core-API は、Windows NT 5.x まで使用されていたホットフィックスのインストール技術を採用しています。そのため、サービスパックのインストールと非常によく似ていることがわかります。[Release](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) セクションにアクセスし、テストしたいバージョンを選択して、圧縮ファイル (.zip) をダウンロードしてください。ダウンロード後、ファイルを解凍すると、x86, x86 with AVX patch, x86 with PAE support and x64 の 4 つの zip ファイルがあります。各フォルダ内には、One-Core-API-Pack.exe という名前の実行ファイルがあります。このファイルをダブルクリックし、インストール手順に従ってください。基本的には、「次へ」を選択し、「ライセンスに同意する」を選択して「次へ」をクリックし、「完了」をクリックします。とても簡単です。
+
+<details>
+  <summary>画像付きステップバイステップガイド</summary>
+
+  **ダウンロード:**
+  ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+
+  **展開:**
+  ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+
+  **展開したコンテンツを開き、アーキテクチャを選択してください。ロゴにx64が表示されていない場合は、x86です**
+  ![image](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+
+  **実行ファイルをダブルクリックします:**
+  ![image](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+
+  **次へ:**
+  ![image](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+
+  **同意して次へ:**
+  ![image](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+
+  **終わるまで待つ:**
+  ![image](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+
+  **完了　楽しんでください！**
+  ![image](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+
+</details>
+
+## One-Core-API をアンインストールするにはどうすればいいですか?
+
+前述の通り、One-Core-API は Windows NT ファミリーのバージョン 5.x までの Hotfix インストールテクノロジを使用しています。そのため、アンインストールするには、「コントロール パネル」→「プログラムの追加と削除」に移動し、「更新プログラムの表示」オプションを選択する必要があります。このオプションを選択すると、One-Core-API を含むいくつかの更新プログラムが表示されます（インストールされている場合）。One-Core-API が表示されるまでウィンドウを下にスクロールし、それをクリックすると「削除」ボタンが表示されます。ボタンをクリックし、アンインストール手順（基本的には「次へ」→「完了」）に従います。
+<details>
+  <summary>画像付きステップバイステップガイド</summary>
+  
+  **コントロールパネルを開く:**
+  ![image](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+
+  **プログラムの追加と削除をクリックする:**
+  ![image](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+
+  **"更新プログラムの表示"にチェックを入れる:"**
+  ![image](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+
+  **アップデートが表示されます。One-Core-APIが表示されるまで下にスクロールしてください。:**
+  ![image](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+
+  **One-Core-API Pack をクリックし、削除ボタンをクリックします:**
+  ![image](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+
+ **アンインストール用のウィンドウが表示されます。「次へ」をクリックしてください。**
+  ![image](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+
+  **終わるまで待つ:**
+  ![image](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+
+  **「完了」をクリックすると、Windowsが再起動します。**
+  ![image](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+</details>
+
+</details>
 
 ## アプリケーションの互換性
-- JetBrains IDE 最新リリース (2024) まで;
-- Android Studio 最新バージョンまで;
-- NetBeans 最新バージョンまで;
-- Eclipse IDE 最新バージョンまで
-- Adob​​e 製品 (Photoshop、Illustrator、Dreamweaver など) 2019 バージョンまで;
-- Filezilla (最新バージョン);
-- LibreOffice 24.0.x (最新バージョン);
-- Discord 0.309.0;
-- Legocord (Discord フォーク) 最新版;
-- Visual Studio 2012 および Visual Studio 2013;
-- Visual Studio Code (および Codium などのフォーク) 最新バージョンまで;
-- Chromium ブラウザー (Chrome、Opera、Edge など) 最新バージョンまで;
-- Gecko ベース (Firefox、Zen Browser) 最新バージョンまで (ただし、YouTube は Firefox バージョン 130 までしか動作しません);
-- Seamonkey バージョン 2.53.10 まで;
-- Thunderbird 最新バージョンまで;
-- Maxthon バージョン 7.1.6 まで;
-- Vivaldi 最新バージョンまで;
-- JDK 1.8 (現時点では Windows XP x64 のみ);
-- Java JDK および代替 JDK または OpenJDK バージョン 24 まで (他のバージョンも動作する可能性があります)。次の場所からダウンロードできます: https://bell-sw.com/pages/downloads/#/java-11-lts;
-- Epic Browser 120;
-- Python 3.6 (3.8/3.9 も動作する可能性がありますが、[mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) バージョンのみ);
-- .Net Framework バージョン 4.8 まで;
-- .NET 6.0;
-- Geekbench 4.2;
-- Performance Test;
-- Adob​​e Reader DC (2024 年まで);
-- Foxit PDF Reader (2023);
-- Windows 7 ゲーム;
-- Windows 7 ペイント;
-- Windows 7 ワードパッド;
-- Windows Vista のネイティブ アプリケーション;
-- Windows 7 および Windows 10 用の Spotify;
-- Line;
-- Zoom;
-- Node 10.24;
-- Telegram Desktop;
-- Winrar 7.0 (最新);
-- Postman;
-- Insomnia;
-- Dbeaver;
-- TeamViewer 14;
-- Directx 9EX、10、および 11 ゲーム:
-- Need for Speed Most Wanted 2012;
-- Need for Speed The Run;
-- Street Fighter V;
-- Injustice: Gods Among Us;
-- Assassin's Creed Black Flag;
-- Crysis 1、2、および 3 (directx 10-11 モード);
-- GTA Trilogy;
-- GTA V;
-- Minecraft 1.21.x;
-- バイオハザード 5 dx10 モード;
-- Lost Planet;
-- kate 23.08.1;
+
+<details>
+  <summary>ブラウザーとeメールクライアント</summary>
+  
+  - Chromium ブラウザ (Chrome, Opera, Edge, and others) 最新バージョンまで
+  - バージョン109までのChromeインストーラー（Windows 10用は未対応）
+  - Gecko ベース（Firefox、Zen Browser）の最新バージョンまで（ただし、YouTube は Firefox バージョン 130 までしか動作しません）;
+  - Seamonkey バージョン 2.53.10 まで;
+  - Maxthon バージョン 7.1.6 まで
+  - Vivaldi 最新バージョンまで;
+  - Epic Browser 120
+  - Thunderbird 最新バージョンまで
+
+</details>
+
+<details>
+  <summary>メッセンジャーやその他のコミュニケーションプログラム</summary>
+  
+  - Discord 0.309.0;
+  - Legocord (Discord のフォーク) 最新版;
+  - Telegram Desktop;
+  - Line;
+  - Zoom;
+  - Filezilla (最新バージョン);
+  - TeamViewer 14
+</details>  
+
+<details>
+  <summary>Office アプリ</summary>
+
+  - LibreOffice 24.0.x (最新バージョン);
+  - Adobe Reader DC (2024まで);
+  - Foxit PDF Reader (2023)
+
+</details>
+
+<details>
+  <summary>IDEとプログラミング言語</summary>
+
+  - JetBrains IDE の最新リリース (2024)
+  - Visual Studio 2012 と Visual Studio 2013;
+  - Eclipse IDE 最新バージョンまで;
+  -  Visual Studio Code (および Codium などのフォーク) の最新バージョン;
+  - Android Studio 最新バージョンまで;
+  - NetBeans 最新バージョンまで;
+  - Python 3.6 (3.8/3.9 でも動作する可能性がありますが、[mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) バージョンのみ)</details>
+
+<details>
+  <summary>Java</summary>
+  
+  - Java JDKおよび代替JDK、またはバージョン24までのOpenJDK（他のバージョンでも動作する可能性があります）。ダウンロードはこちら：https://bell-sw.com/pages/downloads/#/java-11-lts;
+  - JDK 1.8 (Windows XP x64 のみ)
+</details>
+
+<details>
+  <summary>Windows Vista/7 のネイティブ アプリ</summary>
+  
+  - Windows 7 ゲーム;
+  - Windows 7 ペイント;
+  - Windows 7 ワードパッド;
+  - Windows Vista のネイティブ アプリケーション
+</details>
+
+<details>
+
+  <summary>OpenGL, Directx 9EX, 10, & 11 ゲーム</summary>
+
+### 警告
+  
+> 現在、OCA はデフォルトで  Directx Native software レンダリングを使用します。
+>
+> DX10 以上のゲームを実行するには、`<あなたの環境のインストールレター>\Windows\System32\wined3d` 内のファイルをゲームのインストールディレクトリにコピーする必要があります。
+> そうしないと、ゲームが起動しないか、黒い画面が表示されます。
+
+  - Need for Speed Most Wanted 2012;
+  - Need for Speed The Run;
+  - Street Fighter V;
+  - Injustice: Gods Among Us;
+  - Assassin's Creed Black Flag;
+  - Crysis 1, 2, and 3 (directx 10-11 mode);
+  - GTA Trilogy Definitive Edition;
+  - GTA V;
+  - Minecraft 1.21.x
+  - Resident Evil 5 dx10 mode;
+  - Lost Planet;
+  - Far Cry 4;
+  - Far Cry Primal;
+  - Tropico 5;
+  - Metro Last Night;
+  - Cuphead;
+  - Horizon Turbo
+</details>
+
+<details>
+  <summary>その他</summary>
+
+  - 2019 バージョンまでの Adobe 製品 (Photoshop、Illustrator、Dreamweaver など);
+  - .Net Framework 4.8まで;
+  - .NET 6.0
+  - Geekbench 4.2;
+  - Performance Test;
+  - Spotify for Windows 7 及び for Windows 10;
+  - Node 10.24;
+  - Winrar 7.0 (最新版);
+  - Postman
+  - Dbeaver
+  - Kate 23.08.1
+</details>
   
 ## 既知の制限
 - Firefox のバージョン 131 以降では Youtube は動作しません。そのため、バージョン 115 または 128 ESR の使用をお勧めします。
@@ -181,68 +287,84 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 ## ショーケース / 概念実証
 XP/Server 2003 で実行されているアプリケーションのスクリーンショット:
 
-**Minecraft 1.21**
-![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+<details>
+  <summary>ブラウザーとThunderbird</summary>
 
-**Chrome 132**
-![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
+  **Chrome 132**
+  ![image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
 
-**Edge 134 (Dev Preview)**
-![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
+  **Edge 134 (Dev Preview)**
+  ![image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
 
-**Opera 116**
-![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
+  **Opera 116**
+  ![image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
 
-**Firefox 122**
-![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
+  **Firefox 122**
+  ![Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
 
-**Thunderbird 132**
-![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
+  **Thunderbird 132**
+  ![image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
 
-**Basilisk**
-![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
+  **Basilisk**
+  ![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
 
-**Vivaldi**
-![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
+  **Vivaldi**
+  ![image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
+</details>
 
+<details>
+  <summary>ゲーム</summary>
+ 
+  **Microsoft Chess 3d**
+  ![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
 
-**Spotify (For Windows 7)**
-![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+  **Minecraft 1.21**
+  ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+</details>
 
-**Visual Studio Code 1.81**
-![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
+<details>
+  <summary>メッセンジャーやその他のコミュニケーションプログラム</summary>
 
-**Microsoft チェス 3d**
-![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
+  **Discord 0.309**
+  ![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
+  ![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
 
-**Telegram 4.14**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/73e13167-49b8-4282-81cb-969435046dde)
+  **Telegram Desktop**
+  ![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
 
-**Libre Office 24 (最新)**
-![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
-![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
+  **Zoom meeting**
+  ![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+</details>
 
-**Discord 0.309**
-![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
-![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
+<details>
+  <summary>ネイティブ Windows 7 アプリ</summary>
 
-**Telegram Desktop**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)
+  **Windows 7 付箋**
+  ![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
 
-**Zoom meeting**
-![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+  **Windows 7 ペイント**
+  ![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
 
-**Java 11**
-![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
+  **Windows 7 ワードパッド**
+  ![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+</details>
 
-**Avast と Chromium 68**
-![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
+<details>
+  <summary>その他</summary>
+  
+  **Spotify (For Windows 7)**
+  ![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
 
-**Windows 7 付箋**
-![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
+  **Visual Studio Code 1.81**
+  ![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
 
-**Windows 7 ペイント**
-![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
+  **Libre Office 24 (最新版)**
+  ![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
+  ![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
 
-**Windows 7 ワードパッド**
-![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+  **Java 11**
+  ![Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
+
+  **Avast と Chromium 68**
+  ![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
+</details>
