@@ -367,11 +367,11 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 
   **Windows 7 便笺**
   <!--[StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)-->
-![StickyNotes](https://github.com/user-attachments/assets/7c054125-7e3b-44c3-8827-8a9b3c45019e)
+  ![StickyNotes](https://github.com/user-attachments/assets/7c054125-7e3b-44c3-8827-8a9b3c45019e)
 
   **Windows 7 画画**
   <!--[Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)-->
-![Paint](https://github.com/user-attachments/assets/c31795d0-3048-41a5-9369-f43c3be954bc)
+  ![Paint](https://github.com/user-attachments/assets/c31795d0-3048-41a5-9369-f43c3be954bc)
 
   **Windows 7 写字板**
   <!--[Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)-->
@@ -388,17 +388,17 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 
   **Visual Studio Code 1.81**
   <!--[VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)-->
-![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
+  ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
 
   **Libre Office 24 (最新版本)**
   <!--[LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)-->
   <!--[Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)-->
-![LibreOffice](https://github.com/user-attachments/assets/5889f230-ff40-43a5-be40-b31a37e3cc5e)
-![Writer-LibreOffice](https://github.com/user-attachments/assets/aadefdc3-d9f5-46f3-a52b-db8f62ccc1ec)
+  ![LibreOffice](https://github.com/user-attachments/assets/5889f230-ff40-43a5-be40-b31a37e3cc5e)
+  ![Writer-LibreOffice](https://github.com/user-attachments/assets/aadefdc3-d9f5-46f3-a52b-db8f62ccc1ec)
 
   **Java 11**
   <!--[Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)-->
-![Capturar](https://github.com/user-attachments/assets/da6e74fb-cba7-4364-925e-c29897276b65)
+  ![Capturar](https://github.com/user-attachments/assets/da6e74fb-cba7-4364-925e-c29897276b65)
 
   **Avast 和 Chromium 68**
   <!--[Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)-->
