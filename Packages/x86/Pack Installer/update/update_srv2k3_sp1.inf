@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.2-hotfix"    
+    BASE_VERSION              = "4.0.3"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2437,65 +2437,8 @@
 	HKLM,"SYSTEM\CurrentControlSet\Services\TrustedInstaller\Security","Security",0x1,01,00,14,90,90,00,00,00,a0,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,01,00,00,00,02,c0,18,00,00,00,0c,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,02,00,5c,00,04,00,00,00,00,02,14,00,ff,01,0f,00,01,01,00,00,00,00,00,05,12,00,00,00,00,00,18,00,ff,01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,04,00,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,06,00,00,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00
 
 	;Fonts Reg to update system fonts
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Roman (All res)",0x0,"ROMAN.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Script (All res)",0x0,"SCRIPT.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Modern (All res)",0x0,"MODERN.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)",0x0,"SMALLE.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial (TrueType)",0x0,"ARIAL.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold (TrueType)",0x0,"ARIALBD.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Bold Italic (TrueType)",0x0,"ARIALBI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Italic (TrueType)",0x0,"ARIALI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New (TrueType)",0x0,"COUR.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold (TrueType)",0x0,"COURBD.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Bold Italic (TrueType)",0x0,"COURBI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier New Italic (TrueType)",0x0,"COURI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Console (TrueType)",0x0,"LUCON.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Lucida Sans Unicode (TrueType)",0x0,"L_10646.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman (TrueType)",0x0,"TIMES.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold (TrueType)",0x0,"TIMESBD.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Bold Italic (TrueType)",0x0,"TIMESBI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Times New Roman Italic (TrueType)",0x0,"TIMESI.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WingDings (TrueType)",0x0,"WINGDING.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol (TrueType)",0x0,"SYMBOL.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Symbol 8,10,12,14,18,24 (VGA res)",0x0,"SYMBOLE.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana (TrueType)",0x0,"verdana.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold (TrueType)",0x0,"verdanab.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Italic (TrueType)",0x0,"verdanai.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Verdana Bold Italic (TrueType)",0x0,"verdanaz.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Arial Black (TrueType)",0x0,"ariblk.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS (TrueType)",0x0,"comic.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Comic Sans MS Bold (TrueType)",0x0,"comicbd.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Impact (TrueType)",0x0,"impact.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia (TrueType)",0x0,"georgia.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold (TrueType)",0x0,"georgiab.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Bold Italic (TrueType)",0x0,"georgiaz.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Georgia Italic (TrueType)",0x0,"georgiai.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium (TrueType)",0x0,"Framd.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Franklin Gothic Medium Italic (TrueType)",0x0,"Framdit.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype (TrueType)",0x0,"pala.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold (TrueType)",0x0,"palab.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Bold Italic (TrueType)",0x0,"palabi.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Palatino Linotype Italic (TrueType)",0x0,"palai.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma Bold (TrueType)",0x0,"tahomabd.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS (TrueType)",0x0,"trebuc.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold (TrueType)",0x0,"trebucbd.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Bold Italic (TrueType)",0x0,"trebucbi.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Trebuchet MS Italic (TrueType)",0x0,"trebucit.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Webdings (TrueType)",0x0,"webdings.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Estrangelo Edessa (TrueType)",0x0,"estre.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Gautami (TrueType)",0x0,"gautami.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Latha (TrueType)",0x0,"latha.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mangal (TrueType)",0x0,"mangal.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Mv Boli (TrueType)",0x0,"mvboli.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Raavi (TrueType)",0x0,"raavi.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Shruti (TrueType)",0x0,"shruti.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tunga (TrueType)",0x0,"tunga.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Sylfaen (TrueType)",0x0,"sylfaen.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)",0x0,"COURE.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)",0x0,"SSERIFE.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)",0x0,"SERIFE.FON"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Tahoma (TrueType)",0x0,"TAHOMA.TTF"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Microsoft Sans Serif (TrueType)",0x0,"MICROSS.TTF"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe MDL2 Assets (TrueType)",0x0,"segmdl2.ttf"
+	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Fluent Icons (TrueType)",0x0,"SegoeIcons.ttf"
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Marker (TrueType)",0x0,"SegoeMarker.ttf"
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print (TrueType)",0x0,"segoepr.ttf"
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe Print Bold (TrueType)",0x0,"segoeprb.ttf"
@@ -2510,13 +2453,9 @@
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Emoji (TrueType)",0x0,"seguiemj.ttf"
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Semibold (TrueType)",0x0,"seguisb.ttf"
 	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","Segoe UI Symbol (TrueType)",0x0,"seguisym.ttf"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Czec",0x0,"wst_czec.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Engl",0x0,"wst_engl.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Fren",0x0,"wst_fren.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Germ",0x0,"wst_germ.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Ital",0x0,"wst_ital.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Span",0x0,"wst_span.fon"
-	HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts","WST_Swed",0x0,"wst_swed.fon"	
+
+    ;IconCodecService to convert PNG icons into Bitmap Icons
+    HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows","IconServiceLib",0x0,"IconCodecService.dll"	
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
@@ -2771,8 +2710,10 @@
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
     kseext.sys, drivers\kseext.sys
+    ndis.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ndis.sys 	
     ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ntoskrn8.sys	
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
+    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys  
 
 [System32.Files]
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
@@ -2795,7 +2736,8 @@
     halapic.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halapic.dll    
     halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll    
     halmps.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmps.dll
-    kernel32.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
+    imm32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%imm32.dll    
+	kernel32.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     loadperf.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%loadperf.dll	
     msvcrt.dll,base\msvcrt.dll	
     ntdll.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntdll.dll
@@ -2874,7 +2816,6 @@
     wintrust.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wintrust.dll
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ws2_base.dll
     wshtcpip.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wshtcpip.dll
-    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%xpsp2res.dll
 
 [CoreOS.SPFiles.System32.Files]
     advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
@@ -2947,8 +2888,11 @@
     fileextd.dll,base\fileextd.dll
     fntcache.dll,base\fntcache.dll
     framedynos.dll,base\framedynos.dll 
+    IconCodecService.dll,base\IconCodecService.dll 
     idndl.dll,base\idndl.dll
+    libpng.dll,base\libpng.dll
     msctfime.ime,base\msctfime.ime	
+    msisip.dll,base\msisip.dll	
     msvcp60.dll,base\msvcp60.dll	
     ;mscoree.dll ;comment becuase if copied, must be set HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft.NETFramework\InstallRoot too, however, we don't know Windows drive letter installation. 
     ncrypt.dll,base\ncrypt.dll	
@@ -3073,7 +3017,7 @@
     browcli.dll,additionaldlls\browcli.dll
     cabiext.dll,additionaldlls\cabiext.dll
     cardgames.dll,additionaldlls\cardgames.dll        
-    COLORCNV.dll,additionaldlls\COLORCNV.dll
+    COLORCNV.dll,additionaldlls\MF\COLORCNV.dll
     connect.dll,additionaldlls\connect.dll
     cryptsp.dll,additionaldlls\cryptsp.dll
     cryptxml.dll,additionaldlls\cryptxml.dll
@@ -3086,7 +3030,7 @@
     dxva2.dll,additionaldlls\dxva2.dll
     eappcfg.dll,additionaldlls\eappcfg.dll
     eappprxy.dll,additionaldlls\eappprxy.dll    
-    evr.dll,additionaldlls\evr.dll
+    evr.dll,additionaldlls\MF\evr.dll
     expand.exe,additionaldlls\expand.exe
     explorerframe.dll,additionaldlls\explorerframe.dll
     FirewallAPI.dll,additionaldlls\FirewallAPI.dll    
@@ -3104,29 +3048,31 @@
     logoncli.dll,additionaldlls\logoncli.dll
     lsalookup.dll,additionaldlls\lsalookup.dll
     Magnification.dll,additionaldlls\Magnification.dll
-    mf.dll,additionaldlls\mf.dll
-    mfAACEnc.dll,additionaldlls\mfAACEnc.dll
-    mfds.dll,additionaldlls\mfds.dll
-    mfdvdec.dll,additionaldlls\mfdvdec.dll
-    mfh264enc.dll,additionaldlls\mfh264enc.dll
-    mfmjpegdec.dll,additionaldlls\mfmjpegdec.dll	
-    mfplat.dll,additionaldlls\mfplat.dll
-    MFPlay.dll,additionaldlls\MFPlay.dll
-    mfps.dll,additionaldlls\mfps.dll
-    mfreadwrite.dll,additionaldlls\mfreadwrite.dll
-    mfvdsp.dll,additionaldlls\mfvdsp.dll
-    MFWMAAEC.dll,additionaldlls\MFWMAAEC.dll
+    mfc42.dll,additionaldlls\mfc42.dll
+    mfc42u.dll,additionaldlls\mfc42u.dll
+    mf.dll,additionaldlls\MF\mf.dll
+    mfAACEnc.dll,additionaldlls\MF\mfAACEnc.dll
+    mfds.dll,additionaldlls\MF\mfds.dll
+    mfdvdec.dll,additionaldlls\MF\mfdvdec.dll
+    mfh264enc.dll,additionaldlls\MF\mfh264enc.dll
+    mfmjpegdec.dll,additionaldlls\MF\mfmjpegdec.dll	
+    mfplat.dll,additionaldlls\MF\mfplat.dll
+    MFPlay.dll,additionaldlls\MF\MFPlay.dll
+    mfps.dll,additionaldlls\MF\mfps.dll
+    mfreadwrite.dll,additionaldlls\MF\mfreadwrite.dll
+    mfvdsp.dll,additionaldlls\MF\mfvdsp.dll
+    MFWMAAEC.dll,additionaldlls\MF\MFWMAAEC.dll
     milcore.dll,additionaldlls\milcore.dll
     milmagn.dll,additionaldlls\milmagn.dll
     mlang.dll,additionaldlls\mlang.dll
     mmdevapi.dll,additionaldlls\mmdevapi.dll
     mscms.dll,additionaldlls\mscms.dll
-    msdrm.dll,additionaldlls\msdrm.dll
+    msdrm.dll,additionaldlls\MF\msdrm.dll
     mshtmlmedia.dll,additionaldlls\mshtmlmedia.dll
     msidcrl30.dll,additionaldlls\msidcrl30.dll
-    msmpeg2adec.dll,additionaldlls\msmpeg2adec.dll
-    MSMPEG2ENC.dll,additionaldlls\MSMPEG2ENC.dll
-    msmpeg2vdec.dll,additionaldlls\msmpeg2vdec.dll
+    msmpeg2adec.dll,additionaldlls\MF\msmpeg2adec.dll
+    MSMPEG2ENC.dll,additionaldlls\MF\MSMPEG2ENC.dll
+    msmpeg2vdec.dll,additionaldlls\MF\msmpeg2vdec.dll
     mspatcha.dll,additionaldlls\mspatcha.dll
     msvcrt.dll,base\msvcrt.dll	
     ndfapi.dll,additionaldlls\ndfapi.dll
@@ -3145,8 +3091,8 @@
     puiapi.dll,additionaldlls\puiapi.dll        
     pwrshplugin.dll,additionaldlls\pwrshplugin.dll   
     qwave.dll,additionaldlls\qwave.dll        
-    resampledmo.dll,additionaldlls\resampledmo.dll
-    rgb9rast.dll,additionaldlls\rgb9rast.dll
+    resampledmo.dll,additionaldlls\MF\resampledmo.dll
+    rgb9rast.dll,additionaldlls\MF\rgb9rast.dll
     RstrtMgr.dll,additionaldlls\RstrtMgr.dll
     rtworkq.dll,additionaldlls\rtworkq.dll
     samcli.dll,additionaldlls\samcli.dll
@@ -3192,7 +3138,7 @@
     wlanui.dll,additionaldlls\wlanui.dll
     wlanutil.dll,additionaldlls\wlanutil.dll
     wldp.dll,additionaldlls\wldp.dll
-    WMDRMSDK.DLL,additionaldlls\WMDRMSDK.DLL
+    WMDRMSDK.DLL,additionaldlls\MF\WMDRMSDK.DLL
     wmphoto.dll,additionaldlls\wmphoto.dll
     wmsgapi.dll,additionaldlls\wmsgapi.dll
     wpc.dll,additionaldlls\wpc.dll
@@ -3282,6 +3228,8 @@
     branding\ShellBrd\shellbrd.dll, branding\MediaCenter\branding\ShellBrd\shellbrd.dll
     
 [Fonts.files]
+	segmdl2.ttf,fonts\segmdl2.ttf
+	SegoeIcons.ttf,fonts\SegoeIcons.ttf
 	SegoeMarker.ttf,fonts\SegoeMarker.ttf
 	segoepr.ttf,fonts\segoepr.ttf
 	segoeprb.ttf,fonts\segoeprb.ttf
