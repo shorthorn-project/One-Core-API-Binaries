@@ -8,12 +8,18 @@
 ---
 
 **Language:**
-[English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
+[English](README.md) | [简体中文](README_CN.md) | [繁體中文](README_CHT.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
 
 ---
 
 **This repository contains binary releases of the One-Core-API project. These are compatible with Windows Server 2003 RTM, SP1 and SP2, Windows XP RTM, SP1, SP2 and SP3 and Windows XP
-x64 SP1/SP2. However, it is highly recommended to use the system with its latest Service Pack update and all available updates.**
+x64 SP1/SP2. However, it is highly recommended to use the system with its latest Service Pack update and all available updates.**  
+
+> [!WARNING]  
+> Now, OCA use Directx Native software render by default.
+>
+> For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
+> Otherwise, the game will fail to start or get a black screen!
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
@@ -48,7 +54,6 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 
 ## Main Features
 
-- **Increase memory support for 128 GB for x86 and 2 TB for x64 by default;**
 - **Allow support for run newer programs designed for modern Windows OS;**
 - **Allow support for new hardware with new drivers controllers;**
 - **Multi-language support for all Windows XP and Windows Server 2003 supported languages;**
@@ -65,10 +70,12 @@ Warning: Always if OCA package require restart, do it. If you install all packag
 > Please note that I cannot guarantee that all issues will be resolved. However, I will analyze them and make every effort to correct them.
 >
 > Your help is valuable, and complaints or negative feedback do not contribute to the improvement of the product.
+>
+> Due to prevent BSOD, the packages x86 now separted in three types: x86 (standard), x86 AVX (with AVX patch from Mox Ax) and x86 PAE. THe most stable is x86 standard. AVX patckaeg provide avx support for applications, preventing crash in new installers (only avaliable for XP x86 SP3). And PAE version provide 128gb RAM support, however, can cause several BSOD. Be careful and the use is by your risk;
 
 ## How to install One-Core-API?
 
-The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are two folders, one for each supported platform: x64 and x86. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
+The One-Core-API uses the hotfix installation technology used up to Windows NT 5.x. In this way, you will notice that it is very similar to the installation of a Service Pack. You should go to the [Releases](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) section, choose the version you want to test and download the zipped file (.zip). After downloading, unzip the file and you will see that there are four zip files, for x86, x86 with AVX patch, x86 with PAE support and x64. Inside each folder, there will be an executable file with the name: One-Core-API-Pack.exe. Double-click on this file and follow the installation steps, which are basically: "Next, select accept the license, Next and finish". It's that simple.
 
 <details>
   <summary>Step by step guide with images</summary>
@@ -201,6 +208,12 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 <details>
 
   <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
+
+  ### WARNING!
+  > Now, OCA use Directx Native software render by default.
+  >
+  > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
+  > Otherwise, the game will fail to start or get a black screen!
 
   - Need for Speed Most Wanted 2012;
   - Need for Speed The Run;

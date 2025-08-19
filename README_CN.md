@@ -1,18 +1,30 @@
 <div align="center">
   <a href="https://github.com/shorthorn-project/One-Core-API-Binaries/releases">
-    <img src="Assets/banner.png" width="100%" height="auto" alt="本项目的横幅。背景是经过模糊处理的 Windows XP 默认壁纸“Bliss”，能够看出蓝天和草地。横幅中部从左到右依次为 Windows XP 徽标，“OneCoreAPI”字样和 Windows 10 徽标。横幅下部有一行小字道：“欢迎来到 One-Core-API 项目的二进制发行仓库！”（注：点击该横幅可以进入发行版页面）">
+    <img src="Assets/banner.jpg" width="100%" height="auto" alt="本项目的横幅。背景是经过模糊处理的 Windows XP 默认壁纸“Bliss”，能够看出蓝天和草地。横幅中部从左到右依次为 Windows XP 徽标，“OneCoreAPI”字样和 Windows 10 徽标。横幅下部有一行小字道：“欢迎来到 One-Core-API 项目的二进制发行仓库！”（注：点击该横幅可以进入发行版页面）">
   </a>
   <h6>特别感谢 @pashtetusss777 设计的横幅</h6>
 </div>
 
 ***
 **语言:**    
-[English](README.md) | [简体中文](README_CN.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
+[English](README.md) | [简体中文](README_CN.md) | [繁體中文](README_CHT.md) | [Русский](README_RU.md) | [Українська](README_UK.md) | [日本語](README_JP.md) | [Português-Brasil](README_BR.md)
 
-**这份中文自述由 [Mike Wang](https://github.com/Diamochang) 贡献。由于翻译底稿系深度求索 [DeepSeek R1 671B](https://github.com/deepseek-ai/DeepSeek-R1) 生成，尽管经过人工校对和修改，但难免有遗漏或错误。如有建议，可以在创建相关 Issue 或 PR 时在描述中 @ 他。**
-***
+<details>
+  <summary>关于中文自述（README_CN.md）</summary>
 
-**本仓库包含 One-Core-API 项目的二进制发行版，兼容 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3 及 Windows XP x64 SP1/SP2。强烈建议使用最新 SP（服务包）和所有可用更新的系统。**
+- **最初的旧版中文自述由 [Coconutat](https://github.com/Coconutat) 贡献。**
+- **[結束バンドbocchi](https://github.com/jonm58) 维护了旧版中文自述，现在不定期维护新版中文自述**
+- **新版中文自述由 [Mike Wang](https://github.com/Diamochang) 贡献。由于翻译底稿系深度求索 [DeepSeek R1 671B](https://github.com/deepseek-ai/DeepSeek-R1) 生成，尽管经过人工校对和修改，但难免有遗漏或错误。如有建议，可以在创建相关 Issue 或 PR 时在描述中 @ 他。**
+</details>
+
+**本仓库包含 One-Core-API 项目的二进制发行版，兼容 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3 及 Windows XP x64 SP1/SP2。强烈建议使用最新 SP（服务包）和所有可用更新的系统。** **警告！**
+  现在，OCA 默认使用 Directx Native 软件渲染。要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装目录。否则，游戏将无法启动或黑屏！
+
+> [!WARNING]
+> OCA 默认使用原生 DirectX 软件渲染.
+>
+> 要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装目录。
+> 否则，游戏将无法启动或黑屏！
 
 <!-- **官方 Discord 服务器**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
@@ -26,28 +38,34 @@
 - [仓库结构](#仓库结构)
 - [扩展信息与链接](#扩展信息与链接)
   - [官方 Discord 服务器](#官方-discord-服务器)
-- [效果展示](#效果展示)
+- [效果展示和概念验证](#效果展示和概念验证)
 
 ## 核心功能
-- **默认支持 x86 系统 128 GB 内存和 x64 系统 2 TB 内存**
 - **支持通过设置兼容性模式运行为现代 Windows 系统设计的新程序**
-- **支持搭载新硬件控制器驱动的现代硬件**
+- **支持新硬件和新硬盘控制器的现代驱动**
 - **全面支持 Windows XP 和 Windows Server 2003 的所有语言版本**
 
 ### 使用前须知
-- 本软件使用了来自各系统的修改文件，包含尚处于测试或实验阶段的内容，且**由作者一个人开发维护**。由于不同计算机配置或虚拟环境的复杂性，无法预测所有可能场景。
 
-- **从 Windows XP / Server 2003 到 Vista 的过渡带来了大量新 API、技术革新和现有 API 的调整，这使得在 NT 5.x 与 NT 6.x 系统间实现完全兼容极具挑战。**
-
-- 希望你保持冷静与谨慎，践行开源精神。在判定软件存在缺陷或“质量低劣”之前，**请通过 [GitHub Issues](https://github.com/Shorthorn-project/One-Core-API-Binaries/issues) 或 [Discord 服务器](https://discord.gg/eRcGuFtn6p)** 反馈问题。
-
-- 请注意，我无法保证解决所有问题，但会认真分析并尽力修复。你的帮助至关重要，抱怨与负面评价无益于项目改进。
+> 该软件使用了各系统的修改文件，还包括仍处于测试或实验阶段的文件，<b>由一人开发</b>。因此，预测各种计算机配置或虚拟机中可能出现的所有情况是不可行的。
+>
+> <h4>Windows XP/2003 和 Vista 之间的过渡标志着新 API、技术开发和现有 API 修改方面的重大飞跃。这使得在 NT 5.x 和 NT 6.x 系统之间实现同等程度的兼容性具有挑战性。</h4>
+>
+> 我恳请您保持冷静和谨慎。
+> 在得出软件有缺陷或 "质量差 "的结论之前，<b>请通过 Github Issues 或 [Discord 服务器](https://discord.gg/eRcGuFtn6p)</b>报告您遇到的任何问题。
+>
+> 请注意，我不能保证所有问题都能得到解决。但是，我会分析这些问题，并尽一切努力予以纠正。
+>
+> 您的帮助是宝贵的，投诉或负面反馈无助于产品的改进。
+>
+> 为了防止 BSOD，x86 软件包现在分为三种类型：x86（标准）、x86 AVX（使用来自 Mox Ax 的 AVX 补丁）和 x86 PAE。最稳定的是 x86 标准。AVX 补丁为应用程序提供 AVX 支持，防止新安装程序崩溃（仅适用于 XP x86 SP3）。PAE 版本提供 128GB RAM 支持，但会导致多次 BSOD。请谨慎使用，风险自负；
 
 ## 如何安装 One-Core-API？
 
-One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安装过程与服务包更新类似。请前往[发行版](https://github.com/shorthorn-project/One-Core-API-Binaries/releases)页面选择版本并下载压缩包（`.zip`）。解压后可见按平台分类的 `x64` 和 `x86` 文件夹，内含 `One-Core-API-Pack.exe` 安装程序。双击运行并按向导指引操作即可（下一步 -> 接受协议 -> 完成）。
+One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安装过程与服务包更新类似。请前往 [发行版](https://github.com/Shorthorn-project/One-Core-API-Binaries/releases) 页面选择版本并下载压缩包（`.zip`）。下载完成后，解压文件，你会看到有四个压缩文件，分别是 x86、x86（含 AVX 补丁）、x86（含 PAE 支持）和 x64。每个文件夹中都有一个可执行文件，名为 One-Core-API-Pack.exe。双击运行并按向导指引操作即可（下一步 -> 接受协议 -> 完成）。
 
-### 图解
+<details>
+  <summary>图解</summary>
 
 1. **下载示例：**
 ![含有 One-Core-API 压缩包的 Windows XP 桌面。](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
@@ -73,11 +91,14 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 8. **完成安装并重启：**
 ![One-Core-API 安装向导完成页。](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
 
+</details>
+
 ## 如何卸载 One-Core-API？
 
-通过控制面板的更新管理功能卸载：打开 **控制面板 -> 添加/删除程序**，勾选 **“显示更新”**，在列表中找到“One-Core-API Pack”并点击 **“删除”** 按钮，按向导指引操作即可。
+如前所述，One-Core-API 使用的是 Windows NT 系列 5.x 以下版本的热修复安装技术。因此，要卸载它，必须进入**控制面板 -> 添加/删除程序**，然后勾选 **“显示更新”** 选项。选择该选项后，将显示多个更新（如果已安装），其中包括 One-Core-API。向下滚动窗口，直到显示 One-Core-API，然后点击它。这时会出现一个 **“删除”** 按钮。点击该按钮，然后按照卸载步骤进行操作（基本上是 “下一步”->“完成”）。
 
-### 图解
+<details>
+  <summary>图解</summary>
 
 1. **打开控制面板：**
 ![Windows XP 控制面板首页。](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
@@ -103,49 +124,84 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 8. **完成卸载并重启：**
 ![One-Core-API 卸载向导完成页。](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
 
+</details>
+
 ## 应用程序兼容性
-- JetBrains IDE 全系列至最新版本（2024）
-- Android Studio 全系列至最新版本
-- NetBeans 全系列至最新版本
-- Eclipse IDE 全系列至最新版本
-- Adobe 系列产品（Photoshop / Illustrator / Dreamweaver 等）至 2019 版
-- FileZilla（最新版）
-- LibreOffice 24.0.x（最新版）
-- Discord 0.309.0
-- Legocord（Discord 分支）最新版
-- Visual Studio 2012 / 2013
-- Visual Studio Code（及 Codium 等分支）至最新版
-- Chromium 内核浏览器（Chrome / Opera / Edge 等）至最新版
-- Gecko 内核浏览器（Firefox / Zen Browser）至最新版（对于 Firefox，YouTube 仅支持至 130 版。北京谋智火狐开发的本地版本同样支持。）
-- Seamonkey 至 2.53.10 版
-- Thunderbird（雷鸟）至最新版
-- Maxthon 至 7.1.6 版
-- Vivaldi 至最新版
-- JDK 1.8（当前仅限 Windows XP x64）
-- Java JDK 及 OpenJDK 至 24 版（其他版本可能兼容），下载地址：https://bell-sw.com/pages/downloads/#/java-11-lts
-- Epic Browser 120
-- Python 3.6（3.8 / 3.9 需使用[修改版](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw)）
-- .NET Framework 至 4.8 版
-- .NET 6.0
-- Geekbench 4.2
-- Performance Test
-- Adobe Acrobat Reader DC（至 2024 版）
-- 福昕 PDF 阅读器至最新版
+
+<details>
+  <summary>浏览器和电子邮件客户端</summary>
+  
+  - 最新版本的 Chromium 浏览器（Chrome、Opera、Edge 和其他浏览器)
+  - 版本 109 的 Chrome 安装程序（暂不支持 Windows 10 版本）
+  - 基于 Gecko 的浏览器（Firefox、Zen 浏览器），最高支持到最新版本（不过，YouTube 只能支持到 Firefox 130 版本）；
+  - Seamonkey 2.53.10 以下版本；
+  - 傲游浏览器 7.1.6 以下版本；
+  - Vivaldi 最新版本；
+  - Epic 浏览器 120
+  - 雷鸟（Thunderbird）最新版本
+
+</details>
+
+<details>
+  <summary>信使和其他通讯程序</summary>
+
+  - Discord 0.309.0;
+  - Legocord (Discord 分支) 最新版本;
+  - Telegram Desktop;
+  - Line;
+  - Zoom;
+  - Filezilla (最新版本);
+  - TeamViewer 14
+</details> 
+
+<details>
+  <summary>办公软件</summary>
+
+  - LibreOffice 24.0.x (最新版本);
+  - Adobe Reader DC （至 2024 版）
+  - 福昕 PDF 阅读器 (最新版本)
+
+</details>
+
+
+<details>
+  <summary>IDE (集成开发环境) 和编程语言</summary>
+
+  - JetBrains IDE 最新版本（2024）；
+  - Visual Studio 2012 和 Visual Studio 2013；
+  - 最新版本的 Eclipse IDE；
+  - 最新版本的 Visual Studio Code（以及 Codium 等分叉）；
+  - 最新版本的 Android Studio；
+  - NetBeans 最新版本；
+  - Python 3.6（3.8/3.9 也可使用，但仅限 [mod](https://mega.nz/folder/KxExlAiC#L9rAQ5kTCtlHgZUwaxMpgw) 版本）
+</details>
+
+<details>
+  <summary>Java</summary>
+
+  - Java JDK 和替代 JDK 或 OpenJDK，最高版本为 24（其他版本可能也适用）。您可以从 https://bell-sw.com/pages/downloads/#/java-11-lts 下载；
+  - JDK 1.8（目前仅限 Windows XP x64）
+</details>
+
+<details>
+  <summary>来自 Windows Vista/7 的原生应用程序</summary>
+
 - Windows 7 原生游戏
 - Windows 7 画图
 - Windows 7 写字板
 - Windows Vista 原生应用
-- Windows 7 / 10 版 Spotify
-- LINE
-- Zoom
-- Node 10.24
-- Telegram Desktop
-- WinRAR 7.0（最新版）
-- Postman
-- Insomnia
-- DBeaver
-- TeamViewer 14
-- 支持 DirectX 9EX / 10 / 11 的游戏：
+</details>
+
+<details>
+
+  <summary>OpenGL、Directx 9EX、10、11 的游戏</summary>
+
+### WARNING!
+> OCA 默认使用原生 DirectX 软件渲染.
+>
+> 要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装目录。
+> 否则，游戏将无法启动或黑屏！
+
   - 极品飞车：最高通缉 2012
   - 极品飞车：亡命狂飙
   - 街头霸王 V
@@ -154,7 +210,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - 孤岛危机 1 / 2 / 3（DX10 - 11 模式）
   - GTA 三部曲最终版
   - GTA V
-  - 我的世界 1.21.x（非网易代理版）
+  - 我的世界 1.21.x
   - 生化危机 5（DX10 模式）
   - 失落的星球
   - 孤岛惊魂 4
@@ -162,17 +218,33 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - 海岛大亨 5
   - 地铁：最后的曙光
   - 茶杯头
-  - 追逐地平线（原文：Horizon Turbo）
-- Kate 23.08.1
+  - 追逐地平线Turbo（原文：Horizon Turbo）
+</details>
+
+<details>
+  <summary>其他</summary>
+
+  - Adobe 产品（Photoshop、Illustrator、Dreamweaver 等），最高到 2019 版本;
+  - .NET Framework 至 4.8 版;
+  - .NET 6.0
+  - Geekbench 4.2;
+  - Performance Test;
+  - 适用于 Windows 7 和 Windows 10 的 Spotify;
+  - Node 10.24;
+  - WinRAR 7.0（最新版）;
+  - Postman;
+  - Dbeaver;
+  - Kate 23.08.1
+</details>
 
 ## 已知限制
 - Firefox 131 及以上版本无法播放 YouTube，推荐使用 115 或 128 ESR 版
 - 部分安装程序可能失效（如某些 Electron 应用 / Microsoft Teams），Office 2013 或 GIMP 3.0 RC2 等安装时崩溃。部分安装程序需要 AVX 指令集支持（当前未实现），建议使用预装版本
-- 软件包无法通过 nlite 集成至 Windows ISO（使用 SFXCAB Substitute 非标准工具）
+- One-Core-API 无法通过 nlite 集成至 Windows ISO（使用 SFXCAB Substitute 非标准工具）
 - 标准版 .NET Framework 4.6 及以上安装程序暂不支持，需使用定制版本：
   - 参考：https://github.com/abbodi1406/dotNetFx4xW7
   - 下载：https://www.wincert.net/forum/topic/13805-microsoft-net-framework-472-full-x86x64-incl-language-packs-by-ricktendo/#comment-123251
-- PaleMoon 新版可能遭遇并行配置错误
+- PaleMoon 新版可能遭遇 Manifest 配置文件错误
 - Opera 39 - 50 需在快捷方式文件路径后添加以下参数才可稳定运行：`--disable-gpu`（防止黑屏）和 `--single-process`（解决页面加载卡顿）
 
 ## 提交问题前
@@ -221,67 +293,114 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 
 <b><a href="https://discord.gg/eRcGuFtn6p" style="font-size: 25px">https://discord.gg/eRcGuFtn6p</a></n>
 
-## 效果展示
+## 效果展示和概念验证
 以下是安装本软件后可以在开启兼容性模式的前提下于 XP / Server 2003 运行的部分应用程序截图。
 
-**Minecraft 1.21**
-![Minecraft 1.21](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+<details>
+  <summary>浏览器和雷鸟</summary>
 
-**Chrome 132**
-![Chrome 132](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)
+  **Chrome 132**
+  <!--[image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)-->
+  ![chrome132](https://github.com/user-attachments/assets/2ade35d4-5d3a-468a-ab1b-4c1167bfa458)
 
-**Edge 134（开发预览版）**
-![Edge 134 Dev](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)
+  **Edge 134 (开发预览版)**
+  <!--[image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)-->
+  ![edge134](https://github.com/user-attachments/assets/0af7efb2-ac33-4b4e-aef7-7879cd83c265)
 
-**Opera 116**
-![Opera 116](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)
+  **Opera 116**
+  <!--[image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)-->
+  ![Opera116](https://github.com/user-attachments/assets/00db4305-5af7-48b7-a83a-1acd60bf84e7)
 
-**Firefox 122**
-![Firefox 122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)
+  **Firefox 122**
+  <!--[Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)-->
+  ![firefox122](https://github.com/user-attachments/assets/eddee2c6-a16c-4ffc-bb96-8913a79f8af1)
 
-**Thunderbird 132**
-![Thunderbird 132](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)
+  **雷鸟 132**
+  <!--[image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)-->
+  ![email](https://github.com/user-attachments/assets/908369b4-c3e5-46f4-956c-c41f60cb07b2)
 
-**Basilisk**
-![image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)
+  **Basilisk**
+  <!--[image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)-->
+  ![basillsk](https://github.com/user-attachments/assets/0e1aebd5-3bab-4ff3-997a-4f1bf3669101)
 
-**Vivaldi 7.1**
-![Vivaldi 7.1](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)
+  **Vivaldi**
+  <!--[image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)-->
+  ![Vivaldi](https://github.com/user-attachments/assets/d78addc1-89a3-4d57-a1e3-c0305bea94df)
 
-**Spotify（Windows 7 版）**
-![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
+</details>
 
-**Visual Studio Code 1.81**
-![VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)
+<details>
+  <summary>游戏</summary>
+ 
+  **Microsoft 3D 国际象棋**
+  <!--[Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)-->
+  ![chess3d](https://github.com/user-attachments/assets/1201baf8-21fd-4040-abe1-1297aa7bcfbc)
 
-**Microsoft 3D 国际象棋**
-![Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)
+  **Minecraft 1.21**
+  <!--[image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)-->
+  ![mc1dot21](https://github.com/user-attachments/assets/47b1573e-ee04-4fce-a899-e0ebd9702dc4)
 
-**Telegram Desktop 4.14**
-![Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/73e13167-49b8-4282-81cb-969435046dde)
+</details>
 
-**LibreOffice 24（最新版）**
-![LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)
-![Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)
+<details>
+  <summary>信使和其他通讯程序</summary>
 
-**Discord 0.309**
-![Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)
-![Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)
+  **Discord 0.309**
+  <!--[Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)-->
+  <!--[Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)-->
+  ![discord-login](https://github.com/user-attachments/assets/bcc55fe8-bf97-475f-aaa8-90a3fa687639)
+  ![discord](https://github.com/user-attachments/assets/0c29fa3b-8dc0-4e0c-9f3f-f3f86858465e)
 
-**Zoom**
-![Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)
+  **Telegram Desktop**
+  <!--[Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)-->
+  ![Telegram-Desktop](https://github.com/user-attachments/assets/fc1ce6fc-b36d-45e8-aa0e-2a8787844134)
 
-**Java 11**
-![Java 11](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)
+  **Zoom meeting**
+  <!--[Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)-->
+  ![Zoom meeting](https://github.com/user-attachments/assets/513a6687-ebc4-41c7-8a88-c778f3b48095)
 
-**Avast 反病毒软件免费版与 Chromium 68**
-![Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)
+  
+</details>
 
-**Windows 7 便笺**
-![StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)
+<details>
+  <summary>原生 Windows 7 应用程序</summary>
 
-**Windows 7 画图**
-![Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)
+  **Windows 7 便笺**
+  <!--[StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)-->
+  ![StickyNotes](https://github.com/user-attachments/assets/7c054125-7e3b-44c3-8827-8a9b3c45019e)
 
-**Windows 7 写字板**
-![Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)
+  **Windows 7 画画**
+  <!--[Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)-->
+  ![Paint](https://github.com/user-attachments/assets/c31795d0-3048-41a5-9369-f43c3be954bc)
+
+  **Windows 7 写字板**
+  <!--[Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)-->
+  ![Wordpad](https://github.com/user-attachments/assets/e44c2a12-2e17-41ef-a6a7-9602259fbb15)
+
+</details>
+
+<details>
+  <summary>其他</summary>
+  
+  **Spotify (支持 Windows 7 的版本)**
+  <!--[Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)-->
+  ![Spotify-Windows7](https://github.com/user-attachments/assets/28a9fd1d-f31d-44b0-bf86-9db205720c82)
+
+  **Visual Studio Code 1.81**
+  <!--[VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)-->
+  ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
+
+  **Libre Office 24 (最新版本)**
+  <!--[LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)-->
+  <!--[Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)-->
+  ![LibreOffice](https://github.com/user-attachments/assets/5889f230-ff40-43a5-be40-b31a37e3cc5e)
+  ![Writer-LibreOffice](https://github.com/user-attachments/assets/aadefdc3-d9f5-46f3-a52b-db8f62ccc1ec)
+
+  **Java 11**
+  <!--[Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)-->
+  ![Capturar](https://github.com/user-attachments/assets/da6e74fb-cba7-4364-925e-c29897276b65)
+
+  **Avast 和 Chromium 68**
+  <!--[Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)-->
+  ![Avast](https://github.com/user-attachments/assets/7c897841-2840-45e5-8b86-7fc4482c723f)
+</details>
