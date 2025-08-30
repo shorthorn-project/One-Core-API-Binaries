@@ -235,6 +235,8 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - Postman;
   - Dbeaver;
   - Kate 23.08.1
+  - AIMP
+  - Foobar2000
 </details>
 
 ## 已知限制
