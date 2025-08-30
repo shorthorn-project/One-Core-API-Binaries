@@ -369,6 +369,12 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   **Spotify (支持 Windows 7 的版本)**
   ![Spotify-Windows7](https://github.com/user-attachments/assets/28a9fd1d-f31d-44b0-bf86-9db205720c82)
 
+  **AIMP**
+  ![AIMP](https://github.com/user-attachments/assets/2c6e8309-c83a-4a59-b576-e4ed37b5ce16)
+
+  **Foobar2000 v2.25 preview 2025-08-27**
+  ![foobar2000](https://github.com/user-attachments/assets/e71bba06-25d6-480d-84c2-ad6564306642)
+
   **Visual Studio Code 1.81**
   ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
 
