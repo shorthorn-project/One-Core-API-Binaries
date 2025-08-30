@@ -384,7 +384,7 @@ Some screenshots of Applicaions running on XP/Server 2003:
   ![Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)
 
   **AIMP**
-  ![AIMP](https://github.com/user-attachments/assets/2a5f7215-b7b9-4f42-8114-e230726a2ebf)
+<img width="1598" height="754" alt="AIMP" src="https://github.com/user-attachments/assets/2a5f7215-b7b9-4f42-8114-e230726a2ebf5" />
 
 **foobar2000 v2.25 preview 2025-08-27**
 <img width="1598" height="754" alt="foobar2000" src="https://github.com/user-attachments/assets/5324183a-6a4b-4fd8-ade9-d15e43b0b245" />
