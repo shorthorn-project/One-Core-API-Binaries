@@ -68,28 +68,28 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>图解</summary>
 
 1. **下载示例：**
-![含有 One-Core-API 压缩包的 Windows XP 桌面。](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+![含有 One-Core-API 压缩包的 Windows XP 桌面。](https://github.com/user-attachments/assets/27058d82-146c-4be4-84f7-ef1ff1bd656a)
 
 2. **解压文件：**
-![Windows XP 系统解压缩界面。](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+![Windows XP 系统解压缩界面。](https://github.com/user-attachments/assets/9db5dcd3-62f2-4d20-bd89-28b845a00b8d)
 
 3. **选择架构（无 x64 标识则为 x86）：**
-![打开了文件资源管理器、任务管理器及其关于页面的 Windows XP。关于页面显示系统安装了 SP3，但是非 x64。](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+![打开了文件资源管理器、任务管理器及其关于页面的 Windows XP。关于页面显示系统安装了 SP3，但是非 x64。](https://github.com/user-attachments/assets/b1ca371c-f224-4d26-9794-a52991cc7bad)
 
 4. **双击安装程序：**
-![安装程序解压文件窗口。](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+![安装程序解压文件窗口。](https://github.com/user-attachments/assets/e9dff3b8-354a-4b19-af2d-2fe04cd71edd)
 
 5. **进入向导：**
-![One-Core-API 安装向导欢迎页。](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+![One-Core-API 安装向导欢迎页。](https://github.com/user-attachments/assets/75c819dc-d53f-40bc-93b2-0e19dfb2034c)
 
 6. **接受协议并继续：**
-![One-Core-API 安装向导协议页。](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+![One-Core-API 安装向导协议页。](https://github.com/user-attachments/assets/89844500-e81c-48e0-98dc-930c48ccc365)
 
 7. **等待安装完成：**
-![One-Core-API 安装向导安装页。](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+![One-Core-API 安装向导安装页。](https://github.com/user-attachments/assets/e0a0c430-3a0e-4e89-8215-ee3e8eab4614)
 
 8. **完成安装并重启：**
-![One-Core-API 安装向导完成页。](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+![One-Core-API 安装向导完成页。](https://github.com/user-attachments/assets/e0e048bf-41aa-481d-bcad-e80a50c6a97f)
 
 </details>
 
@@ -101,28 +101,28 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>图解</summary>
 
 1. **打开控制面板：**
-![Windows XP 控制面板首页。](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+![Windows XP 控制面板首页。](https://github.com/user-attachments/assets/ae1ff4eb-80b8-43be-b5d6-29c320260b45)
 
 2. **进入“添加或删除程序”：**
-![Windows XP 控制面板首页，选中了“添加或删除程序”。](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+![Windows XP 控制面板首页，选中了“添加或删除程序”。](https://github.com/user-attachments/assets/96224b3c-8628-4c21-9093-60738d07cba2)
 
 3. **勾选显示更新：**
-![Windows XP 控制面板“添加或删除程序”界面，红框突出了“显示更新”复选框。](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+![Windows XP 控制面板“添加或删除程序”界面，红框突出了“显示更新”复选框。](https://github.com/user-attachments/assets/cd363968-fdde-4eff-bc8b-0be20fc58235)
 
 4. **定位 One-Core-API 条目：**
-![Windows XP 控制面板“添加或删除程序”界面，启用了“显示更新”功能。](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+![Windows XP 控制面板“添加或删除程序”界面，启用了“显示更新”功能。](https://github.com/user-attachments/assets/1d0e21c8-fe33-468c-9f99-c29166385160)
 
 5. **点击删除按钮：**
-![Windows XP 控制面板“添加或删除程序”界面，选中了“One-Core-API Pack”更新包。](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+![Windows XP 控制面板“添加或删除程序”界面，选中了“One-Core-API Pack”更新包。](https://github.com/user-attachments/assets/1aad71aa-ab5b-4ead-adf1-2d4e74c44d1a)
 
 6. **进入卸载向导：**
-![One-Core-API 卸载向导确认页。](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+![One-Core-API 卸载向导确认页。](https://github.com/user-attachments/assets/e5ec04e6-f1a5-43a5-91bf-00c067c2eb25)
 
 7. **等待卸载完成：**
-![One-Core-API 卸载向导卸载页。](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+![One-Core-API 卸载向导卸载页。](https://github.com/user-attachments/assets/8c600b94-461e-4712-aec2-33f6bc1c5db2)
 
 8. **完成卸载并重启：**
-![One-Core-API 卸载向导完成页。](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+![One-Core-API 卸载向导完成页。](https://github.com/user-attachments/assets/7d8d3da7-308e-44b0-815c-92afc12ca27e)
 
 </details>
 
@@ -235,6 +235,8 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - Postman;
   - Dbeaver;
   - Kate 23.08.1
+  - AIMP
+  - Foobar2000
 </details>
 
 ## 已知限制
@@ -300,31 +302,24 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>浏览器和雷鸟</summary>
 
   **Chrome 132**
-  <!--[image](https://github.com/user-attachments/assets/84e83d53-ea8e-47b9-a566-e0986c91b812)-->
   ![chrome132](https://github.com/user-attachments/assets/2ade35d4-5d3a-468a-ab1b-4c1167bfa458)
 
   **Edge 134 (开发预览版)**
-  <!--[image](https://github.com/user-attachments/assets/f0b6a47c-dc37-45b0-beaf-c85002e37386)-->
   ![edge134](https://github.com/user-attachments/assets/0af7efb2-ac33-4b4e-aef7-7879cd83c265)
 
   **Opera 116**
-  <!--[image](https://github.com/user-attachments/assets/ee962193-8de6-458e-8d35-769638e9fbde)-->
   ![Opera116](https://github.com/user-attachments/assets/00db4305-5af7-48b7-a83a-1acd60bf84e7)
 
   **Firefox 122**
-  <!--[Firefox122](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/db647daf-0960-4ace-ad2f-63469dbf3881)-->
   ![firefox122](https://github.com/user-attachments/assets/eddee2c6-a16c-4ffc-bb96-8913a79f8af1)
 
   **雷鸟 132**
-  <!--[image](https://github.com/user-attachments/assets/1ccdd59f-849a-4f1c-86e0-bcc9e1ce02e2)-->
   ![email](https://github.com/user-attachments/assets/908369b4-c3e5-46f4-956c-c41f60cb07b2)
 
   **Basilisk**
-  <!--[image_2022_04_08T21_38_17_976Z](https://user-images.githubusercontent.com/5159776/178077859-079bfca4-bdb6-402e-8991-b88e7dfe387c.png)-->
   ![basillsk](https://github.com/user-attachments/assets/0e1aebd5-3bab-4ff3-997a-4f1bf3669101)
 
   **Vivaldi**
-  <!--[image](https://github.com/user-attachments/assets/580966ab-f170-42a9-9f9d-3c15fe2ec8b2)-->
   ![Vivaldi](https://github.com/user-attachments/assets/d78addc1-89a3-4d57-a1e3-c0305bea94df)
 
 </details>
@@ -333,11 +328,9 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>游戏</summary>
  
   **Microsoft 3D 国际象棋**
-  <!--[Chess3d](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/bd1ad0c6-edde-4ff2-a6e0-074c7379fab6)-->
   ![chess3d](https://github.com/user-attachments/assets/1201baf8-21fd-4040-abe1-1297aa7bcfbc)
 
   **Minecraft 1.21**
-  <!--[image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)-->
   ![mc1dot21](https://github.com/user-attachments/assets/47b1573e-ee04-4fce-a899-e0ebd9702dc4)
 
 </details>
@@ -346,17 +339,13 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>信使和其他通讯程序</summary>
 
   **Discord 0.309**
-  <!--[Discord-Login](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/8a4c12b5-19fc-454d-b02a-a1db807d3900)-->
-  <!--[Discord](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/eb673541-4e66-4c76-867e-346edbaaa0af)-->
   ![discord-login](https://github.com/user-attachments/assets/bcc55fe8-bf97-475f-aaa8-90a3fa687639)
   ![discord](https://github.com/user-attachments/assets/0c29fa3b-8dc0-4e0c-9f3f-f3f86858465e)
 
   **Telegram Desktop**
-  <!--[Telegram-Desktop](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d23b9add-629d-45a3-a8e1-c331271bc0d3)-->
   ![Telegram-Desktop](https://github.com/user-attachments/assets/fc1ce6fc-b36d-45e8-aa0e-2a8787844134)
 
   **Zoom meeting**
-  <!--[Zoom](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/d002cf1b-c5f4-4c0c-b629-00e031a56765)-->
   ![Zoom meeting](https://github.com/user-attachments/assets/513a6687-ebc4-41c7-8a88-c778f3b48095)
 
   
@@ -366,15 +355,12 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>原生 Windows 7 应用程序</summary>
 
   **Windows 7 便笺**
-  <!--[StickyNotes](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/669ba3e4-b831-4a96-ad40-d87e3e9531e2)-->
   ![StickyNotes](https://github.com/user-attachments/assets/7c054125-7e3b-44c3-8827-8a9b3c45019e)
 
   **Windows 7 画画**
-  <!--[Paint](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/81728a44-c9e7-41e8-b68b-8ea7b119ebba)-->
   ![Paint](https://github.com/user-attachments/assets/c31795d0-3048-41a5-9369-f43c3be954bc)
 
   **Windows 7 写字板**
-  <!--[Wordpad](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/9dac02c7-7139-47fe-8732-ccd9ef91090b)-->
   ![Wordpad](https://github.com/user-attachments/assets/e44c2a12-2e17-41ef-a6a7-9602259fbb15)
 
 </details>
@@ -383,24 +369,24 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>其他</summary>
   
   **Spotify (支持 Windows 7 的版本)**
-  <!--[Spotify-Windows7](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/09de7c20-8670-45dc-9471-a6db9349abd0)-->
   ![Spotify-Windows7](https://github.com/user-attachments/assets/28a9fd1d-f31d-44b0-bf86-9db205720c82)
 
+  **AIMP**
+  ![AIMP](https://github.com/user-attachments/assets/2c6e8309-c83a-4a59-b576-e4ed37b5ce16)
+
+  **Foobar2000 v2.25 preview 2025-08-27**
+  ![foobar2000](https://github.com/user-attachments/assets/e71bba06-25d6-480d-84c2-ad6564306642)
+
   **Visual Studio Code 1.81**
-  <!--[VisualCode](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/b21748b9-25bb-412d-95b3-2219d2efdf42)-->
   ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
 
   **Libre Office 24 (最新版本)**
-  <!--[LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/11fd191d-270c-428d-8d41-0498e8fafb3b)-->
-  <!--[Writer-LibreOffice](https://github.com/Skulltrail192/One-Core-API-Binaries/assets/5159776/e389a39b-febd-45f6-9c6f-25f64e460142)-->
   ![LibreOffice](https://github.com/user-attachments/assets/5889f230-ff40-43a5-be40-b31a37e3cc5e)
   ![Writer-LibreOffice](https://github.com/user-attachments/assets/aadefdc3-d9f5-46f3-a52b-db8f62ccc1ec)
 
   **Java 11**
-  <!--[Capturar](https://user-images.githubusercontent.com/5159776/178078132-da504607-a1ca-4f8d-ae25-6a7eb367bdaa.PNG)-->
   ![Capturar](https://github.com/user-attachments/assets/da6e74fb-cba7-4364-925e-c29897276b65)
 
   **Avast 和 Chromium 68**
-  <!--[Avast](https://user-images.githubusercontent.com/5159776/178078208-c13b3448-ee6a-4c56-9d94-d0c62d51949e.PNG)-->
   ![Avast](https://github.com/user-attachments/assets/7c897841-2840-45e5-8b86-7fc4482c723f)
 </details>
