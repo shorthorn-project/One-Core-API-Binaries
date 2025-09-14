@@ -68,28 +68,28 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>图解</summary>
 
 1. **下载示例：**
-![含有 One-Core-API 压缩包的 Windows XP 桌面。](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+![含有 One-Core-API 压缩包的 Windows XP 桌面。](https://github.com/user-attachments/assets/27058d82-146c-4be4-84f7-ef1ff1bd656a)
 
 2. **解压文件：**
-![Windows XP 系统解压缩界面。](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+![Windows XP 系统解压缩界面。](https://github.com/user-attachments/assets/9db5dcd3-62f2-4d20-bd89-28b845a00b8d)
 
 3. **选择架构（无 x64 标识则为 x86）：**
-![打开了文件资源管理器、任务管理器及其关于页面的 Windows XP。关于页面显示系统安装了 SP3，但是非 x64。](https://github.com/user-attachments/assets/6bdd8a39-9aac-4ee1-88fd-9fda4db144ea)
+![打开了文件资源管理器、任务管理器及其关于页面的 Windows XP。关于页面显示系统安装了 SP3，但是非 x64。](https://github.com/user-attachments/assets/b1ca371c-f224-4d26-9794-a52991cc7bad)
 
 4. **双击安装程序：**
-![安装程序解压文件窗口。](https://github.com/user-attachments/assets/e5e03ff2-4de5-475a-bbd8-755df687b187)
+![安装程序解压文件窗口。](https://github.com/user-attachments/assets/e9dff3b8-354a-4b19-af2d-2fe04cd71edd)
 
 5. **进入向导：**
-![One-Core-API 安装向导欢迎页。](https://github.com/user-attachments/assets/2fd62bd9-b1a8-4e1d-8769-92b9bbcf2a6b)
+![One-Core-API 安装向导欢迎页。](https://github.com/user-attachments/assets/75c819dc-d53f-40bc-93b2-0e19dfb2034c)
 
 6. **接受协议并继续：**
-![One-Core-API 安装向导协议页。](https://github.com/user-attachments/assets/ca62c9a2-9995-45cd-929e-b7613f9b389e)
+![One-Core-API 安装向导协议页。](https://github.com/user-attachments/assets/89844500-e81c-48e0-98dc-930c48ccc365)
 
 7. **等待安装完成：**
-![One-Core-API 安装向导安装页。](https://github.com/user-attachments/assets/06b6fa4c-67dd-4149-9b97-bdee52c60bdb)
+![One-Core-API 安装向导安装页。](https://github.com/user-attachments/assets/e0a0c430-3a0e-4e89-8215-ee3e8eab4614)
 
 8. **完成安装并重启：**
-![One-Core-API 安装向导完成页。](https://github.com/user-attachments/assets/8210f667-5f51-4d36-a4a5-7b5a4f24b278)
+![One-Core-API 安装向导完成页。](https://github.com/user-attachments/assets/e0e048bf-41aa-481d-bcad-e80a50c6a97f)
 
 </details>
 
@@ -101,28 +101,28 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   <summary>图解</summary>
 
 1. **打开控制面板：**
-![Windows XP 控制面板首页。](https://github.com/user-attachments/assets/ceaf9dc2-135c-4f6b-8b22-ce5eb3f8d421)
+![Windows XP 控制面板首页。](https://github.com/user-attachments/assets/ae1ff4eb-80b8-43be-b5d6-29c320260b45)
 
 2. **进入“添加或删除程序”：**
-![Windows XP 控制面板首页，选中了“添加或删除程序”。](https://github.com/user-attachments/assets/b0d6406a-db6b-4ca8-b2b9-cc020df17950)
+![Windows XP 控制面板首页，选中了“添加或删除程序”。](https://github.com/user-attachments/assets/96224b3c-8628-4c21-9093-60738d07cba2)
 
 3. **勾选显示更新：**
-![Windows XP 控制面板“添加或删除程序”界面，红框突出了“显示更新”复选框。](https://github.com/user-attachments/assets/83bdef02-9704-4e77-a0b0-cba70a4de80a)
+![Windows XP 控制面板“添加或删除程序”界面，红框突出了“显示更新”复选框。](https://github.com/user-attachments/assets/cd363968-fdde-4eff-bc8b-0be20fc58235)
 
 4. **定位 One-Core-API 条目：**
-![Windows XP 控制面板“添加或删除程序”界面，启用了“显示更新”功能。](https://github.com/user-attachments/assets/2ff6137f-b621-4dff-9516-b45f83c3a013)
+![Windows XP 控制面板“添加或删除程序”界面，启用了“显示更新”功能。](https://github.com/user-attachments/assets/1d0e21c8-fe33-468c-9f99-c29166385160)
 
 5. **点击删除按钮：**
-![Windows XP 控制面板“添加或删除程序”界面，选中了“One-Core-API Pack”更新包。](https://github.com/user-attachments/assets/c66909ae-2e3a-4871-a320-e60c66210db9)
+![Windows XP 控制面板“添加或删除程序”界面，选中了“One-Core-API Pack”更新包。](https://github.com/user-attachments/assets/1aad71aa-ab5b-4ead-adf1-2d4e74c44d1a)
 
 6. **进入卸载向导：**
-![One-Core-API 卸载向导确认页。](https://github.com/user-attachments/assets/71343989-6e16-48b4-982d-173a4b15774d)
+![One-Core-API 卸载向导确认页。](https://github.com/user-attachments/assets/e5ec04e6-f1a5-43a5-91bf-00c067c2eb25)
 
 7. **等待卸载完成：**
-![One-Core-API 卸载向导卸载页。](https://github.com/user-attachments/assets/01401f4f-e4be-4e8a-82d2-3480f143fedd)
+![One-Core-API 卸载向导卸载页。](https://github.com/user-attachments/assets/8c600b94-461e-4712-aec2-33f6bc1c5db2)
 
 8. **完成卸载并重启：**
-![One-Core-API 卸载向导完成页。](https://github.com/user-attachments/assets/b6f06465-786f-4503-b71b-30e9224ad9fc)
+![One-Core-API 卸载向导完成页。](https://github.com/user-attachments/assets/7d8d3da7-308e-44b0-815c-92afc12ca27e)
 
 </details>
 
@@ -235,6 +235,8 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - Postman;
   - Dbeaver;
   - Kate 23.08.1
+  - AIMP
+  - Foobar2000
 </details>
 
 ## 已知限制
@@ -368,6 +370,12 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   
   **Spotify (支持 Windows 7 的版本)**
   ![Spotify-Windows7](https://github.com/user-attachments/assets/28a9fd1d-f31d-44b0-bf86-9db205720c82)
+
+  **AIMP**
+  ![AIMP](https://github.com/user-attachments/assets/2c6e8309-c83a-4a59-b576-e4ed37b5ce16)
+
+  **Foobar2000 v2.25 preview 2025-08-27**
+  ![foobar2000](https://github.com/user-attachments/assets/e71bba06-25d6-480d-84c2-ad6564306642)
 
   **Visual Studio Code 1.81**
   ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
