@@ -29,7 +29,7 @@
 请您理解：One-Core-API是目前唯一能运行大量现代应用程序（包括游戏）的项目，但它仍处于高强度开发阶段，错误在所难免。我们需要您的耐心：如果您遇到问题，请在此反馈而非抱怨。若您心怀热忱，请助力Windows XP社区的发展。衷心感谢！
 
 > [!WARNING]
-> OCA 默认使用原生 DirectX 软件渲染.
+> OCA 默认使用原生 DirectX 的软件渲染.
 >
 > 要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装目录。
 > 否则，游戏将无法启动或黑屏！
