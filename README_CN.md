@@ -20,6 +20,14 @@
 **本仓库包含 One-Core-API 项目的二进制发行版，兼容 Windows Server 2003 RTM/SP1/SP2、Windows XP RTM/SP1/SP2/SP3 及 Windows XP x64 SP1/SP2。强烈建议使用最新 SP（服务包）和所有可用更新的系统。** **警告！**
   现在，OCA 默认使用 Directx Native 软件渲染。要运行 dx10+ 游戏，您必须复制以下文件  <Your installation letter >\Windows\System32\wined3d 进入游戏安装目录。否则，游戏将无法启动或黑屏！
 
+**One-Core-API 是什么？**
+
+众所周知，Windows XP在2014年就失去了微软的官方支持。其中有个特殊版本Posready 2009的支持也于2019年终止——这已是六年前的事。因此，在2012至2016年间，各大厂商陆续停止开发Windows XP驱动程序，NVIDIA也成为最后一家为XP提供支持的主流硬件厂商。与此同时，软件开发者们也在同期逐步终止对XP的兼容支持。所以，不论您是出于怀旧情结、认为XP优于新版系统，或是其他任何原因，若想在现代硬件和软件环境中使用Windows XP，几乎是不可能实现的——除少数特例之外。具体而言，目前仅有MyPal 68/78浏览器以及Supermium（一款能从XP兼容到Windows 10的Chromium修改版）可供使用。除此之外，几乎再无现代软件能与XP兼容。正因如此，我们开发了One-Core-API来解决这一问题：旨在重建Windows XP和Server 2003的软硬件兼容性。
+
+但存在一个核心难题：XP与Windows Vista之间存在巨大的技术代差，Vista中引入的新技术约有90%至95%都未在XP系统中实现（除少数由微软移植的功能外）。这极大增加了兼容工作的难度，并可能导致大量错误。因此，One-Core-API可能存在稳定性问题，甚至损坏某些系统。测试环境也存在局限性——由于可能出现的无数种的故障场景以及人手不足（我作为主要开发者，仅有Murak、Svyatpro以及新加入的CoccodrillooXDS等少数成员的协助），我们无法预判所有问题。
+
+请您理解：One-Core-API是目前唯一能运行大量现代应用程序（包括游戏）的项目，但它仍处于高强度开发阶段，错误在所难免。我们需要您的耐心：如果您遇到问题，请在此反馈而非抱怨。若您心怀热忱，请助力Windows XP社区的发展。衷心感谢！
+
 > [!WARNING]
 > OCA 默认使用原生 DirectX 软件渲染.
 >
