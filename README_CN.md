@@ -380,10 +380,11 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   ![Spotify-Windows7](https://github.com/user-attachments/assets/28a9fd1d-f31d-44b0-bf86-9db205720c82)
 
   **AIMP**
-  ![AIMP](https://github.com/user-attachments/assets/2c6e8309-c83a-4a59-b576-e4ed37b5ce16)
+<img width="1598" height="754" alt="5.40" src="https://github.com/user-attachments/assets/2a5f7215-b7b9-4f42-8114-e230726a2ebf5" />
 
-  **Foobar2000 v2.25 preview 2025-08-27**
-  ![foobar2000](https://github.com/user-attachments/assets/e71bba06-25d6-480d-84c2-ad6564306642)
+**foobar2000**
+<img width="1598" height="760" alt="支持 Windows XP 以及不需要 SSE 指令集的最终版本" src="https://github.com/user-attachments/assets/d6f314eb-5ff2-41cd-ada6-86af6142a897" />
+<img width="1598" height="754" alt="v2.25 preview 2025-08-27" src="https://github.com/user-attachments/assets/5324183a-6a4b-4fd8-ade9-d15e43b0b245" />
 
   **Visual Studio Code 1.81**
   ![VisualCode](https://github.com/user-attachments/assets/4c49d0fc-62c0-4802-ae21-f244677e6ce5)
