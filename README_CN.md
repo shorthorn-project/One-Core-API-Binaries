@@ -388,7 +388,6 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
 <img width="1598" height="754" alt="5.40" src="https://github.com/user-attachments/assets/2a5f7215-b7b9-4f42-8114-e230726a2ebf5" />
 
 **foobar2000**
-<img width="1598" height="760" alt="支持 Windows XP 以及不需要 SSE 指令集的最终版本" src="https://github.com/user-attachments/assets/d6f314eb-5ff2-41cd-ada6-86af6142a897" />
 <img width="1598" height="754" alt="v2.25 preview 2025-08-27" src="https://github.com/user-attachments/assets/5324183a-6a4b-4fd8-ade9-d15e43b0b245" />
 
   **Visual Studio Code 1.81**
