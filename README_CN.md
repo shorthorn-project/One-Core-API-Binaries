@@ -227,6 +227,7 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   - 地铁：最后的曙光
   - 茶杯头
   - 追逐地平线Turbo（原文：Horizon Turbo）
+  - 东方 (20) 锦上京～ Fossilized Wonders
 </details>
 
 <details>
@@ -341,6 +342,10 @@ One-Core-API 采用 Windows NT 5.x 及更早系统的补丁安装技术，其安
   **Minecraft 1.21**
   ![mc1dot21](https://github.com/user-attachments/assets/47b1573e-ee04-4fce-a899-e0ebd9702dc4)
 
+
+  **东方锦上京 (20) ～ Fossilized Wonders**
+  ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
+    
 </details>
 
 <details>
