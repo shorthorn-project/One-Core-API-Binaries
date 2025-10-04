@@ -238,6 +238,7 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
   - Metro Last Night;
   - Cuphead;
   - Horizon Turbo
+  - Touhou Kinjoukyou (20) ～ Fossilized Wonders
 </details>
 
 <details>
@@ -354,6 +355,10 @@ Some screenshots of Applicaions running on XP/Server 2003:
 
   **Minecraft 1.21**
   ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+
+  **Touhou Kinjoukyou (20) ～ Fossilized Wonders**
+    ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
+
 </details>
 
 <details>
@@ -393,7 +398,6 @@ Some screenshots of Applicaions running on XP/Server 2003:
 <img width="1598" height="754" alt="5.40" src="https://github.com/user-attachments/assets/2a5f7215-b7b9-4f42-8114-e230726a2ebf5" />
 
 **foobar2000**
-<img width="1598" height="760" alt="Final for Windows XP   no-SSE CPU ver" src="https://github.com/user-attachments/assets/d6f314eb-5ff2-41cd-ada6-86af6142a897" />
 <img width="1598" height="754" alt="v2.25 preview 2025-08-27" src="https://github.com/user-attachments/assets/5324183a-6a4b-4fd8-ade9-d15e43b0b245" />
 
   **Visual Studio Code 1.81**
