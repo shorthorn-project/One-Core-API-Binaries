@@ -211,6 +211,7 @@ One-Core-API は、Windows NT 5.x まで使用されていたホットフィッ�
   - Metro Last Night;
   - Cuphead;
   - Horizon Turbo
+  - 東方錦上京 ～ Fossilized Wonders
 </details>
 
 <details>
@@ -320,6 +321,9 @@ XP/Server 2003 で実行されているアプリケーションのスクリー�
 
   **Minecraft 1.21**
   ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+
+   **東方錦上京 ～ Fossilized Wonders**
+  ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
 </details>
 
 <details>
