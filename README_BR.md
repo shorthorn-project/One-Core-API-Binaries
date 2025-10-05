@@ -342,8 +342,9 @@ Algumas screenshots de aplicativos executando no Windows XP/Server 2003:
   **Minecraft 1.21**
   ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
 
-    **Touhou Kinjoukyou (20) ～ Fossilized Wonders**
-    ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
+**Touhou Kinjoukyou (20) ～ Fossilized Wonders**
+  ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
+	
 </details>
 
 <details>
