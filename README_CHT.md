@@ -232,6 +232,7 @@ One-Core-API 採用了 Windows NT 5.x 之前的修補程式安裝技術。因此
   - 地鐵：最後的曙光；
   - 茶杯頭；
   - 追逐地平線Turbo
+  - 東方錦上京 ～ Fossilized Wonders
 </details>
 
 <details>
@@ -349,6 +350,9 @@ One-Core-API 採用了 Windows NT 5.x 之前的修補程式安裝技術。因此
 
   **我的世界1.21**
   ![image](https://github.com/user-attachments/assets/cfd05f13-617e-49a0-b416-67906d42840b)
+
+  **東方錦上京 ～ Fossilized Wonders**
+  ![TH20](https://github.com/user-attachments/assets/4df36e17-5189-40c6-9601-72310f783afa)
 </details>
 
 <details>
