@@ -22,7 +22,7 @@ There's just one major problem: the leap between XP and Windows Vista was signif
 So understand that One-Core-API is the only project capable of running so many modern applications, including games, but it's under intense development and many errors occur. Be patient; if you find errors, report them here instead of complaining, and help the Windows XP community grow, if you so desire and have a good heart. Thank you.
 .
 > [!WARNING]  
-> Now, OCA use Directx Native software render by default.
+> Now, OCA use DirectX Native software render by default.
 >
 > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
 > Otherwise, the game will fail to start or get a black screen!
@@ -213,10 +213,10 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
 <details>
 
-  <summary>OpenGL, Directx 9EX, 10, and 11 games</summary>
+  <summary>OpenGL, DirectX 9EX, 10, and 11 games</summary>
 
   ### WARNING!
-  > Now, OCA use Directx Native software render by default.
+  > Now, OCA use DirectX Native software render by default.
   >
   > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
   > Otherwise, the game will fail to start or get a black screen!
