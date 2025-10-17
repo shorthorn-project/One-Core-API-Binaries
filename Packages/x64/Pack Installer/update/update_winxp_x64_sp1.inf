@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.3"    
+    BASE_VERSION              = "4.0.4"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6474,8 +6474,8 @@
 [ProductInstall.CopyFilesAlways]
     CopyFiles= Base.System32.Files
     CopyFiles= Base.SysWOW64.Files
-    CopyFiles= CopyAlways.AdditionnalDlls.System32.Files
-    CopyFiles= CopyAlways.AdditionnalDlls.SysWOW64.Files	
+    CopyFiles= CopyAlways.AdditionalDlls.System32.Files
+    CopyFiles= CopyAlways.AdditionalDlls.SysWOW64.Files	
     CopyFiles= CopyAlways.AppPatch.Files
     CopyFiles= CopyAlways.AppPatch.System32.Files
     CopyFiles= CopyAlways.AppPatch.SysWOW64.Files
@@ -6539,8 +6539,8 @@
 [DestinationDirs]
     Base.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
 	Base.SysWOW64.Files=10,SysWOW64  ; %windir%\AppPatch (don't delay until reboot)
-    CopyAlways.AdditionnalDlls.System32.Files=11  ; %windir%\system32 (don't delay until reboot)
-    CopyAlways.AdditionnalDlls.SysWOW64.Files=10,SysWOW64  ; %windir%\AppPatch (don't delay until reboot)		
+    CopyAlways.AdditionalDlls.System32.Files=11  ; %windir%\system32 (don't delay until reboot)
+    CopyAlways.AdditionalDlls.SysWOW64.Files=10,SysWOW64  ; %windir%\AppPatch (don't delay until reboot)		
     CopyAlways.AppPatch.Files=10,AppPatch  ; %windir%\AppPatch (don't delay until reboot)
     CopyAlways.AppPatch.System32.Files=11  ; %windir%\system32 (don't delay until reboot)
     CopyAlways.AppPatch.SysWOW64.Files=10,SysWOW64  ; %windir%\AppPatch (don't delay until reboot)	
@@ -6637,18 +6637,10 @@
    %ShortCutName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\NNN4NT5.exe""",%SystemRoot%\System32\NNN4NT5.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%NNN4NT5Tooltip%",,	
    %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
 
-[ProcessesToRun]
-    "regsvr32.exe /s propsys.dll"    
+[ProcessesToRun] 
     "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
-	"rundll32.exe apphelp.dll,ShimFlushCache"
-    "regsvr32.exe /s mmdevapi.dll"        
-    "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"	
     
 [ProcessesToRunAfterCopying]
-    ;"cmd /C "%systemroot%\Syswow64\certupdate.exe" /Y /C /Q"
-    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
-    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
     "cmd /C mkdir %SystemRoot%\SystemTemp"
     "cmd /C mkdir %SystemDrive%\ProgramData"
     "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
@@ -6656,11 +6648,18 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+    "regsvr32.exe /s propsys.dll"    
+    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
+    ;"regsvr32.exe /s mmdevapi.dll"        
+   ; "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"
+    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk
+	"%SystemRoot%\Syswow64\ocacertinstall.bat"	
 	
 [ProcessesToRunBeforeArchive]
     "cmd /C wmic bios"		
-    "%sourcepath%\base\i386\wcertupdate.exe" /Y /C /Q		
+    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
+    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
+    "cmd /C netsh interface ipv6 install"
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
@@ -6683,16 +6682,10 @@
 	
 [CopyAlways.WinSxS.Main.Files]	
 	"WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365\comctl32.dll", WinSxS\comctl32\amd64\comctl32.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_B45BA3BE\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_738112C4\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
 	"WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491\winhttp.dll", base\amd64\winhttp.dll
 	"WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585\comctl32.dll", WinSxS\comctl32\i386\wcomctl32.dll
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_8251BDDE\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_41772CE4\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
 	"WinSxS\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1\winhttp.dll", base\i386\wwinhttp.dll
 	
 [CopyAlways.WinSxS.Manifests.Files]	
@@ -6704,11 +6697,11 @@
 	"WinSxS\manifests\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1.manifest"
 	
 [CopyAlways.WinSxS.Policies.Files]
-	"WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_ae43b2cc\5.1.5048.0.policy"
+	"WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_AE43B2CC\5.1.7601.0.policy"
 	"WinSxS\Policies\amd64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_BD997995\6.0.5048.0.policy"
 	"WinSxS\Policies\amd64_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_DD275069\5.1.5048.0.policy"	
 	"WinSxS\Policies\wow64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5C2DC83C\6.0.5048.0.policy"
-	"WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\5.1.5048.0.policy"	  
+	"WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\5.1.7601.0.policy"	  
 	"WinSxS\Policies\x86_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_7D68AE49\5.1.5048.0.policy"	  
 
 [CoreOS.Common.System32.Files]
@@ -6736,7 +6729,6 @@
     winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%wintrust.dll	
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ws2_base.dll
-    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%xpsp2res.dll	
 	
 [CoreOS.Common.SysWow64.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
@@ -6759,8 +6751,7 @@
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wsxs.dll
     userbase.dll,osfiles\%CURRENT_OS%\COMMON\i386\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wuserbase.dll
     wintrust.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wwintrust.dll
-    ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll
-    xpsp2res.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wxpsp2res.dll		
+    ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll	
 
 [CoreOS.SPFiles.System32.Files]
     advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
@@ -6898,11 +6889,12 @@
     winbrand.dll,base\amd64\winbrand.dll
     winhttp.dll,base\amd64\winhttp.dll
     winstanew.dll,base\amd64\winstanew.dll
+    wintrustnew.dll,base\amd64\wintrustnew.dll
     wbem\WMIC.exe,base\amd64\WMIC.exe
 	
 [Base.SysWOW64.Files]
     atl.dll,base\i386\watl.dll
-    authroots.sst,base\i386\authroots.sst	
+    authroots.sst,base\i386\wauthroots.sst	
     bcrypt.dll,base\i386\wbcrypt.dll
     bcryptprimitives.dll,base\i386\wbcryptprimitives.dll
     certupdate.exe,base\i386\wcertupdate.exe
@@ -6912,9 +6904,9 @@
     dbgeng.dll,base\i386\wdbgeng.dll
     dbghelp.dll,base\i386\wdbghelp.dll	
     d3dkmt.dll,base\i386\wd3dkmt.dll
-    delroots.sst,base\i386\delroots.sst	
+    delroots.sst,base\i386\wdelroots.sst	
     devcon.exe,base\i386\wdevcon.exe
-    disallowedcert.sst,base\i386\disallowedcert.sst	
+    disallowedcert.sst,base\i386\wdisallowedcert.sst	
     dwmapi.dll,base\i386\wdwmapi.dll   
     dwrgdi.dll,base\i386\wdwrgdi.dll    
     esentbase.dll,base\i386\wesentbase.dll    
@@ -6932,20 +6924,21 @@
     nsi.dll,base\i386\wnsi.dll	
     Nlsdl.dll,base\i386\wNlsdl.dll
     normaliz.dll,base\i386\wnormaliz.dll
+    ocacertinstall.bat,base\i386\wocacertinstall.bat	
     progwrp.dll,base\i386\wprogwrp.dll
     propsys.dll,base\i386\wpropsys.dll
-    roots.sst,base\i386\roots.sst 	
+    roots.sst,base\i386\wroots.sst 	
     setx.exe,base\i386\wsetx.exe
-    shcore.dll,base\i386\wshcore.dll	
-    ;ShimEng.dll,base\i386\wShimEng.dll	
+    shcore.dll,base\i386\wshcore.dll
     sspicli.dll,base\i386\wsspicli.dll
-    updroots.exe,base\i386\updroots.exe
-    updroots.sst,base\i386\updroots.sst 	
+    updroots.exe,base\i386\wupdroots.exe
+    updroots.sst,base\i386\wupdroots.sst 	
     version.dll,base\i386\wversion.dll
     wevtapibase.dll,base\i386\wwevtapibase.dll
     winbrand.dll,base\i386\wwinbrand.dll
     winhttp.dll,base\i386\wwinhttp.dll
     winstanew.dll,base\i386\wwinstanew.dll	
+    wintrustnew.dll,base\i386\wwintrustnew.dll	
     wbem\WMIC.exe,base\i386\wWMIC.exe	
 
 [CopyAlways.WinRT.Files]
@@ -7112,13 +7105,13 @@
     rtscom.dll,additionaldlls\i386\Ink\wrtscom.dll
     tpcps.dll,additionaldlls\i386\Ink\wtpcps.dll  	
  
-[CopyAlways.AdditionnalDlls.System32.Files]
+[CopyAlways.AdditionalDlls.System32.Files]
     avrt.dll,additionaldlls\amd64\avrt.dll
     bluetoothapis.dll,additionaldlls\amd64\bluetoothapis.dll
     browcli.dll,additionaldlls\amd64\browcli.dll
     cabiext.dll,additionaldlls\amd64\cabiext.dll
     CardGames.dll,additionaldlls\amd64\CardGames.dll
-    COLORCNV.dll,additionaldlls\amd64\COLORCNV.dll
+    COLORCNV.dll,additionaldlls\amd64\MF\COLORCNV.dll
     connect.dll,additionaldlls\amd64\connect.dll
     cryptsp.dll,additionaldlls\amd64\cryptsp.dll
     cryptxml.dll,additionaldlls\amd64\cryptxml.dll	
@@ -7131,7 +7124,7 @@
     dxva2.dll,additionaldlls\amd64\dxva2.dll
     eappcfg.dll,additionaldlls\amd64\eappcfg.dll
     eappprxy.dll,additionaldlls\amd64\eappprxy.dll
-    evr.dll,additionaldlls\amd64\evr.dll
+    evr.dll,additionaldlls\amd64\MF\evr.dll
     expand.exe,additionaldlls\amd64\expand.exe
     explorerframe.dll,additionaldlls\amd64\explorerframe.dll
     FirewallAPI.dll,additionaldlls\amd64\FirewallAPI.dll
@@ -7149,29 +7142,31 @@
     logoncli.dll,additionaldlls\amd64\logoncli.dll
     lsalookup.dll,additionaldlls\amd64\lsalookup.dll
     Magnification.dll,additionaldlls\amd64\Magnification.dll
-    mf.dll,additionaldlls\amd64\mf.dll
-    mfAACEnc.dll,additionaldlls\amd64\mfAACEnc.dll
-    mfds.dll,additionaldlls\amd64\mfds.dll
-    mfdvdec.dll,additionaldlls\amd64\mfdvdec.dll
-    mfh264enc.dll,additionaldlls\amd64\mfh264enc.dll
-    mfmjpegdec.dll,additionaldlls\amd64\mfmjpegdec.dll
-    mfplat.dll,additionaldlls\amd64\mfplat.dll
-    MFPlay.dll,additionaldlls\amd64\MFPlay.dll
-    mfps.dll,additionaldlls\amd64\mfps.dll
-    mfreadwrite.dll,additionaldlls\amd64\mfreadwrite.dll
-    mfvdsp.dll,additionaldlls\amd64\mfvdsp.dll
-    MFWMAAEC.dll,additionaldlls\amd64\MFWMAAEC.dll
+    mfc42.dll,additionaldlls\amd64\mfc42.dll
+    mfc42u.dll,additionaldlls\amd64\mfc42u.dll
+    mf.dll,additionaldlls\amd64\MF\mf.dll
+    mfAACEnc.dll,additionaldlls\amd64\MF\mfAACEnc.dll
+    mfds.dll,additionaldlls\amd64\MF\mfds.dll
+    mfdvdec.dll,additionaldlls\amd64\MF\mfdvdec.dll
+    mfh264enc.dll,additionaldlls\amd64\MF\mfh264enc.dll
+    mfmjpegdec.dll,additionaldlls\amd64\MF\mfmjpegdec.dll
+    mfplat.dll,additionaldlls\amd64\MF\mfplat.dll
+    MFPlay.dll,additionaldlls\amd64\MF\MFPlay.dll
+    mfps.dll,additionaldlls\amd64\MF\mfps.dll
+    mfreadwrite.dll,additionaldlls\amd64\MF\mfreadwrite.dll
+    mfvdsp.dll,additionaldlls\amd64\MF\mfvdsp.dll
+    MFWMAAEC.dll,additionaldlls\amd64\MF\MFWMAAEC.dll
     milcore.dll,additionaldlls\amd64\milcore.dll
     milmagn.dll,additionaldlls\amd64\milmagn.dll
     mlang.dll,additionaldlls\amd64\mlang.dll
     mmdevapi.dll,additionaldlls\amd64\mmdevapi.dll
     mscms.dll,additionaldlls\amd64\mscms.dll
-    msdrm.dll,additionaldlls\amd64\msdrm.dll
+    msdrm.dll,additionaldlls\amd64\MF\msdrm.dll
     mshtmlmedia.dll,additionaldlls\amd64\mshtmlmedia.dll
     msidcrl30.dll,additionaldlls\amd64\msidcrl30.dll
-    msmpeg2adec.dll,additionaldlls\amd64\msmpeg2adec.dll
-    MSMPEG2ENC.dll,additionaldlls\amd64\MSMPEG2ENC.dll
-    msmpeg2vdec.dll,additionaldlls\amd64\msmpeg2vdec.dll
+    msmpeg2adec.dll,additionaldlls\amd64\MF\msmpeg2adec.dll
+    MSMPEG2ENC.dll,additionaldlls\amd64\MF\MSMPEG2ENC.dll
+    msmpeg2vdec.dll,additionaldlls\amd64\MF\msmpeg2vdec.dll
     mspatcha.dll,additionaldlls\amd64\mspatcha.dll
     ndfapi.dll,additionaldlls\amd64\ndfapi.dll
     netbios.dll,additionaldlls\amd64\netbios.dll
@@ -7191,8 +7186,8 @@
     puiapi.dll,additionaldlls\amd64\puiapi.dll        
     pwrshplugin.dll,additionaldlls\amd64\pwrshplugin.dll        
     qwave.dll,additionaldlls\amd64\qwave.dll        
-    RESAMPLEDMO.dll,additionaldlls\amd64\RESAMPLEDMO.dll        
-    rgb9rast.dll,additionaldlls\amd64\rgb9rast.dll        
+    RESAMPLEDMO.dll,additionaldlls\amd64\MF\RESAMPLEDMO.dll        
+    rgb9rast.dll,additionaldlls\amd64\MF\rgb9rast.dll        
     RstrtMgr.dll,additionaldlls\amd64\RstrtMgr.dll
     rtworkq.dll,additionaldlls\amd64\rtworkq.dll
     samcli.dll,additionaldlls\amd64\samcli.dll
@@ -7238,7 +7233,7 @@
     wlanui.dll,additionaldlls\amd64\wlanui.dll
     wlanutil.dll,additionaldlls\amd64\wlanutil.dll
     wldp.dll,additionaldlls\amd64\wldp.dll
-    wmdrmsdk.dll,additionaldlls\amd64\wmdrmsdk.dll    
+    wmdrmsdk.dll,additionaldlls\amd64\MF\wmdrmsdk.dll    
     wmphoto.dll,additionaldlls\amd64\wmphoto.dll
     wmsgapi.dll,additionaldlls\amd64\wmsgapi.dll
     wpc.dll,additionaldlls\amd64\wpc.dll    
@@ -7252,13 +7247,13 @@
     xmlrw.dll,additionaldlls\amd64\xmlrw.dll      
     xpsprint.dll,additionaldlls\amd64\xpsprint.dll
     
-[CopyAlways.AdditionnalDlls.SysWOW64.Files]    
+[CopyAlways.AdditionalDlls.SysWOW64.Files]    
     avrt.dll,additionaldlls\i386\wavrt.dll
     bluetoothapis.dll,additionaldlls\i386\wbluetoothapis.dll
     browcli.dll,additionaldlls\i386\wbrowcli.dll
     cabiext.dll,additionaldlls\i386\wcabiext.dll
     CardGames.dll,additionaldlls\i386\wCardGames.dll
-    COLORCNV.dll,additionaldlls\i386\wCOLORCNV.dll
+    COLORCNV.dll,additionaldlls\i386\MF\wCOLORCNV.dll
     connect.dll,additionaldlls\i386\wconnect.dll
     cryptsp.dll,additionaldlls\i386\wcryptsp.dll
     cryptxml.dll,additionaldlls\i386\wcryptxml.dll	
@@ -7271,7 +7266,7 @@
     dxva2.dll,additionaldlls\i386\wdxva2.dll
     eappcfg.dll,additionaldlls\i386\weappcfg.dll
     eappprxy.dll,additionaldlls\i386\weappprxy.dll
-    evr.dll,additionaldlls\i386\wevr.dll
+    evr.dll,additionaldlls\i386\MF\wevr.dll
     expand.exe,additionaldlls\i386\wexpand.exe
     explorerframe.dll,additionaldlls\i386\wexplorerframe.dll
     FirewallAPI.dll,additionaldlls\i386\wFirewallAPI.dll
@@ -7289,29 +7284,31 @@
     logoncli.dll,additionaldlls\i386\wlogoncli.dll
     lsalookup.dll,additionaldlls\i386\wlsalookup.dll
     Magnification.dll,additionaldlls\i386\wMagnification.dll
-    mf.dll,additionaldlls\i386\wmf.dll
-    mfAACEnc.dll,additionaldlls\i386\wmfAACEnc.dll
-    mfds.dll,additionaldlls\i386\wmfds.dll
-    mfdvdec.dll,additionaldlls\i386\wmfdvdec.dll
-    mfh264enc.dll,additionaldlls\i386\wmfh264enc.dll
-    mfmjpegdec.dll,additionaldlls\i386\wmfmjpegdec.dll
-    mfplat.dll,additionaldlls\i386\wmfplat.dll
-    MFPlay.dll,additionaldlls\i386\wMFPlay.dll
-    mfps.dll,additionaldlls\i386\wmfps.dll
-    mfreadwrite.dll,additionaldlls\i386\wmfreadwrite.dll
-    mfvdsp.dll,additionaldlls\i386\wmfvdsp.dll
-    MFWMAAEC.dll,additionaldlls\i386\wMFWMAAEC.dll
+    mfc42.dll,additionaldlls\i386\wmfc42.dll
+    mfc42u.dll,additionaldlls\i386\wmfc42u.dll
+    mf.dll,additionaldlls\i386\MF\wmf.dll
+    mfAACEnc.dll,additionaldlls\i386\MF\wmfAACEnc.dll
+    mfds.dll,additionaldlls\i386\MF\wmfds.dll
+    mfdvdec.dll,additionaldlls\i386\MF\wmfdvdec.dll
+    mfh264enc.dll,additionaldlls\i386\MF\wmfh264enc.dll
+    mfmjpegdec.dll,additionaldlls\i386\MF\wmfmjpegdec.dll
+    mfplat.dll,additionaldlls\i386\MF\wmfplat.dll
+    MFPlay.dll,additionaldlls\i386\MF\wMFPlay.dll
+    mfps.dll,additionaldlls\i386\MF\wmfps.dll
+    mfreadwrite.dll,additionaldlls\i386\MF\wmfreadwrite.dll
+    mfvdsp.dll,additionaldlls\i386\MF\wmfvdsp.dll
+    MFWMAAEC.dll,additionaldlls\i386\MF\wMFWMAAEC.dll
     milcore.dll,additionaldlls\i386\wmilcore.dll
     milmagn.dll,additionaldlls\i386\wmilmagn.dll
     mlang.dll,additionaldlls\i386\wmlang.dll
     mmdevapi.dll,additionaldlls\i386\wmmdevapi.dll
     mscms.dll,additionaldlls\i386\wmscms.dll
-    msdrm.dll,additionaldlls\i386\wmsdrm.dll
+    msdrm.dll,additionaldlls\i386\MF\wmsdrm.dll
     mshtmlmedia.dll,additionaldlls\i386\wmshtmlmedia.dll
     msidcrl30.dll,additionaldlls\i386\wmsidcrl30.dll
-    msmpeg2adec.dll,additionaldlls\i386\wmsmpeg2adec.dll
-    MSMPEG2ENC.dll,additionaldlls\i386\wMSMPEG2ENC.dll
-    msmpeg2vdec.dll,additionaldlls\i386\wmsmpeg2vdec.dll
+    msmpeg2adec.dll,additionaldlls\i386\MF\wmsmpeg2adec.dll
+    MSMPEG2ENC.dll,additionaldlls\i386\MF\wMSMPEG2ENC.dll
+    msmpeg2vdec.dll,additionaldlls\i386\MF\wmsmpeg2vdec.dll
     mspatcha.dll,additionaldlls\i386\wmspatcha.dll
     ndfapi.dll,additionaldlls\i386\wndfapi.dll
     netbios.dll,additionaldlls\i386\wnetbios.dll
@@ -7329,8 +7326,8 @@
     puiapi.dll,additionaldlls\i386\wpuiapi.dll        
     pwrshplugin.dll,additionaldlls\i386\wpwrshplugin.dll        
     qwave.dll,additionaldlls\i386\wqwave.dll        
-    RESAMPLEDMO.dll,additionaldlls\i386\wRESAMPLEDMO.dll        
-    rgb9rast.dll,additionaldlls\i386\wrgb9rast.dll        
+    RESAMPLEDMO.dll,additionaldlls\i386\MF\wRESAMPLEDMO.dll        
+    rgb9rast.dll,additionaldlls\i386\MF\wrgb9rast.dll        
     RstrtMgr.dll,additionaldlls\i386\wRstrtMgr.dll
     rtworkq.dll,additionaldlls\i386\wrtworkq.dll
     samcli.dll,additionaldlls\i386\wsamcli.dll
@@ -7376,7 +7373,7 @@
     wlanui.dll,additionaldlls\i386\wwlanui.dll
     wlanutil.dll,additionaldlls\i386\wwlanutil.dll
     wldp.dll,additionaldlls\i386\wwldp.dll
-    wmdrmsdk.dll,additionaldlls\i386\wwmdrmsdk.dll    
+    wmdrmsdk.dll,additionaldlls\i386\MF\wwmdrmsdk.dll    
     wmphoto.dll,additionaldlls\i386\wwmphoto.dll
     wmsgapi.dll,additionaldlls\i386\wwmsgapi.dll
     wpc.dll,additionaldlls\i386\wwpc.dll    

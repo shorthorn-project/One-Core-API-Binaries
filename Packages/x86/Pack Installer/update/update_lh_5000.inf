@@ -2904,8 +2904,7 @@
     propsys.dll,base\propsys.dll		
     roots.sst,base\roots.sst
     setx.exe,base\setx.exe
-    shcore.dll,base\shcore.dll	
-    ;ShimEng.dll,base\ShimEng.dll	
+    shcore.dll,base\shcore.dll
     sspicli.dll,base\sspicli.dll
     updatehal.exe,base\updatehal.exe
     updroots.exe,base\updroots.exe
@@ -2916,6 +2915,7 @@
     winbrand.dll,base\winbrand.dll
     winhttp.dll,base\winhttp.dll
     winstanew.dll,base\winstanew.dll
+    wintrust.dll,base\wintrust.dll
     wbem\WMIC.exe,base\WMIC.exe
 	
 [CopyAlways.WinRT.Files]
@@ -2969,6 +2969,7 @@
     d3d12.dll,d3d\d3d12.dll
     d3d12core.dll,d3d\d3d12core.dll
     d3dwine.dll,d3d\d3dwine.dll
+    d3dx9_31.dll,d3d\d3dx9_31.dll
     dwrite.dll,d3d\dwrite.dll
     dxdiag.exe,d3d\dxdiag.exe
     dxdiagn.dll,d3d\dxdiagn.dll    
@@ -4686,7 +4687,7 @@
     HKLM,Software\Windows\LicenseInformation,"Shell-InBoxGames-SpiderSolitaire-EnableGame",0x10001,0x00000001
     HKLM,Software\Windows\LicenseInformation,"Shell-PremiumInBoxGames-Chess-EnableGame",0x10001,0x00000001 	
 	
-	;HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"
+	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"	;HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","COMPLUS_EnableWriteXorExecute"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","_JAVA_OPTIONS"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","NODE_SKIP_PLATFORM_CHECK"

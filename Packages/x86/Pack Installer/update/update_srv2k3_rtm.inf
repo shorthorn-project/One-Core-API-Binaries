@@ -2683,14 +2683,10 @@
    SystemTemp.Dir = 10,SystemTemp
   
 [ProcessesToRun]
-    "%systemroot%\system32\regsvr32.exe /s msi.dll"
-    "%systemroot%\system32\regsvr32.exe /s propsys.dll"
     "updatehal.exe"
-	"rundll32.exe apphelp.dll,ShimFlushCache"
-	"%systemroot%\system32\regsvr32.exe /s mmdevapi.dll"	
+	"rundll32.exe apphelp.dll,ShimFlushCache"	
     
 [ProcessesToRunAfterCopying]
-    ;"certupdate.exe" /Y /C /Q
     "cmd /C mkdir %SystemRoot%\SystemTemp"
     "cmd /C mkdir %SystemDrive%\ProgramData"
     "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
@@ -2698,14 +2694,17 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+    "regsvr32 /s msi.dll"
+    "regsvr32 /s propsys.dll"
+    "ocacertinstall.bat"
+    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""	
 
 [ProcessesToRunBeforeArchive]
     "cmd /C wmic bios"
-    "%sourcepath%\base\certupdate.exe" /Y /C /Q
+    ;"%sourcepath%\base\certupdate.exe" /Y /C /Q
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\System32\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
+    "cmd /C ipv6 install"
 
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
@@ -2906,7 +2905,6 @@
     roots.sst,base\roots.sst
     setx.exe,base\setx.exe
     shcore.dll,base\shcore.dll	
-    ;ShimEng.dll,base\ShimEng.dll	
     sspicli.dll,base\sspicli.dll
     updatehal.exe,base\updatehal.exe
     updroots.exe,base\updroots.exe
@@ -2970,6 +2968,7 @@
     d3d12.dll,d3d\d3d12.dll
     d3d12core.dll,d3d\d3d12core.dll
     d3dwine.dll,d3d\d3dwine.dll
+    d3dx9_31.dll,d3d\d3dx9_31.dll
     dwrite.dll,d3d\dwrite.dll
     dxdiag.exe,d3d\dxdiag.exe
     dxdiagn.dll,d3d\dxdiagn.dll    
@@ -4687,7 +4686,7 @@
     HKLM,Software\Windows\LicenseInformation,"Shell-InBoxGames-SpiderSolitaire-EnableGame",0x10001,0x00000001
     HKLM,Software\Windows\LicenseInformation,"Shell-PremiumInBoxGames-Chess-EnableGame",0x10001,0x00000001 	
 	
-	;HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"
+	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"	;HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","MOZ_DISABLE_CONTENT_SANDBOX"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","COMPLUS_EnableWriteXorExecute"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","_JAVA_OPTIONS"
 	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","NODE_SKIP_PLATFORM_CHECK"

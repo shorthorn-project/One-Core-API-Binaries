@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.3"    
+    BASE_VERSION              = "4.0.4"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6637,18 +6637,10 @@
    %ShortCutName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\NNN4NT5.exe""",%SystemRoot%\System32\NNN4NT5.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%NNN4NT5Tooltip%",,	
    %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
 
-[ProcessesToRun]
-    "regsvr32.exe /s propsys.dll"    
+[ProcessesToRun] 
     "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
-	"rundll32.exe apphelp.dll,ShimFlushCache"
-    "regsvr32.exe /s mmdevapi.dll"        
-    "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"	
     
 [ProcessesToRunAfterCopying]
-    ;"cmd /C "%systemroot%\Syswow64\certupdate.exe" /Y /C /Q"
-    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
-    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
     "cmd /C mkdir %SystemRoot%\SystemTemp"
     "cmd /C mkdir %SystemDrive%\ProgramData"
     "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
@@ -6656,11 +6648,18 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+    "regsvr32.exe /s propsys.dll"    
+    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
+    ;"regsvr32.exe /s mmdevapi.dll"        
+   ; "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"
+    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk
+	"%SystemRoot%\Syswow64\ocacertinstall.bat"	
 	
 [ProcessesToRunBeforeArchive]
     "cmd /C wmic bios"		
-    "%sourcepath%\base\i386\wcertupdate.exe" /Y /C /Q		
+    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
+    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
+    "cmd /C netsh interface ipv6 install"
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
@@ -6683,16 +6682,10 @@
 	
 [CopyAlways.WinSxS.Main.Files]	
 	"WinSxS\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365\comctl32.dll", WinSxS\comctl32\amd64\comctl32.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_B45BA3BE\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_54820B71\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
-    "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_738112C4\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
 	"WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491\winhttp.dll", base\amd64\winhttp.dll
 	"WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585\comctl32.dll", WinSxS\comctl32\i386\wcomctl32.dll
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.3790.3959_x-ww_8251BDDE\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6002.24064_x-ww_22782591\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
-    "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.6003.20617_x-ww_41772CE4\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
 	"WinSxS\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1\winhttp.dll", base\i386\wwinhttp.dll
 	
 [CopyAlways.WinSxS.Manifests.Files]	
@@ -6704,11 +6697,11 @@
 	"WinSxS\manifests\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1.manifest"
 	
 [CopyAlways.WinSxS.Policies.Files]
-	"WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_ae43b2cc\5.1.5048.0.policy"
+	"WinSxS\Policies\amd64_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_AE43B2CC\5.1.7601.0.policy"
 	"WinSxS\Policies\amd64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_BD997995\6.0.5048.0.policy"
 	"WinSxS\Policies\amd64_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_DD275069\5.1.5048.0.policy"	
 	"WinSxS\Policies\wow64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5C2DC83C\6.0.5048.0.policy"
-	"WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\5.1.5048.0.policy"	  
+	"WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\5.1.7601.0.policy"	  
 	"WinSxS\Policies\x86_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_7D68AE49\5.1.5048.0.policy"	  
 
 [CoreOS.Common.System32.Files]
@@ -6896,11 +6889,12 @@
     winbrand.dll,base\amd64\winbrand.dll
     winhttp.dll,base\amd64\winhttp.dll
     winstanew.dll,base\amd64\winstanew.dll
+    wintrustnew.dll,base\amd64\wintrustnew.dll
     wbem\WMIC.exe,base\amd64\WMIC.exe
 	
 [Base.SysWOW64.Files]
     atl.dll,base\i386\watl.dll
-    authroots.sst,base\i386\authroots.sst	
+    authroots.sst,base\i386\wauthroots.sst	
     bcrypt.dll,base\i386\wbcrypt.dll
     bcryptprimitives.dll,base\i386\wbcryptprimitives.dll
     certupdate.exe,base\i386\wcertupdate.exe
@@ -6910,9 +6904,9 @@
     dbgeng.dll,base\i386\wdbgeng.dll
     dbghelp.dll,base\i386\wdbghelp.dll	
     d3dkmt.dll,base\i386\wd3dkmt.dll
-    delroots.sst,base\i386\delroots.sst	
+    delroots.sst,base\i386\wdelroots.sst	
     devcon.exe,base\i386\wdevcon.exe
-    disallowedcert.sst,base\i386\disallowedcert.sst	
+    disallowedcert.sst,base\i386\wdisallowedcert.sst	
     dwmapi.dll,base\i386\wdwmapi.dll   
     dwrgdi.dll,base\i386\wdwrgdi.dll    
     esentbase.dll,base\i386\wesentbase.dll    
@@ -6930,20 +6924,21 @@
     nsi.dll,base\i386\wnsi.dll	
     Nlsdl.dll,base\i386\wNlsdl.dll
     normaliz.dll,base\i386\wnormaliz.dll
+    ocacertinstall.bat,base\i386\wocacertinstall.bat	
     progwrp.dll,base\i386\wprogwrp.dll
     propsys.dll,base\i386\wpropsys.dll
-    roots.sst,base\i386\roots.sst 	
+    roots.sst,base\i386\wroots.sst 	
     setx.exe,base\i386\wsetx.exe
-    shcore.dll,base\i386\wshcore.dll	
-    ;ShimEng.dll,base\i386\wShimEng.dll	
+    shcore.dll,base\i386\wshcore.dll
     sspicli.dll,base\i386\wsspicli.dll
-    updroots.exe,base\i386\updroots.exe
-    updroots.sst,base\i386\updroots.sst 	
+    updroots.exe,base\i386\wupdroots.exe
+    updroots.sst,base\i386\wupdroots.sst 	
     version.dll,base\i386\wversion.dll
     wevtapibase.dll,base\i386\wwevtapibase.dll
     winbrand.dll,base\i386\wwinbrand.dll
     winhttp.dll,base\i386\wwinhttp.dll
     winstanew.dll,base\i386\wwinstanew.dll	
+    wintrustnew.dll,base\i386\wwintrustnew.dll	
     wbem\WMIC.exe,base\i386\wWMIC.exe	
 
 [CopyAlways.WinRT.Files]

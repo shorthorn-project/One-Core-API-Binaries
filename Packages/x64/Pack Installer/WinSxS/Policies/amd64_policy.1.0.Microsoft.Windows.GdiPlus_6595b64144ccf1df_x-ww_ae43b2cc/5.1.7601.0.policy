@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-	<assemblyIdentity name="policy.1.0.Microsoft.Windows.GdiPlus" version="5.1.5048.0" processorArchitecture="amd64" publicKeyToken="6595b64144ccf1df" type="win32-policy"/>
+	<assemblyIdentity name="policy.1.0.Microsoft.Windows.GdiPlus" version="5.1.7601.0" processorArchitecture="amd64" publicKeyToken="6595b64144ccf1df" type="win32-policy"/>
 	<dependency xmlns:cmiv2="urn:schemas-microsoft-com:asm.v3" cmiv2:discoverable="no">
 		<dependentAssembly>
 			<assemblyIdentity name="Microsoft.Windows.GdiPlus" processorArchitecture="amd64" type="win32"/>
