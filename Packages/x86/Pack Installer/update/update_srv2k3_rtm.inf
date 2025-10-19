@@ -2456,6 +2456,10 @@
 
     ;IconCodecService to convert PNG icons into Bitmap Icons
     HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows","IconServiceLib",0x0,"IconCodecService.dll"
+	
+	;Fix for Firefox 142+
+    HKCU,"Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
+    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"	
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
