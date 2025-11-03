@@ -2976,6 +2976,7 @@
     d3dwine.dll,d3d\d3dwine.dll
     d3dx9_31.dll,d3d\d3dx9_31.dll
     dwrite.dll,d3d\dwrite.dll
+    dwritecore.dll,d3d\dwritecore.dll
     dxdiag.exe,d3d\dxdiag.exe
     dxdiagn.dll,d3d\dxdiagn.dll    
     dxgi.dll,d3d\dxgi.dll

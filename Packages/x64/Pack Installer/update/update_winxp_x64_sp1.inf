@@ -7031,6 +7031,7 @@
     d3d12core.dll,d3d\amd64\d3d12core.dll
     d3dwine.dll,d3d\amd64\d3dwine.dll
     dwrite.dll,d3d\amd64\dwrite.dll
+    dwritecore.dll,d3d\amd64\dwritecore.dll
     dxdiag.exe,d3d\amd64\dxdiag.exe
     dxdiagn.dll,d3d\amd64\dxdiagn.dll    
     dxgi.dll,d3d\amd64\dxgi.dll
@@ -7062,6 +7063,7 @@
     d3d12core.dll,d3d\i386\wd3d12core.dll
     d3dwine.dll,d3d\i386\wd3dwine.dll
     dwrite.dll,d3d\i386\wdwrite.dll
+    dwritecore.dll,d3d\i386\wdwritecore.dll
     dxdiag.exe,d3d\i386\wdxdiag.exe
     dxdiagn.dll,d3d\i386\wdxdiagn.dll    
     dxgi.dll,d3d\i386\wdxgi.dll
