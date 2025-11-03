@@ -6893,7 +6893,6 @@
     winbrand.dll,base\amd64\winbrand.dll
     winhttp.dll,base\amd64\winhttp.dll
     winstanew.dll,base\amd64\winstanew.dll
-    wintrustnew.dll,base\amd64\wintrustnew.dll
     wbem\WMIC.exe,base\amd64\WMIC.exe
 	
 [Base.SysWOW64.Files]
@@ -6942,7 +6941,6 @@
     winbrand.dll,base\i386\wwinbrand.dll
     winhttp.dll,base\i386\wwinhttp.dll
     winstanew.dll,base\i386\wwinstanew.dll	
-    wintrustnew.dll,base\i386\wwintrustnew.dll	
     wbem\WMIC.exe,base\i386\wWMIC.exe	
 
 [CopyAlways.WinRT.Files]
