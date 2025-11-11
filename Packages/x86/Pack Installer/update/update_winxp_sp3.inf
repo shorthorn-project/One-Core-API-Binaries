@@ -2536,9 +2536,9 @@
 	
 [ProductInstall.DontDelayUntilReboot]
     ;CopyFiles=Core.System32.Files
-    CopyFiles  = CoreOS.Common.System32.Files
+    CopyFiles = CoreOS.Common.System32.Files
     ;CopyFiles= CoreOS.SPFiles.System32.Files	
-    CopyFiles  =MustReplace.System32.Files
+    CopyFiles = MustReplace.System32.Files
 
 [ProductInstall.CopyFilesAlways]
     CopyFiles= Base.System32.Files	
