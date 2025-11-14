@@ -7393,12 +7393,12 @@
     hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Uniprocessor.Kernel.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
+    ; ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    ; hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Multiprocessor.Kernel.Files]
-    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
-    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll    
+    ; ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    ; hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll    
     
 [ProductInstall.CopyFilesAlways.Professional]    
     CopyFiles=Professional.Windows.Files
