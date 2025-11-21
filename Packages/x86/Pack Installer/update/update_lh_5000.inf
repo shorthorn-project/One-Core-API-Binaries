@@ -2879,7 +2879,7 @@
     combase.dll,base\combase.dll
     credui.dll,base\credui.dll	
     cryptbase.dll,base\cryptbase.dll
-    ;cryptnet.dll,base\cryptnet.dll
+    cryptnet.dll,base\cryptnet.dll
     dbgeng.dll,base\dbgeng.dll
     dbghelp.dll,base\dbghelp.dll	
     d3dkmt.dll,base\d3dkmt.dll
