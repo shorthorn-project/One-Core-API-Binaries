@@ -2674,10 +2674,10 @@
     AddReg=Product.Add.Reg
     
 [ProductInstall.UniprocessorFiles]
-    ;CopyFiles=Uniprocessor.Kernel.Files
+    CopyFiles=Uniprocessor.Kernel.Files
 
 [ProductInstall.MultiprocessorFiles]
-    ;CopyFiles=Multiprocessor.Kernel.Files
+    CopyFiles=Multiprocessor.Kernel.Files
 	
 [LinkItems.Create]
    %ShortCutName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\NNN4NT5.exe""",%SystemRoot%\System32\NNN4NT5.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%NNN4NT5Tooltip%",,	
@@ -2687,7 +2687,7 @@
    SystemTemp.Dir = 10,SystemTemp
   
 [ProcessesToRun]
-    ;"updatehal.exe"
+    "updatehal.exe"
 	"rundll32.exe apphelp.dll,ShimFlushCache"	
     
 [ProcessesToRunAfterCopying]
