@@ -3094,7 +3094,7 @@
     photometadatahandler.dll,additionaldlls\photometadatahandler.dll
     pkgmgr.exe,additionaldlls\pkgmgr.exe
     prntvpt.dll,additionaldlls\prntvpt.dll        
-    puiapi.dll,additionaldlls\puiapi.dll        
+    ;puiapi.dll,additionaldlls\puiapi.dll        
     pwrshplugin.dll,additionaldlls\pwrshplugin.dll   
     qwave.dll,additionaldlls\qwave.dll        
     resampledmo.dll,additionaldlls\MF\resampledmo.dll
@@ -3136,7 +3136,7 @@
     wimgapi.dll,additionaldlls\wimgapi.dll
     windowscodecs.dll,additionaldlls\windowscodecs.dll
     windowscodecsext.dll,additionaldlls\windowscodecsext.dll
-    winsvc.dll,additionaldlls\winsvc.dll
+    ;winsvc.dll,additionaldlls\winsvc.dll
     winusb.dll,additionaldlls\winusb.dll
     wisptis.exe,additionaldlls\wisptis.exe
     wkscli.dll,additionaldlls\wkscli.dll
