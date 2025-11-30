@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.4"    
+    BASE_VERSION              = "4.0.4-hotfix"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6635,7 +6635,6 @@
    %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
 
 [ProcessesToRun] 
-    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
     
 [ProcessesToRunAfterCopying]
     "cmd /C mkdir %SystemRoot%\SystemTemp"
@@ -6646,13 +6645,13 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
     "regsvr32.exe /s propsys.dll"    
-    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
+    "%systemroot%\syswow64\regsvr32.exe /s %systemroot%\syswow64\propsys.dll"
     ;"regsvr32.exe /s mmdevapi.dll"        
    ; "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk
-	"%SystemRoot%\Syswow64\ocacertinstall.bat"	
 	
 [ProcessesToRunBeforeArchive]
+    "%sourcepath%\base\i386\wocacertinstall.bat"
     "cmd /C wmic bios"		
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
@@ -6846,7 +6845,7 @@
     ws2_32.dll,core\i386\wws2_32.dll	
 	
 [Base.System32.Files]
-    atl.dll,base\amd64\atl.dll	
+    atl.dll,base\amd64\atl.dll
     bcrypt.dll,base\amd64\bcrypt.dll
     bcryptprimitives.dll,base\amd64\bcryptprimitives.dll
     combase.dll,base\amd64\combase.dll
@@ -6856,7 +6855,7 @@
     dbgeng.dll,base\amd64\dbgeng.dll
     dbghelp.dll,base\amd64\dbghelp.dll	
     d3dkmt.dll,base\amd64\d3dkmt.dll
-    devcon.exe,base\amd64\devcon.exe 
+    devcon.exe,base\amd64\devcon.exe	
     dwmapi.dll,base\amd64\dwmapi.dll   
     dwrgdi.dll,base\amd64\dwrgdi.dll    
     esentbase.dll,base\amd64\esentbase.dll    
@@ -6874,9 +6873,9 @@
     Nlsdl.dll,base\amd64\Nlsdl.dll
     NNN4NT5.exe,base\amd64\NNN4NT5.exe	
     normaliz.dll,base\amd64\normaliz.dll
-    nsi.dll,base\amd64\nsi.dll		
+    nsi.dll,base\amd64\nsi.dll
     progwrp.dll,base\amd64\progwrp.dll
-    propsys.dll,base\amd64\propsys.dll		
+    propsys.dll,base\amd64\propsys.dll	
     setx.exe,base\amd64\setx.exe
     shcore.dll,base\amd64\shcore.dll
     ;ShimEng.dll,base\amd64\ShimEng.dll	

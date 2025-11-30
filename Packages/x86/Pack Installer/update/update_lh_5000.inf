@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.4"    
+    BASE_VERSION              = "4.0.4-hotfix"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2687,14 +2687,10 @@
    SystemTemp.Dir = 10,SystemTemp
   
 [ProcessesToRun]
-    "%systemroot%\system32\regsvr32.exe /s msi.dll"
-    "%systemroot%\system32\regsvr32.exe /s propsys.dll"
     "updatehal.exe"
-	"rundll32.exe apphelp.dll,ShimFlushCache"
-	"%systemroot%\system32\regsvr32.exe /s mmdevapi.dll"	
+	"rundll32.exe apphelp.dll,ShimFlushCache"	
     
 [ProcessesToRunAfterCopying]
-    ;"certupdate.exe" /Y /C /Q
     "cmd /C mkdir %SystemRoot%\SystemTemp"
     "cmd /C mkdir %SystemDrive%\ProgramData"
     "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
@@ -2702,14 +2698,16 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""
+    "regsvr32 /s msi.dll"
+    "regsvr32 /s propsys.dll"
+    """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"""	
 
 [ProcessesToRunBeforeArchive]
+    "%sourcepath%\base\i386\ocacertinstall.bat"
     "cmd /C wmic bios"
-    "%sourcepath%\base\certupdate.exe" /Y /C /Q
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\System32\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
+    "cmd /C ipv6 install"
 
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
@@ -2717,7 +2715,7 @@
     ndis.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ndis.sys 	
     ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ntoskrn8.sys	
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
-    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys 
+    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys  
 
 [System32.Files]
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
@@ -2909,7 +2907,7 @@
     propsys.dll,base\propsys.dll		
     roots.sst,base\roots.sst
     setx.exe,base\setx.exe
-    shcore.dll,base\shcore.dll
+    shcore.dll,base\shcore.dll	
     sspicli.dll,base\sspicli.dll
     updatehal.exe,base\updatehal.exe
     updroots.exe,base\updroots.exe
@@ -2920,7 +2918,6 @@
     winbrand.dll,base\winbrand.dll
     winhttp.dll,base\winhttp.dll
     winstanew.dll,base\winstanew.dll
-    wintrust.dll,base\wintrust.dll
     wbem\WMIC.exe,base\WMIC.exe
 	
 [CopyAlways.WinRT.Files]
@@ -3147,7 +3144,7 @@
     WMDRMSDK.DLL,additionaldlls\MF\WMDRMSDK.DLL
     wmphoto.dll,additionaldlls\wmphoto.dll
     wmsgapi.dll,additionaldlls\wmsgapi.dll
-    wpc.dll,additionaldlls\wpc.dll
+    ;wpc.dll,additionaldlls\wpc.dll
     WSDApi.dll,additionaldlls\WSDApi.dll
     wtsapi32.dll,additionaldlls\wtsapi32.dll
     wusa.exe,additionaldlls\wusa.exe
@@ -4351,7 +4348,6 @@
    API-MS-WIN-CORE-VERSION-L1-1-0.dll,api-sets\API-MS-WIN-CORE-VERSION-L1-1-0.dll
    API-MS-WIN-CORE-VERSION-L1-1-1.dll,api-sets\API-MS-WIN-CORE-VERSION-L1-1-1.dll
    API-MS-WIN-CORE-VERSION-PRIVATE-L1-1-0.dll,api-sets\API-MS-WIN-CORE-VERSION-PRIVATE-L1-1-0.dll
-   API-MS-WIN-CORE-VERSIONANSI-L1-1-0.dll,api-sets\API-MS-WIN-CORE-VERSIONANSI-L1-1-0.dll
    API-MS-WIN-CORE-VERSIONANSI-L1-1-1.dll,api-sets\API-MS-WIN-CORE-VERSIONANSI-L1-1-1.dll
    API-MS-WIN-CORE-WINDOWSERRORREPORTING-L1-1-0.dll,api-sets\API-MS-WIN-CORE-WINDOWSERRORREPORTING-L1-1-0.dll
    API-MS-WIN-CORE-WINDOWSERRORREPORTING-L1-1-1.dll,api-sets\API-MS-WIN-CORE-WINDOWSERRORREPORTING-L1-1-1.dll

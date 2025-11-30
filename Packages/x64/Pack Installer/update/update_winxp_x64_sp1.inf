@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.4"    
+    BASE_VERSION              = "4.0.4-hotfix"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -102,14 +102,7 @@
     HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%","ParentDisplayName",0x00000000,"%PARENT_DISPLAY_NAME%"    
     HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE%","ReleaseType",0x00000000,"HotFix"
     ;HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%BASE_VERSION%"
-	
-	;Simulate WIC installed to prevent new installation, since we use WIC from Windows 8 and need exclude older REG keys
-    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayName",0x00000000,"%SP_TITLE%"
-    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","DisplayVersion",0x00000000,%WIC_VERSION%
-    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ParentKeyName",0x00000000,"OperatingSystem"
-    ; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%SP_SHORT_TITLE_WIC%","ReleaseType",0x00000000,"HotFix"
-    ; HKLM,"SOFTWARE\Microsoft\%SP_TITLE%","InstalledVersion",0x00000000,"%WIC_VERSION%"		
-    
+
     ; FontCache Service
     HKLM,"SYSTEM\CurrentControlSet\Services\FontCache","Description",0x00000000,"%FNTCACHESVC_DESCRIPTION%"
     HKLM,"SYSTEM\CurrentControlSet\Services\FontCache","DisplayName",0x00000000,"%FNTCACHESVC_DISPLAY_NAME%"
@@ -6322,6 +6315,10 @@
 
     ;IconCodecService to convert PNG icons into Bitmap Icons
     HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows","IconServiceLib",0x0,"IconCodecService.dll"	
+	
+	;Fix for Firefox 142+
+    HKCU,"Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
+    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"	
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
@@ -6638,7 +6635,6 @@
    %ShortCutWctName%=0x00000017,%ShortCutDir%,"""%SystemRoot%\System32\wct.exe""",%SystemRoot%\System32\wct.exe,0,"%HOMEDRIVE%%HOMEPATH%",,1,"%WctTooltip%",,	
 
 [ProcessesToRun] 
-    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
     
 [ProcessesToRunAfterCopying]
     "cmd /C mkdir %SystemRoot%\SystemTemp"
@@ -6649,13 +6645,13 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
     "regsvr32.exe /s propsys.dll"    
-    "Syswow64/regsvr32.exe /s Syswow64/propsys.dll"
+    "%systemroot%\syswow64\regsvr32.exe /s %systemroot%\syswow64\propsys.dll"
     ;"regsvr32.exe /s mmdevapi.dll"        
    ; "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk
-	"%SystemRoot%\Syswow64\ocacertinstall.bat"	
 	
 [ProcessesToRunBeforeArchive]
+    "%sourcepath%\base\i386\wocacertinstall.bat"
     "cmd /C wmic bios"		
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
@@ -6849,7 +6845,7 @@
     ws2_32.dll,core\i386\wws2_32.dll	
 	
 [Base.System32.Files]
-    atl.dll,base\amd64\atl.dll	
+    atl.dll,base\amd64\atl.dll
     bcrypt.dll,base\amd64\bcrypt.dll
     bcryptprimitives.dll,base\amd64\bcryptprimitives.dll
     combase.dll,base\amd64\combase.dll
@@ -6859,7 +6855,7 @@
     dbgeng.dll,base\amd64\dbgeng.dll
     dbghelp.dll,base\amd64\dbghelp.dll	
     d3dkmt.dll,base\amd64\d3dkmt.dll
-    devcon.exe,base\amd64\devcon.exe 
+    devcon.exe,base\amd64\devcon.exe	
     dwmapi.dll,base\amd64\dwmapi.dll   
     dwrgdi.dll,base\amd64\dwrgdi.dll    
     esentbase.dll,base\amd64\esentbase.dll    
@@ -6877,9 +6873,9 @@
     Nlsdl.dll,base\amd64\Nlsdl.dll
     NNN4NT5.exe,base\amd64\NNN4NT5.exe	
     normaliz.dll,base\amd64\normaliz.dll
-    nsi.dll,base\amd64\nsi.dll		
+    nsi.dll,base\amd64\nsi.dll
     progwrp.dll,base\amd64\progwrp.dll
-    propsys.dll,base\amd64\propsys.dll		
+    propsys.dll,base\amd64\propsys.dll	
     setx.exe,base\amd64\setx.exe
     shcore.dll,base\amd64\shcore.dll
     ;ShimEng.dll,base\amd64\ShimEng.dll	
@@ -7185,7 +7181,7 @@
     photometadatahandler.dll,additionaldlls\amd64\photometadatahandler.dll
     pkgmgr.exe,additionaldlls\amd64\pkgmgr.exe
     prntvpt.dll,additionaldlls\amd64\prntvpt.dll        
-    puiapi.dll,additionaldlls\amd64\puiapi.dll        
+    ;puiapi.dll,additionaldlls\amd64\puiapi.dll        
     pwrshplugin.dll,additionaldlls\amd64\pwrshplugin.dll        
     qwave.dll,additionaldlls\amd64\qwave.dll        
     RESAMPLEDMO.dll,additionaldlls\amd64\MF\RESAMPLEDMO.dll        
@@ -7227,7 +7223,7 @@
     wimgapi.dll,additionaldlls\amd64\wimgapi.dll
     windowscodecs.dll,additionaldlls\amd64\windowscodecs.dll
     windowscodecsext.dll,additionaldlls\amd64\windowscodecsext.dll
-    winsvc.dll,additionaldlls\amd64\winsvc.dll
+    ;winsvc.dll,additionaldlls\amd64\winsvc.dll
     winusb.dll,additionaldlls\amd64\winusb.dll
     wisptis.exe,additionaldlls\amd64\wisptis.exe
     wkscli.dll,additionaldlls\amd64\wkscli.dll
@@ -7238,7 +7234,7 @@
     wmdrmsdk.dll,additionaldlls\amd64\MF\wmdrmsdk.dll    
     wmphoto.dll,additionaldlls\amd64\wmphoto.dll
     wmsgapi.dll,additionaldlls\amd64\wmsgapi.dll
-    wpc.dll,additionaldlls\amd64\wpc.dll    
+    ;wpc.dll,additionaldlls\amd64\wpc.dll    
     WSDApi.dll,additionaldlls\amd64\WSDApi.dll
     wtsapi32.dll,additionaldlls\amd64\wtsapi32.dll
     wusa.exe,additionaldlls\amd64\wusa.exe
@@ -7325,7 +7321,7 @@
     photometadatahandler.dll,additionaldlls\i386\wphotometadatahandler.dll
     pkgmgr.exe,additionaldlls\i386\wpkgmgr.exe
     prntvpt.dll,additionaldlls\i386\wprntvpt.dll        
-    puiapi.dll,additionaldlls\i386\wpuiapi.dll        
+    ;puiapi.dll,additionaldlls\i386\wpuiapi.dll        
     pwrshplugin.dll,additionaldlls\i386\wpwrshplugin.dll        
     qwave.dll,additionaldlls\i386\wqwave.dll        
     RESAMPLEDMO.dll,additionaldlls\i386\MF\wRESAMPLEDMO.dll        
@@ -7367,7 +7363,7 @@
     wimgapi.dll,additionaldlls\i386\wwimgapi.dll
     windowscodecs.dll,additionaldlls\i386\wwindowscodecs.dll
     windowscodecsext.dll,additionaldlls\i386\wwindowscodecsext.dll
-    winsvc.dll,additionaldlls\i386\wwinsvc.dll
+    ;winsvc.dll,additionaldlls\i386\wwinsvc.dll
     winusb.dll,additionaldlls\i386\wwinusb.dll
     wisptis.exe,additionaldlls\i386\wwisptis.exe
     wkscli.dll,additionaldlls\i386\wwkscli.dll
@@ -7378,7 +7374,7 @@
     wmdrmsdk.dll,additionaldlls\i386\MF\wwmdrmsdk.dll    
     wmphoto.dll,additionaldlls\i386\wwmphoto.dll
     wmsgapi.dll,additionaldlls\i386\wwmsgapi.dll
-    wpc.dll,additionaldlls\i386\wwpc.dll    
+    ;wpc.dll,additionaldlls\i386\wwpc.dll    
     WSDApi.dll,additionaldlls\i386\wWSDApi.dll
     wtsapi32.dll,additionaldlls\i386\wwtsapi32.dll
     wusa.exe,additionaldlls\i386\wwusa.exe
@@ -7395,12 +7391,12 @@
     hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Uniprocessor.Kernel.Files]
-    ; ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
-    ; hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll
 
 [Multiprocessor.Kernel.Files]
-    ; ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
-    ; hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll    
+    ntoskrnl.exe,osfiles\%CURRENT_OS%\COMMON\amd64\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe
+    hal.dll,osfiles\%CURRENT_OS%\COMMON\amd64\hal\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%hal.dll    
     
 [ProductInstall.CopyFilesAlways.Professional]    
     CopyFiles=Professional.Windows.Files
@@ -8481,7 +8477,7 @@
    API-MS-WIN-CORE-ERRORHANDLING-L1-1-3.dll,api-sets\amd64\API-MS-WIN-CORE-ERRORHANDLING-L1-1-3.dll
    API-MS-WIN-CORE-FEATURESTAGING-L1-1-0.dll,api-sets\amd64\API-MS-WIN-CORE-FEATURESTAGING-L1-1-0.dll
    API-MS-WIN-CORE-FIBERS-L1-1-0.dll,api-sets\amd64\API-MS-WIN-CORE-FIBERS-L1-1-0.dll
-   API-MS-WIN-CORE-FIBERS-L1-1-1.dll,api-sets\amd64\API-MS-WIN-CORE-FIBERS-L1-1-1.dll
+   ;API-MS-WIN-CORE-FIBERS-L1-1-1.dll,api-sets\amd64\API-MS-WIN-CORE-FIBERS-L1-1-1.dll
    API-MS-WIN-CORE-FIBERS-L2-1-0.dll,api-sets\amd64\API-MS-WIN-CORE-FIBERS-L2-1-0.dll
    API-MS-WIN-CORE-FIBERS-L2-1-1.dll,api-sets\amd64\API-MS-WIN-CORE-FIBERS-L2-1-1.dll
    API-MS-WIN-CORE-FILE-ANSI-L2-1-0.dll,api-sets\amd64\API-MS-WIN-CORE-FILE-ANSI-L2-1-0.dll
