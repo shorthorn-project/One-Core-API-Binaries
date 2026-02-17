@@ -6669,7 +6669,7 @@
     ntdll.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%ntdll.dll	
     winsrv.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
-    wow64win.dll, osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%wow64win.dll	
+    wow64win.dll, osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%wow64win.dll	
     
 [MustReplace.SysWOW64.Files]
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wcrypt32.dll
