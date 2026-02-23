@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.5"    
+    BASE_VERSION              = "4.0.6"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6646,16 +6646,29 @@
     "regsvr32 /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
     "regsvr32.exe /s propsys.dll"    
     "%systemroot%\syswow64\regsvr32.exe /s %systemroot%\syswow64\propsys.dll"
-    ;"regsvr32.exe /s mmdevapi.dll"        
-   ; "Syswow64/regsvr32.exe /s Syswow64/mmdevapi.dll"
     """%windir%\system32\cmd.exe""" /c move /y """%16407%\System Tools\NNN4NT5.lnk""" """%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk
 	
 [ProcessesToRunBeforeArchive]
     "%sourcepath%\base\i386\wocacertinstall.bat"
-    "cmd /C wmic bios"		
-    "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
-    "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\Syswow64\certupdate.exe /Y /C /Q""  /ru system"
-    "cmd /C netsh interface ipv6 install"
+    "cmd /C wmic bios"
+    "cmd /C ipv6 install"
+    "cmd /C copy %SystemRoot%\System32\advapi32.dll %SystemRoot%\System32\advapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\browseui.dll %SystemRoot%\System32\browsebase.dll"
+    "cmd /C copy %SystemRoot%\System32\comdlg32.dll %SystemRoot%\System32\comdlgbase.dll"
+    "cmd /C copy %SystemRoot%\System32\gdi32.dll %SystemRoot%\System32\gdibase.dll"
+    "cmd /C copy %SystemRoot%\System32\iphlpapi.dll %SystemRoot%\System32\iphlpapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\netapi32.dll %SystemRoot%\System32\netapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\ole32.dll %SystemRoot%\System32\olebase.dll"
+    "cmd /C copy %SystemRoot%\System32\pdh.dll %SystemRoot%\System32\pdhbase.dll"
+    "cmd /C copy %SystemRoot%\System32\powrprof.dll %SystemRoot%\System32\powrprofbase.dll"
+    "cmd /C copy %SystemRoot%\System32\secur32.dll %SystemRoot%\System32\securbase.dll"
+    "cmd /C copy %SystemRoot%\System32\setupapi.dll %SystemRoot%\System32\setupapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\shell32.dll %SystemRoot%\System32\shellbase.dll"
+    "cmd /C copy %SystemRoot%\System32\shlwapi.dll %SystemRoot%\System32\shlwapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\user32.dll %SystemRoot%\System32\userbase.dll"
+    "cmd /C copy %SystemRoot%\System32\userenv.dll %SystemRoot%\System32\userenvbase.dll"
+    "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"	
+    "cmd /C copy %SystemRoot%\System32\ws2_32.dll %SystemRoot%\System32\ws2_base.dll"
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
@@ -6750,7 +6763,7 @@
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll	
 
 [CoreOS.SPFiles.System32.Files]
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
+    ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
@@ -6763,7 +6776,7 @@
     winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll
 	
 [CoreOS.SPFiles.SysWow64.Files]	
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wadvapi32.dll
+    ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wadvapi32.dll
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wbrowsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wdnsapi.dll	
     ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wole32.dll
@@ -6819,6 +6832,7 @@
     winhttpext.dll,extensions\i386\wwinhttpext.dll	
 	
 [Core.System32.Files]
+    advapi32.dll,core\amd64\advapi32_wrapper.dll
     browseui.dll,core\amd64\browseui.dll
     cfgmgr32.dll,core\amd64\cfgmgr32.dll	
     comdlg32.dll,core\amd64\comdlg32.dll	
@@ -6832,6 +6846,7 @@
     ws2_32.dll,core\amd64\ws2_32.dll
 
 [Core.SysWow64.Files]
+    advapi32.dll,core\i386\wadvapi32_wrapper.dll
     browseui.dll,core\i386\wbrowseui.dll
     cfgmgr32.dll,core\i386\wcfgmgr32.dll
     comdlg32.dll,core\i386\wcomdlg32.dll	

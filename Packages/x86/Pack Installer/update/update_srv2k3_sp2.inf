@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.5"    
+    BASE_VERSION              = "4.0.6"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2532,13 +2532,13 @@
 [ProductInstall.ReplaceFilesIfExist]
     CopyFiles = Core.System32.Files
     CopyFiles = Drivers.CoreDriverFiles 
-    CopyFiles = System32.Files	
+    CopyFiles = System32.Files
 	
 [ProductInstall.DontDelayUntilReboot]
     ;CopyFiles=Core.System32.Files
-    CopyFiles  = CoreOS.Common.System32.Files
+    CopyFiles = CoreOS.Common.System32.Files
     ;CopyFiles= CoreOS.SPFiles.System32.Files	
-    CopyFiles  = MustReplace.System32.Files
+    CopyFiles = MustReplace.System32.Files
 
 [ProductInstall.CopyFilesAlways]
     CopyFiles= Base.System32.Files	
@@ -2590,6 +2590,7 @@
     CopyFiles= CoreOS.SPFiles.System32.Files
     CopyFiles= Drivers.CoreDriverFiles	
     CopyFiles= Extensions.System32.Files
+    CopyFiles= System32.Files
     CopyFiles= Fonts.files	
     CopyFiles= Program_Files.web_server_extensions.Files
     CopyFiles= Program_Files.web_server_extensions.1033.Files
@@ -2706,6 +2707,23 @@
     "%sourcepath%\base\i386\ocacertinstall.bat"
     "cmd /C wmic bios"
     "cmd /C ipv6 install"
+    "cmd /C copy %SystemRoot%\System32\advapi32.dll %SystemRoot%\System32\advapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\browseui.dll %SystemRoot%\System32\browsebase.dll"
+    "cmd /C copy %SystemRoot%\System32\comdlg32.dll %SystemRoot%\System32\comdlgbase.dll"
+    "cmd /C copy %SystemRoot%\System32\gdi32.dll %SystemRoot%\System32\gdibase.dll"
+    "cmd /C copy %SystemRoot%\System32\iphlpapi.dll %SystemRoot%\System32\iphlpapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\netapi32.dll %SystemRoot%\System32\netapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\ole32.dll %SystemRoot%\System32\olebase.dll"
+    "cmd /C copy %SystemRoot%\System32\pdh.dll %SystemRoot%\System32\pdhbase.dll"
+    "cmd /C copy %SystemRoot%\System32\powrprof.dll %SystemRoot%\System32\powrprofbase.dll"
+    "cmd /C copy %SystemRoot%\System32\secur32.dll %SystemRoot%\System32\securbase.dll"
+    "cmd /C copy %SystemRoot%\System32\setupapi.dll %SystemRoot%\System32\setupapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\shell32.dll %SystemRoot%\System32\shellbase.dll"
+    "cmd /C copy %SystemRoot%\System32\shlwapi.dll %SystemRoot%\System32\shlwapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\user32.dll %SystemRoot%\System32\userbase.dll"
+    "cmd /C copy %SystemRoot%\System32\userenv.dll %SystemRoot%\System32\userenvbase.dll"
+    "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"	
+    "cmd /C copy %SystemRoot%\System32\ws2_32.dll %SystemRoot%\System32\ws2_base.dll"	
 
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
@@ -2716,19 +2734,21 @@
     tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys 
 
 [System32.Files]
-    win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
+    ;win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
     halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
     halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll    
     halapic.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halapic.dll    
     halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll    
     halmps.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmps.dll    
-    ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
+    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll    
+	ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
     ntkrpamp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%ntkrpamp.exe
     ntkrpaup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlpa.exe
-    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe    
+    ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe 
+	userbase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%userbase.dll	
 
 [MustReplace.System32.Files]
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
+    ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
     halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
@@ -2739,7 +2759,6 @@
     imm32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%imm32.dll    
 	kernel32.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     loadperf.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%loadperf.dll	
-    msvcrt.dll,base\msvcrt.dll	
     ntdll.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntdll.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll		
     ntkrnlup.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntoskrnl.exe
@@ -2789,39 +2808,30 @@
 [CoreOS.Common.System32.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
     clbcatq.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%clbcatq.dll
-    comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%comdlgbase.dll	
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
     cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%cryptcore.dll
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%dssenh.dll
     esent.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%esent.dll	
-    gdibase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll
-    halacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halacpi.dll
-    halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll
-    halmacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halmacpi.dll
     iphlpapi.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%iphlpapi.dll	
     imm32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%imm32.dll	    
 	kernel32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%lsasrv.dll
     netapi32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%netapi32.dll
+    ntdll.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ntdll.dll
     oleacc.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%oleacc.dll
-    pdhbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%pdhbase.dll	
     powrprof.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%powrprof.dll	
     rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll
     schannel.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%schannel.dll
     secur32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%secur32.dll
-    setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%setupapibase.dll	
     sxs.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%sxs.dll	
-    userbase.dll,osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%userbase.dll
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
     winsrv.dll, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wintrust.dll
-    ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ws2_base.dll
     wshtcpip.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wshtcpip.dll
 
 [CoreOS.SPFiles.System32.Files]
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
+    ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
-    browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
     ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
     rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
@@ -2855,11 +2865,11 @@
     winhttpext.dll,extensions\winhttpext.dll	
 	
 [Core.System32.Files]
+    advapi32.dll,core\advapi32_wrapper.dll
     browseui.dll,core\browseui.dll
     cfgmgr32.dll,core\cfgmgr32.dll
     comdlg32.dll,core\comdlg32.dll
     gdi32.dll,core\gdi32.dll
-    msvcrt.dll,base\msvcrt.dll
     pdh.dll,core\pdh.dll
     psapi.dll,core\psapi.dll
     setupapi.dll,core\setupapi.dll
@@ -2894,7 +2904,8 @@
     libpng.dll,base\libpng.dll
     msctfime.ime,base\msctfime.ime	
     msisip.dll,base\msisip.dll	
-    msvcp60.dll,base\msvcp60.dll	
+    msvcp60.dll,base\msvcp60.dll
+    msvcrt.dll,base\msvcrt.dll	
     ;mscoree.dll ;comment becuase if copied, must be set HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft.NETFramework\InstallRoot too, however, we don't know Windows drive letter installation. 
     ncrypt.dll,base\ncrypt.dll	
     netfxperf.dll,base\netfxperf.dll
@@ -3076,7 +3087,6 @@
     MSMPEG2ENC.dll,additionaldlls\MF\MSMPEG2ENC.dll
     msmpeg2vdec.dll,additionaldlls\MF\msmpeg2vdec.dll
     mspatcha.dll,additionaldlls\mspatcha.dll
-    msvcrt.dll,base\msvcrt.dll	
     ndfapi.dll,additionaldlls\ndfapi.dll
     netbios.dll,additionaldlls\netbios.dll
     netjoin.dll,additionaldlls\netjoin.dll

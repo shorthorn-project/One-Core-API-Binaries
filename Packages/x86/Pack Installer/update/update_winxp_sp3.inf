@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.5"    
+    BASE_VERSION              = "4.0.6"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2706,6 +2706,23 @@
     "%sourcepath%\base\i386\ocacertinstall.bat"
     "cmd /C wmic bios"
     "cmd /C ipv6 install"
+    "cmd /C copy %SystemRoot%\System32\advapi32.dll %SystemRoot%\System32\advapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\browseui.dll %SystemRoot%\System32\browsebase.dll"
+    "cmd /C copy %SystemRoot%\System32\comdlg32.dll %SystemRoot%\System32\comdlgbase.dll"
+    "cmd /C copy %SystemRoot%\System32\gdi32.dll %SystemRoot%\System32\gdibase.dll"
+    "cmd /C copy %SystemRoot%\System32\iphlpapi.dll %SystemRoot%\System32\iphlpapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\netapi32.dll %SystemRoot%\System32\netapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\ole32.dll %SystemRoot%\System32\olebase.dll"
+    "cmd /C copy %SystemRoot%\System32\pdh.dll %SystemRoot%\System32\pdhbase.dll"
+    "cmd /C copy %SystemRoot%\System32\powrprof.dll %SystemRoot%\System32\powrprofbase.dll"
+    "cmd /C copy %SystemRoot%\System32\secur32.dll %SystemRoot%\System32\securbase.dll"
+    "cmd /C copy %SystemRoot%\System32\setupapi.dll %SystemRoot%\System32\setupapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\shell32.dll %SystemRoot%\System32\shellbase.dll"
+    "cmd /C copy %SystemRoot%\System32\shlwapi.dll %SystemRoot%\System32\shlwapibase.dll"
+    "cmd /C copy %SystemRoot%\System32\user32.dll %SystemRoot%\System32\userbase.dll"
+    "cmd /C copy %SystemRoot%\System32\userenv.dll %SystemRoot%\System32\userenvbase.dll"
+    "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"	
+    "cmd /C copy %SystemRoot%\System32\ws2_32.dll %SystemRoot%\System32\ws2_base.dll"
 
 [Drivers.CoreDriverFiles]
     intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
@@ -2728,7 +2745,7 @@
     ntkrnlmp.exe,osfiles\%CURRENT_OS%\COMMON\kernel\%RELEASE_TYPE%\%RELEASE_FAMILY%%RELEASE_TYPE%ntkrnlmp.exe    
 
 [MustReplace.System32.Files]
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
+    ;advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
     halaacpi.dll,osfiles\%CURRENT_OS%\COMMON\hal\%RELEASE_TYPE_SPECIAL%\%RELEASE_FAMILY%%RELEASE_TYPE_SPECIAL%halaacpi.dll    
@@ -2820,7 +2837,7 @@
     advapicore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advapicore.dll	
 
 [CoreOS.SPFiles.System32.Files]
-    advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
+    ;advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
@@ -2856,11 +2873,11 @@
     winhttpext.dll,extensions\winhttpext.dll
 	
 [Core.System32.Files]
+    advapi32.dll,core\advapi32_wrapper.dll
     browseui.dll,core\browseui.dll
     cfgmgr32.dll,core\cfgmgr32.dll
     comdlg32.dll,core\comdlg32.dll
     gdi32.dll,core\gdi32.dll
-    msvcrt.dll,base\msvcrt.dll
     pdh.dll,core\pdh.dll
     psapi.dll,core\psapi.dll
     setupapi.dll,core\setupapi.dll
