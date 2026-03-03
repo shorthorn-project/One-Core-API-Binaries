@@ -6318,7 +6318,11 @@
 	
 	;Fix for Firefox 142+
     HKCU,"Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
-    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"	
+    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
+
+    ;Add .Net Core workaround
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","DOTNET_SYSTEM_GLOBALIZATION_INVARIANT",0x0,"1"	
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","DOTNET_GCRegionRange ",0x0,"200000000"	
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
@@ -6669,6 +6673,24 @@
     "cmd /C copy %SystemRoot%\System32\userenv.dll %SystemRoot%\System32\userenvbase.dll"
     "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"	
     "cmd /C copy %SystemRoot%\System32\ws2_32.dll %SystemRoot%\System32\ws2_base.dll"
+	
+    "cmd /C copy %SystemRoot%\SysWow64\advapi32.dll %SystemRoot%\SysWow64\advapibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\browseui.dll %SystemRoot%\SysWow64\browsebase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\comdlg32.dll %SystemRoot%\SysWow64\comdlgbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\gdi32.dll %SystemRoot%\SysWow64\gdibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\iphlpapi.dll %SystemRoot%\SysWow64\iphlpapibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\netapi32.dll %SystemRoot%\SysWow64\netapibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\ole32.dll %SystemRoot%\SysWow64\olebase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\pdh.dll %SystemRoot%\SysWow64\pdhbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\powrprof.dll %SystemRoot%\SysWow64\powrprofbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\secur32.dll %SystemRoot%\SysWow64\securbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\setupapi.dll %SystemRoot%\SysWow64\setupapibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\shell32.dll %SystemRoot%\SysWow64\shellbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\shlwapi.dll %SystemRoot%\SysWow64\shlwapibase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\user32.dll %SystemRoot%\SysWow64\userbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\userenv.dll %SystemRoot%\SysWow64\userenvbase.dll"
+    "cmd /C copy %SystemRoot%\SysWow64\winsta.dll %SystemRoot%\SysWow64\winstabase.dll"	
+    "cmd /C copy %SystemRoot%\SysWow64\ws2_32.dll %SystemRoot%\SysWow64\ws2_base.dll"
 
 [Drivers.CoreDriverFiles]
     kseext.sys, drivers\kseext.sys
@@ -6767,7 +6789,7 @@
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
-    ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
+    ;ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
     rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll	
@@ -6779,7 +6801,7 @@
     ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wadvapi32.dll
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wbrowsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wdnsapi.dll	
-    ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wole32.dll
+    ;ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wole32.dll
     rpcrtbase.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wrpcrtbase.dll ;Need be rpcrtbase because if use a edited rpcrt4, face with "bad image" error.
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wshell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wshlwapibase.dll	
@@ -6837,7 +6859,7 @@
     cfgmgr32.dll,core\amd64\cfgmgr32.dll	
     comdlg32.dll,core\amd64\comdlg32.dll	
     gdi32.dll,core\amd64\gdi32.dll
-    msvcrt.dll,base\amd64\msvcrt.dll
+    ole32.dll,core\amd64\ole32_wrapper.dll	
     pdh.dll,core\amd64\pdh.dll
     psapi.dll,core\amd64\psapi.dll
     setupapi.dll,core\amd64\setupapi.dll
@@ -6851,7 +6873,7 @@
     cfgmgr32.dll,core\i386\wcfgmgr32.dll
     comdlg32.dll,core\i386\wcomdlg32.dll	
     gdi32.dll,core\i386\wgdi32.dll
-    msvcrt.dll,base\i386\wmsvcrt.dll
+    ole32.dll,core\i386\wole32_wrapper.dll	
     pdh.dll,core\i386\wpdh.dll
     psapi.dll,core\i386\wpsapi.dll
     setupapi.dll,core\i386\wsetupapi.dll
@@ -6883,6 +6905,7 @@
     msctfime.ime,base\amd64\msctfime.ime
     msisip.dll,base\amd64\msisip.dll
     msvcp60.dll,base\amd64\msvcp60.dll	
+    msvcrt.dll,base\amd64\msvcrt.dll	
     ncrypt.dll,base\amd64\ncrypt.dll	
     netfxperf.dll,base\amd64\netfxperf.dll
     Nlsdl.dll,base\amd64\Nlsdl.dll
@@ -6931,6 +6954,7 @@
     msctfime.ime,base\i386\wmsctfime.ime
     msisip.dll,base\i386\wmsisip.dll		
     msvcp60.dll,base\i386\wmsvcp60.dll		
+    msvcrt.dll,base\i386\wmsvcrt.dll		
     ncrypt.dll,base\i386\wncrypt.dll	
     netfxperf.dll,base\i386\wnetfxperf.dll
     nsi.dll,base\i386\wnsi.dll	

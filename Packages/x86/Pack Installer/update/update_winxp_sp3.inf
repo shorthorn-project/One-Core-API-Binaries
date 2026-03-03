@@ -2459,7 +2459,10 @@
 	
 	;Fix for Firefox 142+
     HKCU,"Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
-    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"	
+    HKU,".DEFAULT\Environment","MOZ_CRASHREPORTER_DISABLE",0x0,"1"
+
+    ;Add .Net Core workaround
+    HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","DOTNET_SYSTEM_GLOBALIZATION_INVARIANT",0x0,"1"		
 
 [Product.Del.Reg]
     HKCR,"CLSID\{0131BE10-2001-4C5F-A9B0-CC88FAB64CE8}"
@@ -2841,7 +2844,7 @@
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
-    ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
+    ;ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
     rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll
@@ -2878,6 +2881,7 @@
     cfgmgr32.dll,core\cfgmgr32.dll
     comdlg32.dll,core\comdlg32.dll
     gdi32.dll,core\gdi32.dll
+    ole32.dll,core\ole32_wrapper.dll
     pdh.dll,core\pdh.dll
     psapi.dll,core\psapi.dll
     setupapi.dll,core\setupapi.dll
