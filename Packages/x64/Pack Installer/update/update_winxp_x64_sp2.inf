@@ -6458,14 +6458,14 @@
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\MediaPlayer\Setup\Installed Versions"
 	
 [ProductInstall.ReplaceFilesIfExist]
-    CopyFiles = Core.System32.Files
-    CopyFiles = Core.SysWOW64.Files
+    CopyFiles = Wrappers.System32.Files
+    CopyFiles = Wrappers.SysWow64.Files
     CopyFiles = Drivers.CoreDriverFiles 
     ;CopyFiles = System32.Files		
 
 [ProductInstall.DontDelayUntilReboot]
-    CopyFiles = Core.System32.Files
-    CopyFiles = Core.SysWOW64.Files
+    CopyFiles = Wrappers.System32.Files
+    CopyFiles = Wrappers.SysWow64.Files
     CopyFiles = CoreOS.Common.System32.Files
     CopyFiles = CoreOS.Common.SysWOW64.Files
     CopyFiles = MustReplace.System32.Files
@@ -6528,8 +6528,8 @@
     CopyFiles= CoreOS.Common.SysWOW64.Files
     CopyFiles= CoreOS.SPFiles.System32.Files	
     CopyFiles= CoreOS.SPFiles.SysWOW64.Files
-    CopyFiles= Core.System32.Files
-    CopyFiles= Core.SysWOW64.Files	
+    CopyFiles= Wrappers.System32.Files
+    CopyFiles= Wrappers.SysWow64.Files	
     CopyFiles= Drivers.CoreDriverFiles
     CopyFiles= Extensions.System32.Files
     CopyFiles= Extensions.SysWOW64.Files
@@ -6591,8 +6591,8 @@
     CopyAlways.WinSxS.Main.Files = 10 ; %windir%
     CopyAlways.WinSxS.Manifests.Files = 10 ; %windir%
     CopyAlways.WinSxS.Policies.Files = 10 ; %windir%
-    Core.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
-    Core.SysWOW64.Files=10,SysWOW64       ; %windir%\system32 (don't delay until reboot)
+    Wrappers.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
+    Wrappers.SysWow64.Files=10,SysWOW64       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Common.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Common.SysWOW64.Files=10,SysWOW64       ; %windir%\SysWOW64 (don't delay until reboot)
     CoreOS.SPFiles.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
@@ -6795,7 +6795,7 @@
     ;rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll	
-    userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
+    ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll	
     winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll
 	
@@ -6807,7 +6807,7 @@
     ;rpcrtbase.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wrpcrtbase.dll ;Need be rpcrtbase because if use a edited rpcrt4, face with "bad image" error.
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wshell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wshlwapibase.dll	
-    userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wuserenv.dll
+    ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wuserenv.dll
     uxthemebase.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wuxthemebase.dll	;Need be uxthemebase because if use a edited uxtheme, face with "bad image" error.
     winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wwinsta.dll
 
@@ -6855,35 +6855,37 @@
     uxtheme.dll,extensions\i386\wuxtheme.dll ;Need be uxtheme (wrapper) because if use as extension and edited native uxtheme, cause "bad image" error
     winhttpext.dll,extensions\i386\wwinhttpext.dll	
 	
-[Core.System32.Files]
-    advapi32.dll,core\amd64\advapi32_wrapper.dll
-    browseui.dll,core\amd64\browseui.dll
-    cfgmgr32.dll,core\amd64\cfgmgr32.dll	
-    comdlg32.dll,core\amd64\comdlg32.dll	
-    gdi32.dll,core\amd64\gdi32.dll
-    ole32.dll,core\amd64\ole32_wrapper.dll	
-    pdh.dll,core\amd64\pdh.dll
-    psapi.dll,core\amd64\psapi.dll
-    rpcrt4.dll,core\amd64\rpcrt4.dll
-    setupapi.dll,core\amd64\setupapi.dll
-    shlwapi.dll,core\amd64\shlwapi.dll
-    user32.dll,core\amd64\user32.dll
-    ws2_32.dll,core\amd64\ws2_32.dll
+[Wrappers.System32.Files]
+    advapi32.dll,wrappers\amd64\advapi32_wrapper.dll
+    browseui.dll,wrappers\amd64\browseui.dll
+    cfgmgr32.dll,wrappers\amd64\cfgmgr32.dll	
+    comdlg32.dll,wrappers\amd64\comdlg32.dll	
+    gdi32.dll,wrappers\amd64\gdi32.dll
+    ole32.dll,wrappers\amd64\ole32_wrapper.dll	
+    pdh.dll,wrappers\amd64\pdh.dll
+    psapi.dll,wrappers\amd64\psapi.dll
+    rpcrt4.dll,wrappers\amd64\rpcrt4.dll
+    setupapi.dll,wrappers\amd64\setupapi.dll
+    shlwapi.dll,wrappers\amd64\shlwapi.dll
+    user32.dll,wrappers\amd64\user32.dll
+    userenv.dll,wrappers\amd64\userenv_wrapper.dll	
+    ws2_32.dll,wrappers\amd64\ws2_32.dll
 
-[Core.SysWow64.Files]
-    advapi32.dll,core\i386\wadvapi32_wrapper.dll
-    browseui.dll,core\i386\wbrowseui.dll
-    cfgmgr32.dll,core\i386\wcfgmgr32.dll
-    comdlg32.dll,core\i386\wcomdlg32.dll	
-    gdi32.dll,core\i386\wgdi32.dll
-    ole32.dll,core\i386\wole32_wrapper.dll	
-    pdh.dll,core\i386\wpdh.dll
-    psapi.dll,core\i386\wpsapi.dll
-    rpcrt4.dll,core\i386\wrpcrt4.dll
-    setupapi.dll,core\i386\wsetupapi.dll
-    shlwapi.dll,core\i386\wshlwapi.dll
-    user32.dll,core\i386\wuser32.dll
-    ws2_32.dll,core\i386\wws2_32.dll	
+[Wrappers.SysWow64.Files]
+    advapi32.dll,wrappers\i386\wadvapi32_wrapper.dll
+    browseui.dll,wrappers\i386\wbrowseui.dll
+    cfgmgr32.dll,wrappers\i386\wcfgmgr32.dll
+    comdlg32.dll,wrappers\i386\wcomdlg32.dll	
+    gdi32.dll,wrappers\i386\wgdi32.dll
+    ole32.dll,wrappers\i386\wole32_wrapper.dll	
+    pdh.dll,wrappers\i386\wpdh.dll
+    psapi.dll,wrappers\i386\wpsapi.dll
+    rpcrt4.dll,wrappers\i386\wrpcrt4.dll
+    setupapi.dll,wrappers\i386\wsetupapi.dll
+    shlwapi.dll,wrappers\i386\wshlwapi.dll
+    user32.dll,wrappers\i386\wuser32.dll
+    userenv.dll,wrappers\i386\wuserenv_wrapper.dll	
+    ws2_32.dll,wrappers\i386\wws2_32.dll	
 	
 [Base.System32.Files]
     atl.dll,base\amd64\atl.dll

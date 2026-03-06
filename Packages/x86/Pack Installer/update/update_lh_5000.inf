@@ -2533,12 +2533,12 @@
     HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"
 	
 [ProductInstall.ReplaceFilesIfExist]
-    CopyFiles = Core.System32.Files
+    CopyFiles = Wrappers.System32.Files
     CopyFiles = Drivers.CoreDriverFiles 
     CopyFiles = System32.Files	
 	
 [ProductInstall.DontDelayUntilReboot]
-    ;CopyFiles=Core.System32.Files
+    ;CopyFiles=Wrappers.System32.Files
     CopyFiles  = CoreOS.Common.System32.Files
     ;CopyFiles= CoreOS.SPFiles.System32.Files	
     CopyFiles  = MustReplace.System32.Files
@@ -2644,7 +2644,7 @@
     CopyAlways.WinSxS.Main.Files = 10 ; %windir%
     CopyAlways.WinSxS.Manifests.Files = 10 ; %windir%
     CopyAlways.WinSxS.Policies.Files = 10 ; %windir%
-    Core.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
+    Wrappers.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Common.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.SPFiles.System32.Files.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Specific.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
@@ -2858,18 +2858,18 @@
     uxthext.dll,extensions\uxthext.dll
     winhttpext.dll,extensions\winhttpext.dll	
 	
-[Core.System32.Files]
-    browseui.dll,core\browseui.dll
-    cfgmgr32.dll,core\cfgmgr32.dll
-    comdlg32.dll,core\comdlg32.dll
-    gdi32.dll,core\gdi32.dll
+[Wrappers.System32.Files]
+    browseui.dll,wrappers\browseui.dll
+    cfgmgr32.dll,wrappers\cfgmgr32.dll
+    comdlg32.dll,wrappers\comdlg32.dll
+    gdi32.dll,wrappers\gdi32.dll
     msvcrt.dll,base\msvcrt.dll
-    pdh.dll,core\pdh.dll
-    psapi.dll,core\psapi.dll
-    setupapi.dll,core\setupapi.dll
-    ;shlwapi.dll,core\shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM
-    user32.dll,core\user32.dll
-    ws2_32.dll,core\ws2_32.dll	
+    pdh.dll,wrappers\pdh.dll
+    psapi.dll,wrappers\psapi.dll
+    setupapi.dll,wrappers\setupapi.dll
+    ;shlwapi.dll,wrappers\shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM
+    user32.dll,wrappers\user32.dll
+    ws2_32.dll,wrappers\ws2_32.dll	
 	
 [Base.System32.Files]
     atl.dll,base\atl.dll	

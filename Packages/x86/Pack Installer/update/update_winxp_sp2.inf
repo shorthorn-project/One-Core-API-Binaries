@@ -2533,12 +2533,12 @@
     HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"
 
 [ProductInstall.ReplaceFilesIfExist]
-    CopyFiles = Core.System32.Files
+    CopyFiles = Wrappers.System32.Files
     CopyFiles = Drivers.CoreDriverFiles 
     CopyFiles = System32.Files	
 	
 [ProductInstall.DontDelayUntilReboot]
-    ;CopyFiles=Core.System32.Files
+    ;CopyFiles=Wrappers.System32.Files
     CopyFiles  = CoreOS.Common.System32.Files
     ;CopyFiles= CoreOS.SPFiles.System32.Files	
     CopyFiles  =MustReplace.System32.Files
@@ -2644,7 +2644,7 @@
     CopyAlways.WinSxS.Main.Files = 10 ; %windir%
     CopyAlways.WinSxS.Manifests.Files = 10 ; %windir%
     CopyAlways.WinSxS.Policies.Files = 10 ; %windir%
-    Core.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
+    Wrappers.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Common.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.SPFiles.System32.Files.Files=11       ; %windir%\system32 (don't delay until reboot)
     CoreOS.Specific.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
@@ -2847,10 +2847,10 @@
     browsebase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%browsebase.dll
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
     ;ole32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%ole32.dll
-    ;rpcrt4.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%rpcrt4.dll
+    rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll
-    userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
+    ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll	
     winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
 
@@ -2877,20 +2877,21 @@
     uxthext.dll,extensions\uxthext.dll
     winhttpext.dll,extensions\winhttpext.dll
 	
-[Core.System32.Files]
-    advapi32.dll,core\advapi32_wrapper.dll
-    browseui.dll,core\browseui.dll
-    cfgmgr32.dll,core\cfgmgr32.dll
-    comdlg32.dll,core\comdlg32.dll
-    gdi32.dll,core\gdi32.dll
-    ole32.dll,core\ole32_wrapper.dll
-    pdh.dll,core\pdh.dll
-    psapi.dll,core\psapi.dll
-    rpcrt4.dll,core\rpcrt4.dll
-    setupapi.dll,core\setupapi.dll
-    shlwapi.dll,core\shlwapi.dll
-    user32.dll,core\user32.dll
-    ws2_32.dll,core\ws2_32.dll	
+[Wrappers.System32.Files]
+    advapi32.dll,wrappers\advapi32_wrapper.dll
+    browseui.dll,wrappers\browseui.dll
+    cfgmgr32.dll,wrappers\cfgmgr32.dll
+    comdlg32.dll,wrappers\comdlg32.dll
+    gdi32.dll,wrappers\gdi32.dll
+    ole32.dll,wrappers\ole32_wrapper.dll
+    pdh.dll,wrappers\pdh.dll
+    psapi.dll,wrappers\psapi.dll
+    rpcrt4.dll,wrappers\rpcrt4_wrapper.dll
+    setupapi.dll,wrappers\setupapi.dll
+    shlwapi.dll,wrappers\shlwapi.dll
+    user32.dll,wrappers\user32.dll
+    userenv.dll,wrappers\userenv_wrapper.dll	
+    ws2_32.dll,wrappers\ws2_32.dll	
 	
 [Base.System32.Files]
     atl.dll,base\atl.dll	
