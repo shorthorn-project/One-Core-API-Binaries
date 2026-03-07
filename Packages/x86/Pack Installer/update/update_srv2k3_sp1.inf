@@ -2843,7 +2843,7 @@
     shlwapibase.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapibase.dll	
     ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll	
-    winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
+    ;winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
 
 [Extensions.System32.Files]
     advapiex.dll,extensions\advapiex.dll
@@ -2881,7 +2881,8 @@
     setupapi.dll,wrappers\setupapi.dll
     shlwapi.dll,wrappers\shlwapi.dll
     user32.dll,wrappers\user32.dll
-    userenv.dll,wrappers\userenv_wrapper.dll	
+    userenv.dll,wrappers\userenv_wrapper.dll
+    winsta.dll,wrappers\winsta_wrapper.dll	
     ws2_32.dll,wrappers\ws2_32.dll	
 	
 [Base.System32.Files]

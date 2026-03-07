@@ -2849,7 +2849,7 @@
     shlwapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM
     ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll	
-    winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
+    ;winsta.dll, osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%winsta.dll 	
 
 [Extensions.System32.Files]
     advapiex.dll,extensions\advapiex.dll
@@ -2880,13 +2880,16 @@
     cfgmgr32.dll,wrappers\cfgmgr32.dll
     comdlg32.dll,wrappers\comdlg32.dll
     gdi32.dll,wrappers\gdi32.dll
+    ole32.dll,wrappers\ole32_wrapper.dll
     pdh.dll,wrappers\pdh.dll
     psapi.dll,wrappers\psapi.dll
+    rpcrt4.dll,wrappers\rpcrt4_wrapper.dll
     setupapi.dll,wrappers\setupapi.dll
-    ;shlwapi.dll,wrappers\shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM
+    ;shlwapi.dll,wrappers\shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM/5000/5001
     user32.dll,wrappers\user32.dll
     userenv.dll,wrappers\userenv_wrapper.dll
-    ws2_32.dll,wrappers\ws2_32.dll	
+    winsta.dll,wrappers\winsta_wrapper.dll
+    ws2_32.dll,wrappers\ws2_32.dll
 	
 [Base.System32.Files]
     atl.dll,base\atl.dll	
