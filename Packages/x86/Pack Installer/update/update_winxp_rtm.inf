@@ -2808,7 +2808,6 @@
 [CoreOS.Common.System32.Files]
     ;advpack.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advpack.dll
     clbcatq.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%clbcatq.dll
-    comdlgbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%comdlgbase.dll	
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
     cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%cryptcore.dll
     dssenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%dssenh.dll
@@ -2823,10 +2822,13 @@
     loadperf.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%loadperf.dll	
     lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%lsasrv.dll
     netapi32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%netapi32.dll
+    olebase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%olebase.dll ;ole32 from XP RTM/SP1 has missing important for Firefox, so use Sp3 version	
     oleacc.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%oleacc.dll
     pdhbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%pdhbase.dll	
     powrprof.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%powrprof.dll	
     ;rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll ;cause activation issue
+    rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll	
+    rpcss.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcss.dll	
     schannel.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%schannel.dll
     secur32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%secur32.dll
     setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%setupapibase.dll	
@@ -2844,8 +2846,6 @@
     ; advapi32.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%advapi32.dll
     basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
     dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
-    olebase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%olebase.dll ;ole32 from XP RTM/SP1 has missing important for Firefox, so use Sp3 version
-    rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll
     shell32.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shell32.dll	
     shlwapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\%RELEASE_FAMILY%%TARGET_RELEASE%shlwapi.dll ;The export table order is different than SP1/SP2, disabling just for RTM
     ;userenv.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%userenv.dll
