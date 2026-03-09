@@ -2826,8 +2826,7 @@
     pdhbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%pdhbase.dll	
     powrprof.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%powrprof.dll
     rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll		
-    rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll
-    rpcss.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcss.dll		
+    rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll	
     schannel.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%schannel.dll
     secur32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%secur32.dll
     setupapibase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%setupapibase.dll	
