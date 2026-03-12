@@ -77,7 +77,7 @@
     BUILD_NUMBER              = "3790"	
     MAX_BUILD_NUMBER          = "3790"
     RELEASE_TYPE              = "original"
-    RELEASE_TYPE_WIN32SS      = "custom"	
+    RELEASE_TYPE_WIN32SS      = "original"	
     ShortCutName              = "NNN4NT5"	
     ShortCutWctName           = "Windows Compatibility Tool"	
     ShortCutDir               = "Accessories\System Tools"

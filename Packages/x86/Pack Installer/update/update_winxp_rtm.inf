@@ -76,7 +76,7 @@
     BUILD_NUMBER              = "2505"	
     MAX_BUILD_NUMBER          = "2600"
     RELEASE_TYPE              = "custom"
-    RELEASE_TYPE_WIN32SS      = "custom"
+    RELEASE_TYPE_WIN32SS      = "original"
     RELEASE_TYPE_SPECIAL      = "custom"
     ShortCutName              = "NNN4NT5"	
     ShortCutWctName           = "Windows Compatibility Tool"	
