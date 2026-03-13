@@ -21,7 +21,8 @@ As is well known, Windows XP lost official support from Microsoft in 2014. There
 There's just one major problem: the leap between XP and Windows Vista was significant, and XP lacks 90 to 95% of the new technologies introduced in Windows Vista (except for a few that were ported by Microsoft). This significantly increases the challenge and allows for many errors. Therefore, One-Core-API can have stability issues and can corrupt some systems. There are also problems with testing environments, where it's impossible to predict problems, either due to the infinite possibilities that can arise or due to a lack of staff (I'm the main developer and have a few other people helping me, like Murak, Svyatpro, and recently CoccodrillooXDS).
 So understand that One-Core-API is the only project capable of running so many modern applications, including games, but it's under intense development and many errors occur. Be patient; if you find errors, report them here instead of complaining, and help the Windows XP community grow, if you so desire and have a good heart. Thank you.
 .
-> [!WARNING]  
+> [!WARNING]
+> OCA don't support any AV officially. If you want use OCA, uninstall your AV before.
 > Now, OCA use DirectX Native software render by default.
 >
 > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
