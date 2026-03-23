@@ -147,6 +147,21 @@ As mentioned, One-Core-API uses the Hotfix installation technology of the Window
 
 </details>
 
+
+## How install and use Steam with One-Core-API?
+
+One-Core-API turn possible install and use latest steam on XP, Server 2003 and XP/Server 2003 x64. However, require latest releases of each system (SP3 of XP x86, SP2 from Server 2003 x86/x64 and XP x64) and need apply compatibility mode  to install and run Steam, otherwise you will face the dreaded screen "steamwebhelper is not responding". You can see the steps to run Steam on XP/2003 on follow images: 
+<details>
+  <summary>Step by step guide with images</summary>
+
+  **Set Compatibility Mode to Steam installer:**
+  ![image](https://github.com/user-attachments/assets/09322142-2655-47d2-9723-26fe6fb67494)
+
+  **Install Steam:**
+  ![image](https://github.com/user-attachments/assets/7fbba140-5a87-45b3-bec0-a5236a676b04)
+
+</details>
+
 ## Application Compatibility
 
 <details>
