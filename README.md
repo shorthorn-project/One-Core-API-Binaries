@@ -175,6 +175,8 @@ One-Core-API turn possible install and use latest steam on XP, Server 2003 and X
   - Vivaldi up to the latest version;
   - Epic Browser 120
   - Thunderbird up to the latest version
+  - Tor Browser;
+  - Forks of Chromium;
 
 </details>
 
