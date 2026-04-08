@@ -2854,6 +2854,7 @@
     bcryptext.dll,extensions\bcryptext.dll
     comctlext.dll,extensions\comctlext.dll	
     cryptex.dll,extensions\cryptex.dll
+    d3d11ext.dll,extensions\d3d11ext.dll
     dnsapiext.dll,extensions\dnsapiext.dll
     dxgiext.dll,extensions\dxgiext.dll
     iphlpext.dll,extensions\iphlpext.dll	

@@ -6817,6 +6817,7 @@
     bcryptext.dll,extensions\amd64\bcryptext.dll
     comctlext.dll,extensions\amd64\comctlext.dll	
     cryptex.dll,extensions\amd64\cryptex.dll
+    d3d11ext.dll,extensions\amd64\d3d11ext.dll
     dnsapiext.dll,extensions\amd64\dnsapiext.dll
     dxgiext.dll,extensions\amd64\dxgiext.dll
     iphlpext.dll,extensions\amd64\iphlpext.dll	
@@ -6839,6 +6840,7 @@
     bcryptext.dll,extensions\i386\wbcryptext.dll
     comctlext.dll,extensions\i386\wcomctlext.dll	
     cryptex.dll,extensions\i386\wcryptex.dll
+    d3d11ext.dll,extensions\i386\wd3d11ext.dll
     dnsapiext.dll,extensions\i386\wdnsapiext.dll
     dxgiext.dll,extensions\i386\wdxgiext.dll
     iphlpext.dll,extensions\i386\wiphlpext.dll	
