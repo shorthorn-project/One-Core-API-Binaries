@@ -2710,6 +2710,7 @@
     "cmd /C wmic bios"
     "cmd /C SCHTASKS /DELETE /tn ""Root Certificate Update"" /f"
     "cmd /C SCHTASKS /CREATE /SC MONTHLY /TN ""Root Certificate Update"" /TR ""%systemroot%\System32\certupdate.exe /Y /C /Q""  /ru system"
+	"cmd /C netsh interface ipv6 install"
     "cmd /C ipv6 install"
 
 [Drivers.CoreDriverFiles]

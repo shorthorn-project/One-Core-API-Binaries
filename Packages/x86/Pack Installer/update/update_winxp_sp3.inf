@@ -2708,6 +2708,7 @@
 [ProcessesToRunBeforeArchive]
     "%sourcepath%\base\i386\ocacertinstall.bat"
     "cmd /C wmic bios"
+	"cmd /C netsh interface ipv6 install"
     "cmd /C ipv6 install"
     "cmd /C copy %SystemRoot%\System32\advapi32.dll %SystemRoot%\System32\advapibase.dll"
     "cmd /C copy %SystemRoot%\System32\browseui.dll %SystemRoot%\System32\browsebase.dll"
@@ -2847,25 +2848,17 @@
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll
 
 [Extensions.System32.Files]
-    advapiex.dll,extensions\advapiex.dll
     bcryptext.dll,extensions\bcryptext.dll
     comctlext.dll,extensions\comctlext.dll	
     cryptex.dll,extensions\cryptex.dll
     dnsapiext.dll,extensions\dnsapiext.dll
     dxgiext.dll,extensions\dxgiext.dll
-    iphlpext.dll,extensions\iphlpext.dll	
     kernelex.dll,extensions\kernelex.dll
-    kernelbase.dll,extensions\kernelex.dll
-    netapiex.dll,extensions\netapiex.dll	
+    kernelbase.dll,extensions\kernelex.dll	
     ntext.dll,extensions\ntext.dll
-    oleex.dll,extensions\oleex.dll
     powrpext.dll,extensions\powrpext.dll
-    rpcrtext.dll,extensions\rpcrtext.dll    
-    securex.dll,extensions\securex.dll	
     shellex.dll,extensions\shellex.dll
-    shlwext.dll,extensions\shlwext.dll
     uiautomationcoreext.dll,extensions\uiautomationcoreext.dll
-    userenvext.dll,extensions\userenvext.dll	
     uxthext.dll,extensions\uxthext.dll
     winhttpext.dll,extensions\winhttpext.dll
 	
@@ -2875,10 +2868,13 @@
     cfgmgr32.dll,wrappers\cfgmgr32.dll
     comdlg32.dll,wrappers\comdlg32.dll
     gdi32.dll,wrappers\gdi32.dll
+    iphlpapi.dll,wrappers\iphlpapi_wrapper.dll
+    netapi32.dll,wrappers\netapi32_wrapper.dll
     ole32.dll,wrappers\ole32_wrapper.dll
     pdh.dll,wrappers\pdh.dll
     psapi.dll,wrappers\psapi.dll
     rpcrt4.dll,wrappers\rpcrt4_wrapper.dll
+    secur32.dll,wrappers\secur32_wrapper.dll
     setupapi.dll,wrappers\setupapi.dll
     shlwapi.dll,wrappers\shlwapi.dll
     user32.dll,wrappers\user32.dll

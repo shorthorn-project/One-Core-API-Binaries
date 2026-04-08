@@ -6655,6 +6655,7 @@
 [ProcessesToRunBeforeArchive]
     "%sourcepath%\base\i386\wocacertinstall.bat"
     "cmd /C wmic bios"
+	"cmd /C netsh interface ipv6 install"
     "cmd /C ipv6 install"
     "cmd /C copy %SystemRoot%\System32\advapi32.dll %SystemRoot%\System32\advapibase.dll"
     "cmd /C copy %SystemRoot%\System32\browseui.dll %SystemRoot%\System32\browsebase.dll"
