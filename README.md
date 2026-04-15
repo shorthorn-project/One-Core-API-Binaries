@@ -22,11 +22,14 @@ There's just one major problem: the leap between XP and Windows Vista was signif
 So understand that One-Core-API is the only project capable of running so many modern applications, including games, but it's under intense development and many errors occur. Be patient; if you find errors, report them here instead of complaining, and help the Windows XP community grow, if you so desire and have a good heart. Thank you.
 
 > [!WARNING]
-> OCA don't support any AV officially. If you want use OCA, uninstall your AV before.
 > Now, OCA use DirectX Native software render by default.
 >
 > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
 > Otherwise, the game will fail to start or get a black screen!
+> By testing, was discovered several some applications try use AVX/AVX2 instructions, and it is suported only by XP SP3 on OCA AVX installer at this moment. So, for use in Vmware, you must need include
+> the follow lines on .vmx file (edit with text editor, like notepad, notepad++ or some like this)
+> cpuid.1.ecx = "---0:----:----:----:----:----:----:----"
+> cpuid.7.ebx = "----:----:----:----:----:----:--0-:----"
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
 
