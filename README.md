@@ -28,7 +28,9 @@ So understand that One-Core-API is the only project capable of running so many m
 > Otherwise, the game will fail to start or get a black screen!
 > By testing, was discovered several some applications try use AVX/AVX2 instructions, and it is suported only by XP SP3 on OCA AVX installer at this moment. So, for use in Vmware, you must need include
 > the follow lines on .vmx file (edit with text editor, like notepad, notepad++ or some like this)
+> 
 > cpuid.1.ecx = "---0:----:----:----:----:----:----:----"
+>
 > cpuid.7.ebx = "----:----:----:----:----:----:--0-:----"
 
 <!-- **Official Discord Server**: <h2>https://discord.gg/eRcGuFtn6p</h2> -->
