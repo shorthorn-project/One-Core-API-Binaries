@@ -26,7 +26,7 @@ So understand that One-Core-API is the only project capable of running so many m
 >
 > For running a dx10+ game, you must need copy the files inside `<Your installation letter>\Windows\System32\wined3d` into the game installation.
 > Otherwise, the game will fail to start or get a black screen!
-> By testing, was discovered several some applications try use AVX/AVX2 instructions, and it is suported only by XP SP3 on OCA AVX installer at this moment. So, for use in Vmware, you must need include
+> By testing, was discovered several some applications try use AVX/AVX2 instructions, and it is supported only by XP SP3 on OCA AVX installer at this moment. So, for use in Vmware, you must need include
 > the follow lines on .vmx file (edit with text editor, like notepad, notepad++ or some like this)
 > 
 > cpuid.1.ecx = "---0:----:----:----:----:----:----:----"
