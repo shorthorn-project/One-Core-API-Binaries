@@ -16,7 +16,8 @@ Signature="$Windows NT$"
 2=Srv2k3SP2
 
 [DefaultBranchesServicePacks.WinNt60]
-1=Lh5001
+0=LhOmg13
+1=LhSP2
 
 [SourceInfsBranches]
 SP1RC1="update\update_srv2k3_SP1_RC1.inf"
@@ -29,8 +30,8 @@ WinXPSP3=update\update_winxp_sp3.inf
 Srv2k3RTM=update\update_srv2k3_rtm.inf
 Srv2k3SP1=update\update_srv2k3_sp1.inf
 Srv2k3SP2=update\update_srv2k3_sp2.inf
-Lh5000=update\update_lh_5000.inf
-Lh5001=update\update_lh_5001.inf
+LhOmg13=update\update_lh_omega13.inf
+LhSP2=update\update_lh_SP2.inf
 
 [SetupFiles.SP1RC1]
 "update\update_srv2k3_SP1_RC1.inf"
