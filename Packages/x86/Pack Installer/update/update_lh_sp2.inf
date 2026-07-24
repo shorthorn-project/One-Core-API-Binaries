@@ -23,7 +23,7 @@
     SERVICE_PACK_NUMBER     = 3
     HelpLink = "http://shorthornproject.com"
     URLInfoAbout = "http://shorthornproject.com"
-    APPC_VERSION            = "4.1.4-canary"    
+    APPC_VERSION            = "4.0.9"    
     UPDATE                  = "Update"
     HOTFIX                  = "Hotfix"
     SECURITY_UPDATE         = "Security Update"
@@ -151,7 +151,7 @@
     ; psapi.dll,wrappers\psapi.dll
     ; setupapi.dll,wrappers\setupapi.dll
     ; shlwapi.dll,wrappers\shlwapi.dll
-    ; user32.dll,wrappers\user32.dll
+    ; user32.dll,wrappers\user32_wrapper.dll
     ws2_32.dll,wrappers\ws2_32_wrapper.dll		
 	
 [CopyAlways.System32.APISET.files]    

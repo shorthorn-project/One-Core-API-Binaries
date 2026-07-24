@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.8"    
+    BASE_VERSION              = "4.0.9"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -63,6 +63,7 @@
     WIC_VERSION               = "3.0.0.0"
     LANGTYPEVALUE             = 0x0
     SP_SHORT_TITLE_WIC        = "WIC"
+    NT_FAMILY                 = "NT5"
     CURRENT_OS                = "2k3"
 	TARGET_RELEASE            = "SP1"
 	SPECIFIC_TARGET_RELEASE   = "SP"
@@ -6498,12 +6499,13 @@
     ;To prevent wrong installed version if using Mui packs and trying use WMP12
     HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"	
     HKLM,"SOFTWARE\Wow6432Node\Microsoft\MediaPlayer\Setup\Installed Versions"
+	;Remove old Variable used to run dotnet to not conflit with new way to run
+	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","DOTNET_SYSTEM_GLOBALIZATION_INVARIANT",0x0,"1"		
 	
 [ProductInstall.ReplaceFilesIfExist]
     CopyFiles = Wrappers.System32.Files
     CopyFiles = Wrappers.SysWow64.Files
-    CopyFiles = Drivers.CoreDriverFiles 
-    ;CopyFiles = System32.Files		
+    CopyFiles = Drivers.CoreDriverFiles	
 
 [ProductInstall.DontDelayUntilReboot]
     CopyFiles = Wrappers.System32.Files
@@ -6512,7 +6514,6 @@
     CopyFiles = CoreOS.Common.SysWOW64.Files
     CopyFiles = MustReplace.System32.Files
     CopyFiles = MustReplace.SysWOW64.Files
-    CopyFiles = MustReplace.WinSxS.Main.Files
 
 [ProductInstall.CopyFilesAlways]
     CopyFiles= Base.System32.Files
@@ -6649,7 +6650,6 @@
     Extensions.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     Extensions.SysWOW64.Files=10,SysWOW64      ; %windir%\SysWOW64 (don't delay until reboot)
     Fonts.files=20                  ; %windir%\fonts    (replace if exist)		
-    MustReplace.WinSxS.Main.Files = 10     ; %windir%
     MustReplace.System32.Files=11       ; %windir%\system32 (don't delay until reboot)
     MustReplace.SysWOW64.Files=10,SysWOW64  ; %windir%\system32 (don't delay until reboot)
     Program_files.ink.Files=65620,"microsoft shared\Ink"    
@@ -6691,14 +6691,14 @@
     "cmd /C mkdir %SystemRoot%\SystemTemp"
     "cmd /C mkdir %SystemDrive%\ProgramData"
     "cmd /C attrib +h %SystemDrive%\ProgramData /s /d"
-    "%systemroot%\system32\regsvr32.exe /s "%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkDiv.dll""
-    "%systemroot%\system32\regsvr32.exe /s "%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\InkObj.dll""
-    "%systemroot%\system32\regsvr32.exe /s "%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\rtscom.dll""
-    "%systemroot%\system32\regsvr32.exe /s "%Systemdrive%\Program Files\Common Files\Microsoft Shared\ink\tpcps.dll""
-    "%systemroot%\syswow64\regsvr32.exe /s "%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\ink\InkDiv.dll""
-    "%systemroot%\syswow64\regsvr32.exe /s "%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\ink\InkObj.dll""
-    "%systemroot%\syswow64\regsvr32.exe /s "%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\ink\rtscom.dll""
-    "%systemroot%\syswow64\regsvr32.exe /s "%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\ink\tpcps.dll""	
+    "%systemroot%\system32\regsvr32.exe /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\Ink\InkDiv.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\Ink\InkObj.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\Ink\rtscom.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%Systemdrive%\Program Files\Common Files\Microsoft Shared\Ink\tpcps.dll""
+    "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\InkDiv.dll""
+    "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\InkObj.dll""
+    "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\rtscom.dll""
+    "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\tpcps.dll""	
     "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msi.dll"   
     "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msihnd.dll"   
     "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\propsys.dll"   
@@ -6778,6 +6778,7 @@
     "WinSxS\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8\gdiplus.dll", WinSxS\gdiplus\amd64\gdiplus.dll
 	"WinSxS\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491\winhttp.dll", base\amd64\winhttp.dll
 	"WinSxS\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585\comctl32.dll", WinSxS\comctl32\i386\wcomctl32.dll
+	"WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_02b9dd85\comctl32.dll", WinSxS\comctl32\i386\wcomctl32.dll
     "WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8\gdiplus.dll", WinSxS\gdiplus\i386\wgdiplus.dll	
 	"WinSxS\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1\winhttp.dll", base\i386\wwinhttp.dll
 	
@@ -6785,7 +6786,8 @@
 	"WinSxS\manifests\amd64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_34c3c365.manifest"
 	"WinSxS\manifests\amd64_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_669b08b8.manifest"
 	"WinSxS\manifests\amd64_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_859f8491.manifest"
-	"WinSxS\manifests\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585.manifest"	
+	"WinSxS\manifests\wow64_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.101.0_x-ww_0BC59585.manifest"
+    "WinSxS\manifests\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.5048.0_x-ww_02b9dd85.manifest"	
 	"WinSxS\manifests\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.5048.0_x-ww_349122d8.manifest"
 	"WinSxS\manifests\x86_Microsoft.Windows.WinHTTP_6595b64144ccf1df_5.1.5048.0_x-ww_53959eb1.manifest"
 	
@@ -6794,6 +6796,7 @@
 	"WinSxS\Policies\amd64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_BD997995\6.0.5048.0.policy"
 	"WinSxS\Policies\amd64_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_DD275069\5.1.5048.0.policy"	
 	"WinSxS\Policies\wow64_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5C2DC83C\6.0.5048.0.policy"
+    "WinSxS\Policies\x86_policy.6.0.Microsoft.Windows.Common-Controls_6595b64144ccf1df_x-ww_5ddad775\6.0.5048.0.policy"  	
 	"WinSxS\Policies\x86_policy.1.0.Microsoft.Windows.GdiPlus_6595b64144ccf1df_x-ww_4e8510ac\5.1.7601.0.policy"	  
 	"WinSxS\Policies\x86_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_7D68AE49\5.1.5048.0.policy"	  
 
@@ -6836,32 +6839,34 @@
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\i386\%RELEASE_FAMILY%wws2_base.dll	
 
 [CoreOS.SPFiles.System32.Files]
-    basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll
+    basesrv.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%basesrv.dll		
+    ;dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%TARGET_RELEASE%dnsapi.dll	
     uxtheme.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\amd64\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%uxtheme.dll
 	
 [CoreOS.SPFiles.SysWow64.Files]	
+    ;dnsapi.dll,osfiles\%CURRENT_OS%\%TARGET_RELEASE%\i386\%RELEASE_FAMILY%%TARGET_RELEASE%wdnsapi.dll	
     uxthemebase.dll,osfiles\%CURRENT_OS%\SPECIFIC\%SPECIFIC_TARGET_RELEASE%\i386\%RELEASE_FAMILY%%SPECIFIC_TARGET_RELEASE%wuxthemebase.dll	;Need be uxthemebase because if use a edited uxtheme, face with "bad image" error.
 
 [CoreOS.Common.Msi.Files]
-    msi.dll,osfiles\NT5\COMMON\MSI\amd64\msi.dll
-    msiexec.exe,osfiles\NT5\COMMON\MSI\amd64\msiexec.exe	
-    msihnd.dll,osfiles\NT5\COMMON\MSI\amd64\msihnd.dll
-    msimsg.dll,osfiles\NT5\COMMON\MSI\amd64\msimsg.dll
-    msisip.dll,osfiles\NT5\COMMON\MSI\amd64\msisip.dll	
+    msi.dll,osfiles\%NT_FAMILY%\COMMON\MSI\amd64\%NT_FAMILY%msi.dll
+    msiexec.exe,osfiles\%NT_FAMILY%\COMMON\MSI\amd64\%NT_FAMILY%msiexec.exe	
+    msihnd.dll,osfiles\%NT_FAMILY%\COMMON\MSI\amd64\%NT_FAMILY%msihnd.dll
+    msimsg.dll,osfiles\%NT_FAMILY%\COMMON\MSI\amd64\%NT_FAMILY%msimsg.dll
+    msisip.dll,osfiles\%NT_FAMILY%\COMMON\MSI\amd64\%NT_FAMILY%msisip.dll	
 	
 [CoreOS.Common.Msi.Wow64.Files]
-    msi.dll,osfiles\NT5\COMMON\MSI\i386\wmsi.dll
-    msiexec.exe,osfiles\NT5\COMMON\MSI\i386\wmsiexec.exe
-    msihnd.dll,osfiles\NT5\COMMON\MSI\i386\wmsihnd.dll	
-    msimsg.dll,osfiles\NT5\COMMON\MSI\i386\wmsimsg.dll	
-    msisip.dll,osfiles\NT5\COMMON\MSI\i386\wmsisip.dll	
+    msi.dll,osfiles\%NT_FAMILY%\COMMON\MSI\i386\%NT_FAMILY%wmsi.dll
+    msihnd.dll,osfiles\%NT_FAMILY%\COMMON\MSI\i386\%NT_FAMILY%wmsihnd.dll	
+    msiexec.exe,osfiles\%NT_FAMILY%\COMMON\MSI\i386\%NT_FAMILY%wmsiexec.exe
+    msimsg.dll,osfiles\%NT_FAMILY%\COMMON\MSI\i386\%NT_FAMILY%wmsimsg.dll	
+    msisip.dll,osfiles\%NT_FAMILY%\COMMON\MSI\i386\%NT_FAMILY%wmsisip.dll	
 
 [Extensions.System32.Files]
     bcryptext.dll,extensions\amd64\bcryptext.dll
     comctlext.dll,extensions\amd64\comctlext.dll	
     cryptex.dll,extensions\amd64\cryptex.dll
     d3d11ext.dll,extensions\amd64\d3d11ext.dll
-    ;dnsapiext.dll,extensions\amd64\dnsapiext.dll
+    dnsapiext.dll,extensions\amd64\dnsapiext.dll
     dxgiext.dll,extensions\amd64\dxgiext.dll
     kernelex.dll,extensions\amd64\kernelex.dll
     kernelbase.dll,extensions\amd64\kernelex.dll
@@ -6875,7 +6880,7 @@
     comctlext.dll,extensions\i386\wcomctlext.dll	
     cryptex.dll,extensions\i386\wcryptex.dll
     d3d11ext.dll,extensions\i386\wd3d11ext.dll
-    ;dnsapiext.dll,extensions\i386\wdnsapiext.dll
+    dnsapiext.dll,extensions\i386\wdnsapiext.dll
     dxgiext.dll,extensions\i386\wdxgiext.dll
     kernelex.dll,extensions\i386\wkernelex.dll
     kernelbase.dll,extensions\i386\wkernelex.dll
@@ -6930,7 +6935,7 @@
     setupapi.dll,wrappers\i386\wsetupapi_wrapper.dll
     shell32.dll,wrappers\i386\wshell32_wrapper.dll
     shlwapi.dll,wrappers\i386\wshlwapi_wrapper.dll
-    user32.dll,wrappers\i386\wuser32.dll
+    user32.dll,wrappers\i386\wuser32_wrapper.dll
     userenv.dll,wrappers\i386\wuserenv_wrapper.dll	
     ;winhttp.dll,wrappers\i386\wwinhttp_wrapper.dll		
     winsta.dll,wrappers\i386\wwinsta_wrapper.dll		
@@ -7283,6 +7288,9 @@
     SLC.dll,additionaldlls\amd64\SLC.dll
     SLCExt.dll,additionaldlls\amd64\SLCExt.dll
     sppc.dll,additionaldlls\amd64\sppc.dll
+    sqlceoledb30.dll,additionaldlls\amd64\sqlceoledb30.dll
+    sqlceqp30.dll,additionaldlls\amd64\sqlceqp30.dll
+    sqlcese30.dll,additionaldlls\amd64\sqlcese30.dll
     sqmapi.dll,additionaldlls\amd64\sqmapi.dll
     srvcli.dll,additionaldlls\amd64\srvcli.dll
     svrapi.dll,additionaldlls\amd64\svrapi.dll
@@ -7319,7 +7327,11 @@
     wlanui.dll,additionaldlls\amd64\wlanui.dll
     wlanutil.dll,additionaldlls\amd64\wlanutil.dll
     wldp.dll,additionaldlls\amd64\wldp.dll
+    WMADMOD.dll,additionaldlls\amd64\MF\WMADMOD.dll   
+    WMADMOE.dll,additionaldlls\amd64\MF\WMADMOE.dll   
+    WMASF.dll,additionaldlls\amd64\MF\WMASF.dll   
     wmdrmsdk.dll,additionaldlls\amd64\MF\wmdrmsdk.dll    
+    WMVCORE.dll,additionaldlls\amd64\MF\WMVCORE.dll    
     wmphoto.dll,additionaldlls\amd64\wmphoto.dll
     wmsgapi.dll,additionaldlls\amd64\wmsgapi.dll
     ;wpc.dll,additionaldlls\amd64\wpc.dll    
@@ -7425,6 +7437,9 @@
     SLC.dll,additionaldlls\i386\wSLC.dll
     SLCExt.dll,additionaldlls\i386\wSLCExt.dll
     sppc.dll,additionaldlls\i386\wsppc.dll
+    sqlceoledb30.dll,additionaldlls\i386\wsqlceoledb30.dll
+    sqlceqp30.dll,additionaldlls\i386\wsqlceqp30.dll
+    sqlcese30.dll,additionaldlls\i386\wsqlcese30.dll
     sqmapi.dll,additionaldlls\i386\wsqmapi.dll
     srvcli.dll,additionaldlls\i386\wsrvcli.dll
     svrapi.dll,additionaldlls\i386\wsvrapi.dll
@@ -7461,7 +7476,11 @@
     wlanui.dll,additionaldlls\i386\wwlanui.dll
     wlanutil.dll,additionaldlls\i386\wwlanutil.dll
     wldp.dll,additionaldlls\i386\wwldp.dll
+    WMADMOD.dll,additionaldlls\i386\MF\wWMADMOD.dll    
+    WMADMOE.dll,additionaldlls\i386\MF\wWMADMOE.dll    
+    WMASF.dll,additionaldlls\i386\MF\wWMASF.dll    
     wmdrmsdk.dll,additionaldlls\i386\MF\wwmdrmsdk.dll    
+    WMVCORE.dll,additionaldlls\i386\MF\wWMVCORE.dll    
     wmphoto.dll,additionaldlls\i386\wwmphoto.dll
     wmsgapi.dll,additionaldlls\i386\wwmsgapi.dll
     ;wpc.dll,additionaldlls\i386\wwpc.dll    

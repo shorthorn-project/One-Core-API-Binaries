@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.8"    
+    BASE_VERSION              = "4.0.9"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2543,6 +2543,8 @@
     HKCR,"CLSID\{FB012959-F4F6-44D7-9D09-DAA087A9DB57}"
     ;To prevent wrong installed version if using Mui packs and trying use WMP12
     HKLM,"SOFTWARE\Microsoft\MediaPlayer\Setup\Installed Versions"
+	;Remove old Variable used to run dotnet to not conflit with new way to run
+	HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","DOTNET_SYSTEM_GLOBALIZATION_INVARIANT",0x0,"1"	
 
 [ProductInstall.ReplaceFilesIfExist]
     CopyFiles = Wrappers.System32.Files
@@ -2891,7 +2893,7 @@
     setupapi.dll,wrappers\setupapi_wrapper.dll
     shell32.dll,wrappers\shell32_wrapper.dll
     shlwapi.dll,wrappers\shlwapi_wrapper.dll
-    user32.dll,wrappers\user32.dll
+    user32.dll,wrappers\user32_wrapper.dll
     userenv.dll,wrappers\userenv_wrapper.dll
     ;winhttp.dll,wrappers\winhttp_wrapper.dll	
     winsta.dll,wrappers\winsta_wrapper.dll	
@@ -3135,6 +3137,9 @@
     slc.dll,additionaldlls\slc.dll
     SLCExt.dll,additionaldlls\SLCExt.dll
     sppc.dll,additionaldlls\sppc.dll
+    sqlceoledb30.dll,additionaldlls\sqlceoledb30.dll
+    sqlceqp30.dll,additionaldlls\sqlceqp30.dll
+    sqlcese30.dll,additionaldlls\sqlcese30.dll
     sqmapi.dll,additionaldlls\sqmapi.dll
     srvcli.dll,additionaldlls\srvcli.dll
     svrapi.dll,additionaldlls\svrapi.dll
@@ -3171,7 +3176,11 @@
     wlanui.dll,additionaldlls\wlanui.dll 
     wlanutil.dll,additionaldlls\wlanutil.dll
     wldp.dll,additionaldlls\wldp.dll
+    WMADMOD.DLL,additionaldlls\MF\WMADMOD.DLL
+    WMADMOE.DLL,additionaldlls\MF\WMADMOE.DLL
+    WMASF.DLL,additionaldlls\MF\WMASF.DLL
     WMDRMSDK.DLL,additionaldlls\MF\WMDRMSDK.DLL
+    WMVCORE.DLL,additionaldlls\MF\WMVCORE.DLL
     wmphoto.dll,additionaldlls\wmphoto.dll
     wmsgapi.dll,additionaldlls\wmsgapi.dll
     wpc.dll,additionaldlls\wpc.dll
@@ -3294,1145 +3303,1145 @@
     ICU\zoneinfo64.res,globalization\ICU\zoneinfo64.res	
 	
 [CopyAlways.Mui.0c0a.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\comdlg32.dll.mui
 	credui.dll.mui,mui\0C0A\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0C0A\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0C0A\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0C0A\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\lsasrv.dll.mui
 	mmc.exe.mui,mui\0C0A\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0C0A\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0C0A\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0C0A\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0C0A\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0C0A\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0C0A\winsrv.dll.mui	
 	
 [CopyAlways.Mui.040b.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\comdlg32.dll.mui
 	credui.dll.mui,mui\040b\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040b\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\040b\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040b\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\lsasrv.dll.mui
 	mmc.exe.mui,mui\040b\mmc.exe.mui	
 	mmcbase.dll.mui,mui\040b\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\040b\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\040b\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\040b\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040b\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040b\winsrv.dll.mui	
 	
 [CopyAlways.Mui.040c.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\comdlg32.dll.mui
 	credui.dll.mui,mui\040c\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040c\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\040c\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040c\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\lsasrv.dll.mui
 	mmc.exe.mui,mui\040c\mmc.exe.mui	
 	mmcbase.dll.mui,mui\040c\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\040c\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\040c\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\040c\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040c\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040c\winsrv.dll.mui	
 
 [CopyAlways.Mui.040d.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\comdlg32.dll.mui
 	credui.dll.mui,mui\040d\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040d\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\040d\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040d\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\lsasrv.dll.mui
 	mmc.exe.mui,mui\040d\mmc.exe.mui	
 	mmcbase.dll.mui,mui\040d\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\040d\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\040d\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\040d\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040d\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040d\winsrv.dll.mui
 
 [CopyAlways.Mui.040e.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\comdlg32.dll.mui
 	credui.dll.mui,mui\040e\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\crypt32.dll.mui
 	dxdiag.exe.mui,mui\040e\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\040e\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\040e\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\lsasrv.dll.mui
 	mmc.exe.mui,mui\040e\mmc.exe.mui	
 	mmcbase.dll.mui,mui\040e\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\040e\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\040e\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\040e\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\040e\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\040e\winsrv.dll.mui	
 	
 [CopyAlways.Mui.041a.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\comdlg32.dll.mui
 	credui.dll.mui,mui\041a\credui.dll.mui	
     dwrite.dll.mui,mui\041a\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\041a\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\041a\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\userenv.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041a\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\userenv.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041a\uxtheme.dll.mui
 
 [CopyAlways.Mui.041b.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\comdlg32.dll.mui
 	credui.dll.mui,mui\041b\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041b\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\041b\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041b\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\lsasrv.dll.mui
 	mmc.exe.mui,mui\041b\mmc.exe.mui	
 	mmcbase.dll.mui,mui\041b\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\041b\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\041b\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\041b\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041b\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041b\winsrv.dll.mui	
 
 [CopyAlways.Mui.041d.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\comdlg32.dll.mui
 	credui.dll.mui,mui\041d\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041d\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\041d\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041d\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\lsasrv.dll.mui
 	mmc.exe.mui,mui\041d\mmc.exe.mui	
 	mmcbase.dll.mui,mui\041d\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\041d\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\041d\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\041d\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041d\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041d\winsrv.dll.mui
 	
 [CopyAlways.Mui.041e.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\comdlg32.dll.mui
 	credui.dll.mui,mui\041e\credui.dll.mui	
     dwrite.dll.mui,mui\041e\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\041e\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\041e\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041e\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041e\uxtheme.dll.mui
 
 [CopyAlways.Mui.041f.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\comdlg32.dll.mui
 	credui.dll.mui,mui\041f\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\crypt32.dll.mui
 	dxdiag.exe.mui,mui\041f\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\041f\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\041f\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\lsasrv.dll.mui
 	mmc.exe.mui,mui\041f\mmc.exe.mui	
 	mmcbase.dll.mui,mui\041f\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\041f\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\041f\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\041f\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\041f\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\041f\winsrv.dll.mui
 	
 [CopyAlways.Mui.0401.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\comdlg32.dll.mui
 	credui.dll.mui,mui\0401\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0401\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0401\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0401\dwrite.dll.mui	
-    ;esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\lsasrv.dll.mui
+    ;esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\lsasrv.dll.mui
 	mmc.exe.mui,mui\0401\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0401\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0401\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0401\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0401\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0401\winsrv.dll.mui		
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0401\winsrv.dll.mui		
 	
 [CopyAlways.Mui.0402.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\comdlg32.dll.mui
 	credui.dll.mui,mui\0402\credui.dll.mui	
     dwrite.dll.mui,mui\0402\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0402\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0402\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0402\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0402\uxtheme.dll.mui
 
 [CopyAlways.Mui.0404.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\comdlg32.dll.mui
 	credui.dll.mui,mui\0404\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0404\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0404\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0404\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\lsasrv.dll.mui
 	mmc.exe.mui,mui\0404\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0404\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0404\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0404\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0404\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0404\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0404\winsrv.dll.mui	
 
 [CopyAlways.Mui.0405.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\comdlg32.dll.mui
 	credui.dll.mui,mui\0405\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0405\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0405\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0405\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\lsasrv.dll.mui
 	mmc.exe.mui,mui\0405\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0405\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0405\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0405\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0405\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0405\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0405\winsrv.dll.mui	
 
 [CopyAlways.Mui.0406.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\comdlg32.dll.mui
 	credui.dll.mui,mui\0406\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0406\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0406\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0406\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\lsasrv.dll.mui
 	mmc.exe.mui,mui\0406\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0406\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0406\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0406\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0406\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0406\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0406\winsrv.dll.mui	
 
 [CopyAlways.Mui.0407.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\comdlg32.dll.mui
 	credui.dll.mui,mui\0407\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0407\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0407\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0407\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\lsasrv.dll.mui
 	mmc.exe.mui,mui\0407\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0407\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0407\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0407\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0407\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0407\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0407\winsrv.dll.mui	
 
 [CopyAlways.Mui.0408.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\comdlg32.dll.mui
 	credui.dll.mui,mui\0408\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0408\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0408\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0408\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\lsasrv.dll.mui
 	mmc.exe.mui,mui\0408\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0408\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0408\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0408\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0408\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0408\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0408\winsrv.dll.mui	
 	
 [CopyAlways.Mui.0409.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\comdlg32.dll.mui
 	dxdiag.exe.mui,mui\0409\dxdiag.exe.mui
 	dxdiagn.dll.mui,mui\0409\dxdiagn.dll.mui
     dwrite.dll.mui,mui\0409\dwrite.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\kernel32.dll.mui	
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\setupapi.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\shell32.dll.mui	
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\shlwapi.dll.mui	
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\shlwapi.dll.mui	
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\kernel32.dll.mui	
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\setupapi.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\shell32.dll.mui	
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\shlwapi.dll.mui	
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\shlwapi.dll.mui	
 	;slayerxp.dll.mui,mui\0409\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0409\user32.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0409\user32.dll.mui
 
 [CopyAlways.Mui.0410.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\comdlg32.dll.mui
 	credui.dll.mui,mui\0410\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0410\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0410\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0410\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\lsasrv.dll.mui
 	mmc.exe.mui,mui\0410\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0410\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0410\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0410\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0410\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0410\winsrv.dll.mui	
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0410\winsrv.dll.mui	
 
 [CopyAlways.Mui.0411.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\comdlg32.dll.mui
 	credui.dll.mui,mui\0411\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0411\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0411\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0411\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\lsasrv.dll.mui
 	mmc.exe.mui,mui\0411\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0411\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0411\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0411\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0411\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0411\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0411\winsrv.dll.mui
 
 [CopyAlways.Mui.0412.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\comdlg32.dll.mui
 	credui.dll.mui,mui\0412\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0412\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0412\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0412\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\lsasrv.dll.mui
 	mmc.exe.mui,mui\0412\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0412\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0412\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0412\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0412\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0412\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0412\winsrv.dll.mui
 
 [CopyAlways.Mui.0413.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\comdlg32.dll.mui
 	credui.dll.mui,mui\0413\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0413\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0413\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0413\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\lsasrv.dll.mui
 	mmc.exe.mui,mui\0413\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0413\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0413\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0413\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0413\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0413\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0413\winsrv.dll.mui
 
 [CopyAlways.Mui.0414.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\comdlg32.dll.mui
 	credui.dll.mui,mui\0414\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0414\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0414\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0414\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\lsasrv.dll.mui
 	mmc.exe.mui,mui\0414\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0414\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0414\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0414\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0414\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0414\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0414\winsrv.dll.mui
 
 [CopyAlways.Mui.0415.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\comdlg32.dll.mui
 	credui.dll.mui,mui\0415\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0415\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0415\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0415\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\lsasrv.dll.mui
 	mmc.exe.mui,mui\0415\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0415\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0415\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0415\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0415\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0415\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0415\winsrv.dll.mui
 
 [CopyAlways.Mui.0416.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\comdlg32.dll.mui
 	credui.dll.mui,mui\0416\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0416\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0416\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0416\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\lsasrv.dll.mui
 	mmc.exe.mui,mui\0416\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0416\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0416\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0416\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0416\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0416\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0416\winsrv.dll.mui
 	
 [CopyAlways.Mui.0418.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\comdlg32.dll.mui
 	credui.dll.mui,mui\0418\credui.dll.mui	
     dwrite.dll.mui,mui\0418\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0418\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0418\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0418\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0418\uxtheme.dll.mui
 
 [CopyAlways.Mui.0419.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\comdlg32.dll.mui
 	credui.dll.mui,mui\0419\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0419\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0419\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0419\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\lsasrv.dll.mui
 	mmc.exe.mui,mui\0419\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0419\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0419\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0419\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0419\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0419\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0419\winsrv.dll.mui
 	
 [CopyAlways.Mui.0424.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\comdlg32.dll.mui
 	credui.dll.mui,mui\0424\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0424\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0424\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0424\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\lsasrv.dll.mui
 	mmc.exe.mui,mui\0424\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0424\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0424\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0424\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0424\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0424\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0424\winsrv.dll.mui
 
 [CopyAlways.Mui.0425.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\comdlg32.dll.mui
 	credui.dll.mui,mui\0425\credui.dll.mui	
     dwrite.dll.mui,mui\0425\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0425\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0425\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0425\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0425\uxtheme.dll.mui
 
 [CopyAlways.Mui.0426.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\comdlg32.dll.mui
 	credui.dll.mui,mui\0426\credui.dll.mui	
     dwrite.dll.mui,mui\0426\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0426\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0426\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0426\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0426\uxtheme.dll.mui
 
 [CopyAlways.Mui.0427.Files]
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\comdlg32.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\comdlg32.dll.mui
 	credui.dll.mui,mui\0427\credui.dll.mui	
     dwrite.dll.mui,mui\0427\dwrite.dll.mui	
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0427\nusrmgr.cpl.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\shlwapi.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\nusrmgr.cpl.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0427\slayerxp.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0427\uxtheme.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0427\uxtheme.dll.mui
 	
 [CopyAlways.Mui.0804.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\comdlg32.dll.mui
 	credui.dll.mui,mui\0804\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0804\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0804\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0804\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\lsasrv.dll.mui
 	mmc.exe.mui,mui\0804\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0804\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0804\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0804\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0804\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0804\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0804\winsrv.dll.mui
 
 [CopyAlways.Mui.0816.Files]
-    advapi32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\advapi32.dll.mui
-    advapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\advapi32.dll.mui
-    browseui.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\browseui.dll.mui
-    comdlg32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\comdlg32.dll.mui
-    comdlgbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\comdlg32.dll.mui
+    advapi32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\advapi32.dll.mui
+    advapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\advapi32.dll.mui
+    browseui.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\browseui.dll.mui
+    comdlg32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\comdlg32.dll.mui
+    comdlgbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\comdlg32.dll.mui
 	credui.dll.mui,mui\0816\credui.dll.mui	
-    crypt32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\crypt32.dll.mui
+    crypt32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\crypt32.dll.mui
 	dxdiag.exe.mui,mui\0816\dxdiag.exe.mui	
 	dxdiagn.dll.mui,mui\0816\dxdiagn.dll.mui	
 	dwrite.dll.mui,mui\0816\dwrite.dll.mui	
-    esent.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\esent.dll.mui
-    iphlpapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\iphlpapi.dll.mui
-    iphlpapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\iphlpapi.dll.mui
-    kernel32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\kernel32.dll.mui
-    lsasrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\lsasrv.dll.mui
+    esent.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\esent.dll.mui
+    iphlpapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\iphlpapi.dll.mui
+    iphlpapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\iphlpapi.dll.mui
+    kernel32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\kernel32.dll.mui
+    lsasrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\lsasrv.dll.mui
 	mmc.exe.mui,mui\0816\mmc.exe.mui	
 	mmcbase.dll.mui,mui\0816\mmcbase.dll.mui	
-    ntdll.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\ntdll.dll.mui
-    nusrmgr.cpl.mui,osfiles\%CURRENT_OS%\MUI\0816\nusrmgr.cpl.mui
-    ole32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\ole32.dll.mui
-    olebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\ole32.dll.mui
-    pdh.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\pdh.dll.mui
-    pdhbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\pdh.dll.mui
-    setupapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\setupapi.dll.mui
-    setupapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\setupapi.dll.mui
-    shell32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shell32.dll.mui
-    shellbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shell32.dll.mui
-    shlwapi.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shlwapi.dll.mui
-    shlwapibase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\shlwapi.dll.mui
+    ntdll.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\ntdll.dll.mui
+    nusrmgr.cpl.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\nusrmgr.cpl.mui
+    ole32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\ole32.dll.mui
+    olebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\ole32.dll.mui
+    pdh.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\pdh.dll.mui
+    pdhbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\pdh.dll.mui
+    setupapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\setupapi.dll.mui
+    setupapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\setupapi.dll.mui
+    shell32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\shell32.dll.mui
+    shellbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\shell32.dll.mui
+    shlwapi.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\shlwapi.dll.mui
+    shlwapibase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\shlwapi.dll.mui
 	;slayerxp.dll.mui,mui\0816\slayerxp.dll.mui
-    user32.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\user32.dll.mui
-    userbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\user32.dll.mui
-    userenv.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\userenv.dll.mui
-    userenvbase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\userenv.dll.mui
-    uxtheme.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\uxtheme.dll.mui
-    uxthemebase.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\uxtheme.dll.mui
-    win32k.sys.mui,osfiles\%CURRENT_OS%\MUI\0816\win32k.sys.mui
-    winsrv.dll.mui,osfiles\%CURRENT_OS%\MUI\0816\winsrv.dll.mui
+    user32.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\user32.dll.mui
+    userbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\user32.dll.mui
+    userenv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\userenv.dll.mui
+    userenvbase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\userenv.dll.mui
+    uxtheme.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\uxtheme.dll.mui
+    uxthemebase.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\uxtheme.dll.mui
+    win32k.sys.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\win32k.sys.mui
+    winsrv.dll.mui,osfiles\%NT_FAMILY%\COMMON\MUI\0816\winsrv.dll.mui
 	
 [CopyAlways.System32.APISET.Files]    
    API-MS-WIN-APPMODEL-IDENTITY-L1-1-0.dll,api-sets\API-MS-WIN-APPMODEL-IDENTITY-L1-1-0.dll
