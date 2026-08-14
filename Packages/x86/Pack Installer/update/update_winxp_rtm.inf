@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.9"    
+    BASE_VERSION              = "4.0.10"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -76,9 +76,9 @@
     MIN_MINOR_VERSION         = "1"
     BUILD_NUMBER              = "2505"	
     MAX_BUILD_NUMBER          = "2600"
-    RELEASE_TYPE              = "original"
+    RELEASE_TYPE              = "custom"
     RELEASE_TYPE_WIN32SS      = "custom"
-    RELEASE_TYPE_SPECIAL      = "original"
+    RELEASE_TYPE_SPECIAL      = "custom"
     ShortCutName              = "NNN4NT5"	
     ShortCutWctName           = "Windows Compatibility Tool"	
     ShortCutDir               = "Accessories\System Tools"
@@ -2745,14 +2745,16 @@
     "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"
 
 [Drivers.CoreDriverFiles]
-    intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
+    ;intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
     kseext.sys, drivers\kseext.sys
+    ipsec.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ipsec.sys	
     msfs.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%msfs.sys 	
     ndis.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ndis.sys 	
     npfs.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%npfs.sys 	
     ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ntoskrn8.sys	
+    tcpip.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip.sys 
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
-    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys 
+    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys  
 
 [System32.Files]
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
@@ -2833,6 +2835,8 @@
     imm32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%imm32.dll		
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     loadperf.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%loadperf.dll
+    lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%lsasrv.dll
+    mswsock.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%mswsock.dll
     oleacc.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%oleacc.dll
     rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll		
     ;rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll
@@ -5259,6 +5263,11 @@
     "cmd /C del %SystemRoot%\System32\userbase.dll"	
     "cmd /C del %SystemRoot%\System32\userenvbase.dll"
     "cmd /C del %SystemRoot%\System32\winstabase.dll"
-    "cmd /C del %SystemRoot%\System32\ws2_base.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msi.dll" 
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msihnd.dll"	
+    "cmd /C del %SystemRoot%\System32\ws2_base.dll"	
+	
+[Add.Reg.Uninstall]
+	;Add msi.dll registration after uninstall reboot, because the common ways like ProcessesToRunAfterUninstallReboo not working don't know why
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKey,0x00020000,"%11%\regsvr32.exe /s "msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKey,0x00020000,"%11%\regsvr32.exe /s "msihnd.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msihnd.dll""	

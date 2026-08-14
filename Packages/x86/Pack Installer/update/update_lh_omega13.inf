@@ -33,7 +33,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.9"    
+    BASE_VERSION              = "4.0.10"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -2745,14 +2745,16 @@
     "cmd /C copy %SystemRoot%\System32\winsta.dll %SystemRoot%\System32\winstabase.dll"
 
 [Drivers.CoreDriverFiles]
-    intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
+    ;intelppm.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%intelppm.sys
     kseext.sys, drivers\kseext.sys
+    ipsec.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ipsec.sys	
     msfs.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%msfs.sys 	
     ndis.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ndis.sys 	
     npfs.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%npfs.sys 	
     ntoskrn8.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%ntoskrn8.sys	
+    tcpip.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip.sys 
     tcpip6.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tcpip6.sys 
-    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys 
+    tdi.sys, osfiles\%CURRENT_OS%\COMMON\drivers\%RELEASE_FAMILY%tdi.sys  
 
 [System32.Files]
     win32k.sys, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%win32k.sys
@@ -2822,6 +2824,8 @@
     "WinSxS\Policies\x86_policy.5.1.Microsoft.Windows.WinHTTP_6595b64144ccf1df_x-ww_7D68AE49\5.1.5048.0.policy"
     
 [CoreOS.Common.System32.Files]
+	;Special for XP
+    advapicore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advapicore.dll
     crypt32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%crypt32.dll
     cryptcore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%cryptcore.dll
     ;dssenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%dssenh.dll
@@ -2833,6 +2837,8 @@
     imm32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%imm32.dll		
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%kernel32.dll
     loadperf.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%loadperf.dll
+    lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%lsasrv.dll
+    mswsock.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%mswsock.dll
     oleacc.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%oleacc.dll
     rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rpcrtbase.dll		
     ;rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%rsaenh.dll
@@ -2843,8 +2849,8 @@
     winsrv.dll, osfiles\%CURRENT_OS%\COMMON\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%winsrv.dll
     wintrust.dll, osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wintrust.dll
     ws2_base.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%ws2_base.dll	
-	;Special for XP
-    advapicore.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%advapicore.dll
+    wshtcpip.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wshtcpip.dll	
+    wsock32.dll,osfiles\%CURRENT_OS%\COMMON\%RELEASE_FAMILY%wsock32.dll
 	
 [CoreOS.Common.Base.Files]
     d3d9base.dll,osfiles\%NT_FAMILY%\COMMON\BASE\%NT_FAMILY%d3d9base.dll
@@ -5257,6 +5263,11 @@
     "cmd /C del %SystemRoot%\System32\userbase.dll"	
     "cmd /C del %SystemRoot%\System32\userenvbase.dll"
     "cmd /C del %SystemRoot%\System32\winstabase.dll"
-    "cmd /C del %SystemRoot%\System32\ws2_base.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msi.dll" 
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msihnd.dll"	
+    "cmd /C del %SystemRoot%\System32\ws2_base.dll"	
+	
+[Add.Reg.Uninstall]
+	;Add msi.dll registration after uninstall reboot, because the common ways like ProcessesToRunAfterUninstallReboo not working don't know why
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKey,0x00020000,"%11%\regsvr32.exe /s "msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKey,0x00020000,"%11%\regsvr32.exe /s "msihnd.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msihnd.dll""	

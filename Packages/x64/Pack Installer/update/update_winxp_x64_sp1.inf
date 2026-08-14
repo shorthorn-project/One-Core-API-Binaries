@@ -34,7 +34,7 @@
     SERVICE_PACK_NUMBER       = 2
     HelpLink                  = "http://shorthornproject.com"
     URLInfoAbout              = "http://shorthornproject.com"
-    BASE_VERSION              = "4.0.9"    
+    BASE_VERSION              = "4.0.10"    
     UPDATE                    = "Update"
     HOTFIX                    = "Hotfix"
     SECURITY_UPDATE           = "Security Update"
@@ -6699,15 +6699,15 @@
     "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\InkObj.dll""
     "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\rtscom.dll""
     "%systemroot%\syswow64\regsvr32.exe /s ""%Systemdrive%\Program Files (x86)\Common Files\Microsoft Shared\Ink\tpcps.dll""	
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msi.dll"   
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msihnd.dll"   
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\propsys.dll"   
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\slayeroca.dll"    
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\mmdevapi.dll"     
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\msi.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\msihnd.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\propsys.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\slayeroca.dll"      
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\system32\msi.dll""   
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\system32\msihnd.dll""   
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\system32\propsys.dll""   
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\system32\slayeroca.dll""    
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\system32\mmdevapi.dll""     
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\syswow64\msi.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\syswow64\msihnd.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\syswow64\propsys.dll""
+    "%systemroot%\system32\regsvr32.exe /s ""%systemroot%\syswow64\slayeroca.dll""      
     "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\mmdevapi.dll"       
     "%windir%\system32\cmd.exe" /c move /y "%16407%\System Tools\NNN4NT5.lnk" "%windir%\$NtUninstall%SP_SHORT_TITLE%$\NNN4NT5.lnk"
 	
@@ -6809,6 +6809,7 @@
     gdibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\win32ss\%RELEASE_TYPE_WIN32SS%\%RELEASE_FAMILY%%RELEASE_TYPE_WIN32SS%gdibase.dll
 	iphlpapibase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%iphlpapibase.dll	
     kernel32.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%kernel32.dll
+    lsasrv.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%lsasrv.dll
     oleacc.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%oleacc.dll	
     rpcrtbase.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%rpcrtbase.dll	
     ;rsaenh.dll,osfiles\%CURRENT_OS%\COMMON\amd64\%RELEASE_FAMILY%rsaenh.dll
@@ -9570,12 +9571,8 @@
     "cmd /C schtasks /delete /tn ""Root Certificate Update"" /f"
     "cmd /C rmdir -f %SystemDrive%\ProgramData"
     "cmd /C rmdir -f %SystemRoot%\SystemTemp"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msi.dll"   
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\system32\msihnd.dll"
     "%systemroot%\system32\regsvr32.exe /s /u %systemroot%\system32\slayeroca.dll"    
     "%systemroot%\system32\regsvr32.exe /s /u %systemroot%\system32\mmdevapi.dll"     
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\msi.dll"
-    "%systemroot%\system32\regsvr32.exe /s %systemroot%\syswow64\msihnd.dll"
     "%systemroot%\system32\regsvr32.exe /s /u %systemroot%\syswow64\slayeroca.dll"      
     "%systemroot%\system32\regsvr32.exe /s /u %systemroot%\syswow64\mmdevapi.dll"
     "cmd /C del %SystemRoot%\System32\advapibase.dll"
@@ -9607,4 +9604,11 @@
     "cmd /C del %SystemRoot%\Syswow64\userbase.dll"	
     "cmd /C del %SystemRoot%\Syswow64\userenvbase.dll"
     "cmd /C del %SystemRoot%\Syswow64\winstabase.dll"
-    "cmd /C del %SystemRoot%\Syswow64\ws2_base.dll"	
+    "cmd /C del %SystemRoot%\Syswow64\ws2_base.dll"
+	
+[Add.Reg.Uninstall]
+	;Add msi.dll registration after uninstall reboot, because the common ways like ProcessesToRunAfterUninstallReboo not working don't know why
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKey,0x00020000,"%11%\regsvr32.exe /s "msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKey,0x00020000,"%11%\regsvr32.exe /s "msihnd.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msi.dll""
+    HKLM, SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce,MSIHndRegKeyWow64,0x00020000,"%11%\regsvr32.exe /s "%SystemDrive%\Windows\SysWow64\msihnd.dll""	
